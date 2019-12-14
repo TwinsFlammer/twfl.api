@@ -10,6 +10,8 @@ import lombok.Getter;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import java.util.Arrays;
+
 /**
  * Created by @SrGutyerrez
  */
@@ -17,14 +19,14 @@ import org.bukkit.command.CommandSender;
 public abstract class CustomCommand extends Command {
     private final CommandRestriction commandRestriction;
     private final Group group;
-    private final String[] aliases;
 
     public CustomCommand(String name, CommandRestriction commandRestriction, String groupName, String... aliases) {
         super(name);
 
         this.commandRestriction = commandRestriction;
         this.group = GroupManager.getGroup(groupName);
-        this.aliases = aliases;
+
+        this.setAliases(Arrays.asList(aliases));
     }
 
     public void execute(CommandSender sender, String[] args) {
