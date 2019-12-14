@@ -18,6 +18,7 @@ public abstract class CommunityPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        this.onEnablePlugin();
     }
 
     @Override
@@ -29,5 +30,11 @@ public abstract class CommunityPlugin extends JavaPlugin {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+
+        this.onDisablePlugin();
     }
+
+    public abstract void onEnablePlugin();
+
+    public abstract void onDisablePlugin();
 }
