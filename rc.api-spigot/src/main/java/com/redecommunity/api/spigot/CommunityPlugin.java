@@ -17,12 +17,12 @@ public abstract class CommunityPlugin extends JavaPlugin {
     }
 
     @Override
-    public void onEnable() {
+    public final void onEnable() {
         this.onEnablePlugin();
     }
 
     @Override
-    public void onDisable() {
+    public final void onDisable() {
         Updater updater = new Updater(this.getFile(), Common.getBranch());
 
         try {
