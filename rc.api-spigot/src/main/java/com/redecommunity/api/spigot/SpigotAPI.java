@@ -1,12 +1,11 @@
 package com.redecommunity.api.spigot;
 
 import com.redecommunity.api.spigot.reflection.Reflection;
-import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * Created by @SrGutyerrez
  */
-public class SpigotAPI extends JavaPlugin {
+public class SpigotAPI extends CommunityPlugin {
     private static SpigotAPI instance;
 
     private Reflection reflection;
@@ -16,8 +15,12 @@ public class SpigotAPI extends JavaPlugin {
     }
 
     @Override
-    public void onEnable() {
+    public void onEnablePlugin() {
         this.reflection = new Reflection(this);
+    }
+
+    @Override
+    public void onDisablePlugin() {
 
     }
 
