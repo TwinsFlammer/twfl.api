@@ -1,5 +1,6 @@
 package com.redecommunity.api.bungeecord;
 
+import com.redecommunity.api.bungeecord.commands.manager.CommandManager;
 import com.redecommunity.api.bungeecord.reflection.Reflection;
 
 /**
@@ -17,6 +18,8 @@ public class BungeeAPI extends CommunityPlugin {
     @Override
     public void onEnablePlugin() {
         this.reflection = new Reflection();
+
+        new CommandManager();
     }
 
     @Override
