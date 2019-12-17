@@ -28,7 +28,7 @@ public abstract class CustomCommand extends Command {
     }
 
     @Override
-    public void execute(CommandSender sender, String[] args) {
+    public final void execute(CommandSender sender, String[] args) {
         if (this.commandRestriction != null && !this.commandRestriction.isValid(sender)) return;
 
         User user = UserManager.getUser(sender.getName());
