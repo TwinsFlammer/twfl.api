@@ -1,6 +1,7 @@
 package com.redecommunity.api.bungeecord.commands.defaults.disable;
 
 import com.redecommunity.api.bungeecord.commands.CustomCommand;
+import com.redecommunity.api.bungeecord.commands.defaults.disable.dao.DisabledCommandDao;
 import com.redecommunity.api.bungeecord.commands.defaults.disable.data.DisabledCommand;
 import com.redecommunity.api.bungeecord.commands.defaults.disable.manager.DisabledCommandManager;
 import com.redecommunity.api.bungeecord.commands.enums.CommandRestriction;
@@ -36,14 +37,19 @@ public class EnableCommand extends CustomCommand {
 
         if (disabledCommand == null) {
             user.sendMessage(
-                    String.format(
-                            language.getMessage("messages.default_commands.command_not_disabled")
-                    )
+                    language.getMessage("messages.default_commands.command_not_disabled")
             );
             return;
         }
 
+        DisabledCommandDao disabledCommandDao = new DisabledCommandDao();
 
+        disabledCommandDao.delete("name", name);
 
+        user.sendMessage(
+                String.format(
+                        language.getMessage("messages.default_commands.command_enabled")
+                )
+        );
     }
 }
