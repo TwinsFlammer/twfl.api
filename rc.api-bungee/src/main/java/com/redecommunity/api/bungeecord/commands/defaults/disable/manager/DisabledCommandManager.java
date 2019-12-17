@@ -13,6 +13,8 @@ import java.util.List;
 public class DisabledCommandManager {
     private static List<DisabledCommand> disabledCommands = Lists.newArrayList();
 
+    public static final String CHANNEL_NAME = "disabled_command";
+
     public static List<DisabledCommand> getDisabledCommands() {
         return DisabledCommandManager.disabledCommands;
     }
@@ -23,6 +25,10 @@ public class DisabledCommandManager {
                 .filter(disabledCommand -> disabledCommand.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public static void removeDisabledCommand(String name) {
+        DisabledCommandManager.disabledCommands.removeIf(disabledCommand -> disabledCommand.getName().equalsIgnoreCase(name));
     }
 
     public static DisabledCommand toDisabledCommand(ResultSet resultSet) throws SQLException {
