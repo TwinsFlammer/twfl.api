@@ -1,5 +1,6 @@
 package com.redecommunity.api.bungeecord.commands.defaults.disable.channel;
 
+import com.redecommunity.api.bungeecord.commands.defaults.disable.manager.DisabledCommandManager;
 import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisDataException;
@@ -10,7 +11,7 @@ import redis.clients.jedis.exceptions.JedisDataException;
 public class DisabledCommandChannel extends Channel {
     @Override
     public String getName() {
-        return "disabled_command";
+        return DisabledCommandManager.CHANNEL_NAME;
     }
 
     @Override
