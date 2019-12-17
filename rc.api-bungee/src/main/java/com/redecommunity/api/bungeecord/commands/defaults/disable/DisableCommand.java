@@ -40,8 +40,8 @@ class DisableCommand extends CustomCommand {
 
         disabledCommandDao.insert(disabledCommand);
 
-        String message = language.getMessage("messages.default_commands.command_disabled");
-
-        user.sendMessage(message);
+        user.sendMessage(
+                language.getMessage("messages.default_commands.command_disabled")
+        );
     }
 }
