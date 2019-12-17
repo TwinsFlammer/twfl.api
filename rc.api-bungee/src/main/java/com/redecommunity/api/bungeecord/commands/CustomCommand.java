@@ -1,5 +1,7 @@
 package com.redecommunity.api.bungeecord.commands;
 
+import com.redecommunity.api.bungeecord.commands.defaults.disable.data.DisabledCommand;
+import com.redecommunity.api.bungeecord.commands.defaults.disable.manager.DisabledCommandManager;
 import com.redecommunity.api.bungeecord.commands.enums.CommandRestriction;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.group.data.Group;
@@ -33,12 +35,23 @@ public abstract class CustomCommand extends Command {
 
         User user = UserManager.getUser(sender.getName());
 
+        Language language = user.getLanguage();
+
         if (!user.hasGroup(this.group)) {
-            Language language = user.getLanguage();
+            user.sendMessage(
+                    language.getMessage("messages.default_commands.invalid_group")
+            );
+            return;
+        }
 
-            String message = language.getMessage("messages.default_commands.invalid_group");
+        String name = this.getName();
 
-            user.sendMessage(message);
+        DisabledCommand disabledCommand = DisabledCommandManager.getDisabledCommand(name);
+
+        if (disabledCommand != null) {
+            user.sendMessage(
+                    language.getMessage("messages.default_commands.command_disabled")
+            );
             return;
         }
 
