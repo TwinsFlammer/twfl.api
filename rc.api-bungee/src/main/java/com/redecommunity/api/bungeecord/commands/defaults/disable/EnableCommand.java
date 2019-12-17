@@ -37,7 +37,7 @@ public class EnableCommand extends CustomCommand {
         if (disabledCommand == null) {
             user.sendMessage(
                     String.format(
-                            language.getMessage("messages.default_commands.command_not_disabled"),
+                            language.getMessage("messages.default_commands.command_not_disabled")
                     )
             );
             return;
