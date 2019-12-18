@@ -30,7 +30,6 @@ public class DisabledCommandJedisMessageListener implements JedisMessageListener
 
         if (action.equalsIgnoreCase("enable")) {
             DisabledCommandManager.removeDisabledCommand(name);
-            return;
         } else {
             Integer userId = (Integer) jsonObject.get("user_id");
             Long time = (Long) jsonObject.get("time");
