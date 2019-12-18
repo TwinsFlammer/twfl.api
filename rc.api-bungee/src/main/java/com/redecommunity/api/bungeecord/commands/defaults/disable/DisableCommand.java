@@ -7,7 +7,7 @@ import com.redecommunity.api.bungeecord.commands.enums.CommandRestriction;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.user.data.User;
 
-class DisableCommand extends CustomCommand {
+public class DisableCommand extends CustomCommand {
     public DisableCommand() {
         super("disable", CommandRestriction.ALL, "manager");
     }
