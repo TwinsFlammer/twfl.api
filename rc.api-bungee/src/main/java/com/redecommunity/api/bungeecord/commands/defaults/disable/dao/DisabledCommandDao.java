@@ -51,10 +51,10 @@ public class DisabledCommandDao extends Table {
                         ")" +
                         " VALUES " +
                         "(" +
-                        "%s," +
+                        "'%s'," +
                         "%d," +
                         "%d" +
-                        ")",
+                        ");",
                 this.getTableName(),
                 object.getName(),
                 object.getUserId(),
@@ -97,7 +97,7 @@ public class DisabledCommandDao extends Table {
     @Override
     public <K, V, T> T findOne(K key, V value) {
         String query = String.format(
-                "SELECT * FROM %s WHERE %s=%s",
+                "SELECT * FROM %s WHERE %s='%s'",
                 this.getTableName(),
                 key,
                 value
