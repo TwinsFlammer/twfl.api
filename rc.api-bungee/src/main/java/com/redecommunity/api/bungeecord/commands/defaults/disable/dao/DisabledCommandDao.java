@@ -65,7 +65,7 @@ public class DisabledCommandDao extends Table {
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
         ) {
-            preparedStatement.executeQuery();
+            preparedStatement.execute();
 
             DisabledCommand disabledCommand = this.findOne("name", object.getName());
 
@@ -88,7 +88,7 @@ public class DisabledCommandDao extends Table {
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
         ) {
-            preparedStatement.executeQuery();
+            preparedStatement.execute();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
