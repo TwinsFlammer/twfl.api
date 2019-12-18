@@ -2,3 +2,5 @@ name: Api
 main: com.redecommunity.api.bungeecord.SpigotAPI
 version: 1.0-SNAPSHOT
 author: Gutyerrez
+depend:
+  - Common
