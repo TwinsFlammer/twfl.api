@@ -47,9 +47,7 @@ public class EnableCommand extends CustomCommand {
         disabledCommandDao.delete("name", name);
 
         user.sendMessage(
-                String.format(
-                        language.getMessage("messages.default_commands.command_enabled")
-                )
+                language.getMessage("messages.default_commands.command_enabled")
         );
     }
 }
