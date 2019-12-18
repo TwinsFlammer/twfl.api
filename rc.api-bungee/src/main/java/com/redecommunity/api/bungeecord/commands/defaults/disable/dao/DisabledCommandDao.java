@@ -95,6 +95,30 @@ public class DisabledCommandDao extends Table {
     }
 
     @Override
+    public <K, V, T> T findOne(K key, V value) {
+        String query = String.format(
+                "SELECT * FROM %s WHERE %s=%s",
+                this.getTableName(),
+                key,
+                value
+        );
+
+        try (
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+        ) {
+            DisabledCommand disabledCommand = DisabledCommandManager.toDisabledCommand(resultSet);
+
+            return (T) disabledCommand;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
     public <T> Set<T> findAll() {
         String query = String.format(
                 "SELECT * FROM %s",
