@@ -1,5 +1,5 @@
 name: Api
-main: com.redecommunity.api.bungeecord.SpigotAPI
+main: com.redecommunity.api.spigot.SpigotAPI
 version: 1.0-SNAPSHOT
 author: Gutyerrez
 depend:
