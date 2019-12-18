@@ -64,8 +64,11 @@ public class DisabledCommandDao extends Table {
         try (
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
         ) {
-            preparedStatement.executeQuery();
+            DisabledCommand disabledCommand = DisabledCommandManager.toDisabledCommand(resultSet);
+
+            DisabledCommandManager.getDisabledCommands().add(disabledCommand);
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
