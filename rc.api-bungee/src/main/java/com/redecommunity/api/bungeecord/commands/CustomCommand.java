@@ -39,7 +39,10 @@ public abstract class CustomCommand extends Command {
 
         if (!user.hasGroup(this.group)) {
             user.sendMessage(
-                    language.getMessage("messages.default_commands.invalid_group")
+                    String.format(
+                            language.getMessage("messages.default_commands.invalid_group"),
+                            this.group.getColor() + this.group.getName()
+                    )
             );
             return;
         }
