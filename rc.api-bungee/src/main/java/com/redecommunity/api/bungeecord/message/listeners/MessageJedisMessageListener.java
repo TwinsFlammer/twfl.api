@@ -6,6 +6,7 @@ import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListe
 import com.redecommunity.common.shared.databases.redis.handler.annonation.ChannelName;
 import com.redecommunity.common.shared.databases.redis.handler.event.JedisMessageEvent;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -30,9 +31,16 @@ public class MessageJedisMessageListener implements JedisMessageListener {
 
         ProxyUser proxyUser = (ProxyUser) UserManager.getUser(userId);
 
+        if (!Arrays.asList(this.platforms).contains(platform)) return;
+
+        if (proxyUser.getId() == 0) {
+            ProxyServer.getInstance().getConsole().sendMessage(receivedMessage);
+            return;
+        }
+
         ProxiedPlayer proxiedPlayer = proxyUser.getProxiedPlayer();
 
-        if (proxiedPlayer == null || !Arrays.asList(this.platforms).contains(platform)) return;
+        if (proxiedPlayer == null) return;
 
         proxiedPlayer.sendMessage(receivedMessage);
     }
