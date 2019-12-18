@@ -44,10 +44,12 @@ public class EnableCommand extends CustomCommand {
 
         DisabledCommandDao disabledCommandDao = new DisabledCommandDao();
 
-        disabledCommandDao.delete("name", name);
+        disabledCommandDao.delete("id", disabledCommand.getId());
+
+        DisabledCommandManager.getDisabledCommands().remove(disabledCommand);
 
         user.sendMessage(
-                language.getMessage("messages.default_commands.command_enabled")
+                language.getMessage("messages.default_commands.command_successfully_enabled")
         );
     }
 }
