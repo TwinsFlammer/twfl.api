@@ -29,6 +29,12 @@ public class DisabledCommandManager {
         return DisabledCommandManager.disabledCommands;
     }
 
+    public static Boolean isAlreadyDisabled(String name) {
+        return DisabledCommandManager.disabledCommands
+                .stream()
+                .anyMatch(disabledCommand -> disabledCommand.getName().equalsIgnoreCase(name));
+    }
+
     public static DisabledCommand getDisabledCommand(String name) {
         return DisabledCommandManager.disabledCommands
                 .stream()
