@@ -11,6 +11,8 @@
 
     <artifactId>api-spigot</artifactId>
 
+    <name>API-Spigot</name>
+
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
@@ -18,4 +20,8 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>${project.name}</finalName>
+    </build>
 </project>
