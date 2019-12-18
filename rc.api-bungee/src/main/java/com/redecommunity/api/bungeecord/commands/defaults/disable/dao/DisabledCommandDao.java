@@ -22,7 +22,7 @@ public class DisabledCommandDao extends Table {
 
     @Override
     public String getTableName() {
-        return "server_disable_commands";
+        return "server_disabled_commands";
     }
 
     @Override
@@ -64,9 +64,10 @@ public class DisabledCommandDao extends Table {
         try (
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
         ) {
-            DisabledCommand disabledCommand = DisabledCommandManager.toDisabledCommand(resultSet);
+            preparedStatement.executeQuery();
+
+            DisabledCommand disabledCommand = this.findOne("name", object.getName());
 
             DisabledCommandManager.getDisabledCommands().add(disabledCommand);
         } catch (SQLException exception) {
