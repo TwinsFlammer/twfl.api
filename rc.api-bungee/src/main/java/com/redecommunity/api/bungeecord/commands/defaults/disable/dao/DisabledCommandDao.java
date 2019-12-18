@@ -75,10 +75,9 @@ public class DisabledCommandDao extends Table {
         }
     }
 
-    @Override
-    public <K, V> void delete(K key, V value) {
+    public <K, V extends Integer> void delete(K key, V value) {
         String query = String.format(
-                "DELETE FORM %s WHERE %s=%s",
+                "DELETE FROM %s WHERE %s=%d",
                 this.getTableName(),
                 key,
                 value
