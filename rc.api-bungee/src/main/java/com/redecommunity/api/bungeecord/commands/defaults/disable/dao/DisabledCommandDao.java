@@ -108,9 +108,11 @@ public class DisabledCommandDao extends Table {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
         ) {
-            DisabledCommand disabledCommand = DisabledCommandManager.toDisabledCommand(resultSet);
+            if (resultSet.next()) {
+                DisabledCommand disabledCommand = DisabledCommandManager.toDisabledCommand(resultSet);
 
-            return (T) disabledCommand;
+                return (T) disabledCommand;
+            }
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -130,7 +132,7 @@ public class DisabledCommandDao extends Table {
         try (
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery()
+                ResultSet resultSet = preparedStatement.executeQuery();
         ) {
             while (resultSet.next()) {
                 DisabledCommand disabledCommand = DisabledCommandManager.toDisabledCommand(resultSet);
