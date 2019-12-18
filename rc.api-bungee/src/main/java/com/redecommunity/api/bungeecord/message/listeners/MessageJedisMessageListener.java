@@ -1,10 +1,10 @@
 package com.redecommunity.api.bungeecord.message.listeners;
 
 import com.redecommunity.api.bungeecord.message.Message;
-import com.redecommunity.api.bungeecord.user.ProxyUser;
 import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListener;
 import com.redecommunity.common.shared.databases.redis.handler.annonation.ChannelName;
 import com.redecommunity.common.shared.databases.redis.handler.event.JedisMessageEvent;
+import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -26,19 +26,19 @@ public class MessageJedisMessageListener implements JedisMessageListener {
         JSONObject jsonObject = (JSONObject) JSONValue.parse(message);
 
         String platform = (String) jsonObject.get("platform");
-        Integer userId = (Integer) jsonObject.get("user_id");
+        Integer userId = ((Long) jsonObject.get("user_id")).intValue();
         String receivedMessage = (String) jsonObject.get("received_message");
 
-        ProxyUser proxyUser = (ProxyUser) UserManager.getUser(userId);
+        User user = UserManager.getUser(userId);
 
         if (!Arrays.asList(this.platforms).contains(platform)) return;
 
-        if (proxyUser.getId() == 0) {
+        if (user.getId() == 1) {
             ProxyServer.getInstance().getConsole().sendMessage(receivedMessage);
             return;
         }
 
-        ProxiedPlayer proxiedPlayer = proxyUser.getProxiedPlayer();
+        ProxiedPlayer proxiedPlayer = ProxyServer.getInstance().getPlayer(user.getName());
 
         if (proxiedPlayer == null) return;
 
