@@ -1,0 +1,4 @@
+name: Api
+main: com.redecommunity.api.bungeecord.BungeeAPI
+version: 1.0-SNAPSHOT
+author: Gutyerrez
