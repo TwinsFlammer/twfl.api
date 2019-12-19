@@ -2,10 +2,10 @@ package com.redecommunity.api.spigot.inventory.manager;
 
 import com.google.common.collect.Lists;
 import com.redecommunity.api.spigot.inventory.InventoryBuilder;
-import lombok.Getter;
 import org.bukkit.inventory.Inventory;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by @SrGutyerrez
@@ -16,6 +16,7 @@ public class InventoryBuilderManager {
     public static InventoryBuilder getInventoryBuilder(Inventory inventory) {
         return InventoryBuilderManager.inventories
                 .stream()
+                .filter(Objects::nonNull)
                 .filter(inventoryBuilder -> inventoryBuilder.getInventory() != null)
                 .filter(inventoryBuilder -> inventoryBuilder.getInventory().equals(inventory))
                 .findFirst()
