@@ -5,7 +5,6 @@ import com.redecommunity.common.shared.updater.data.Updater;
 import lombok.RequiredArgsConstructor;
 import net.md_5.bungee.api.plugin.Plugin;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -24,7 +23,7 @@ public abstract class CommunityPlugin extends Plugin {
 
     @Override
     public final void onDisable() {
-        Updater updater = new Updater(this.getAbsoluteFile(), Common.getBranch());
+        Updater updater = new Updater(this.getFile(), Common.getBranch());
 
         try {
             updater.download();
@@ -38,6 +37,4 @@ public abstract class CommunityPlugin extends Plugin {
     public abstract void onEnablePlugin();
 
     public abstract void onDisablePlugin();
-
-    public abstract File getAbsoluteFile();
 }
