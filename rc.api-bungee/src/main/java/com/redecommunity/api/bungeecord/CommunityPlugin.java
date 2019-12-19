@@ -23,7 +23,7 @@ public abstract class CommunityPlugin extends Plugin {
 
     @Override
     public final void onDisable() {
-        Updater updater = new Updater(this.getFile(), Common.getBranch());
+        Updater updater = new Updater(getFile(), Common.getBranch());
 
         try {
             updater.download();
