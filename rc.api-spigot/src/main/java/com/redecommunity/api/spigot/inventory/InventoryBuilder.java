@@ -49,22 +49,26 @@ public class InventoryBuilder extends CraftInventory {
         );
     }
 
-    public void setItem(int index, Item item) {
+    public InventoryBuilder setItem(int index, Item item) {
         super.setItem(index, item.build());
 
         this.items.put(index, item);
+
+        return this;
     }
 
-    public void addItem(Item item) {
+    public InventoryBuilder addItem(Item item) {
         for (int i = 0; i < this.getSize(); i++)
             if (this.getContents()[i] == null || this.getContents()[i].getType() == Material.AIR) {
                 this.setItem(i, item);
                 break;
             }
+
+        return this;
     }
 
     public void onClick(InventoryClickEvent event) {
-        if (event.getClick() == ClickType.NUMBER_KEY) event.setCancelled(true);
+        if (event.getClick() == ClickType.NUMBER_KEY) event.setCancelled(this.cancelled);
         event.setCancelled(this.cancelled);
 
         Integer slot = event.getSlot();
