@@ -1,8 +1,8 @@
-package com.redecommunity.api.bungeecord.commands.defaults.disable.manager;
+package com.redecommunity.api.shared.commands.defaults.disable.manager;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.api.bungeecord.commands.defaults.disable.dao.DisabledCommandDao;
-import com.redecommunity.api.bungeecord.commands.defaults.disable.data.DisabledCommand;
+import com.redecommunity.api.shared.commands.defaults.disable.dao.DisabledCommandDao;
+import com.redecommunity.api.shared.commands.defaults.disable.data.DisabledCommand;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
