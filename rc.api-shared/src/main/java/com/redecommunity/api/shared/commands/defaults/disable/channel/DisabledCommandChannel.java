@@ -1,6 +1,6 @@
-package com.redecommunity.api.bungeecord.commands.defaults.disable.channel;
+package com.redecommunity.api.shared.commands.defaults.disable.channel;
 
-import com.redecommunity.api.bungeecord.commands.defaults.disable.manager.DisabledCommandManager;
+import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
 import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisDataException;
