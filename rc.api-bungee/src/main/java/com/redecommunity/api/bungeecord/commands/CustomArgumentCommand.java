@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @Getter
-public abstract class CustomArgumentCommand<T> {
+public abstract class CustomArgumentCommand {
     private final String name;
 
     public abstract void onCommand(User user, String[] args);
