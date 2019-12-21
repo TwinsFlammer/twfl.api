@@ -3,6 +3,7 @@ package com.redecommunity.api.bungeecord.manager;
 import com.redecommunity.api.bungeecord.BungeeAPI;
 import com.redecommunity.api.bungeecord.commands.CustomCommand;
 import com.redecommunity.api.bungeecord.commands.registry.CommandRegistry;
+import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
@@ -53,6 +54,7 @@ class ListenerManager {
 
 class DataManager {
     DataManager() {
+        new DisabledCommandManager();
     }
 }
 
