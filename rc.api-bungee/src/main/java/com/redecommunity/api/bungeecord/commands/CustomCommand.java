@@ -1,8 +1,8 @@
 package com.redecommunity.api.bungeecord.commands;
 
-import com.redecommunity.api.bungeecord.commands.defaults.disable.data.DisabledCommand;
-import com.redecommunity.api.bungeecord.commands.defaults.disable.manager.DisabledCommandManager;
 import com.redecommunity.api.bungeecord.commands.enums.CommandRestriction;
+import com.redecommunity.api.shared.commands.defaults.disable.data.DisabledCommand;
+import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
