@@ -23,7 +23,6 @@ public class StartManager {
 
         new DaoManager();
 
-        System.out.println("chamei o data manager");
         new DataManager();
 
         new CommandManager();
@@ -55,7 +54,6 @@ class ListenerManager {
 
 class DataManager {
     DataManager() {
-        System.out.println("chamei o disabled command manager");
         new DisabledCommandManager();
     }
 }
