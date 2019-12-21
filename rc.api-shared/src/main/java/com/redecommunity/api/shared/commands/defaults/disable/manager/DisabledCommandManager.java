@@ -18,18 +18,11 @@ public class DisabledCommandManager {
     public static final String CHANNEL_NAME = "disabled_command";
 
     public DisabledCommandManager() {
-        System.out.println("Chamei a o dao");
         DisabledCommandDao disabledCommandDao = new DisabledCommandDao();
-
-        System.out.println("Carregar os comandos desativos");
 
         Set<DisabledCommand> disabledCommands = disabledCommandDao.findAll();
 
-        System.out.println("Adicionando todos os comandos desativados...");
-
         DisabledCommandManager.disabledCommands.addAll(disabledCommands);
-
-        System.out.println("Todos comandos desativados foram adicionados.");
     }
 
     public static List<DisabledCommand> getDisabledCommands() {
