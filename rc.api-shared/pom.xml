@@ -11,6 +11,8 @@
 
     <artifactId>api-shared</artifactId>
 
+    <name>API-Shared</name>
+
     <properties>
         <project.build.targetSource>UTF-8</project.build.targetSource>
         <maven.compiler.target>1.8</maven.compiler.target>
