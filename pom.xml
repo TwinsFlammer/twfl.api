@@ -11,14 +11,13 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.redecommunity</groupId>
     <artifactId>api</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>rc.api-shared</module>
         <module>rc.api-bungee</module>
         <module>rc.api-spigot</module>
-        <module>rc.api-shared</module>
     </modules>
 
     <dependencies>
