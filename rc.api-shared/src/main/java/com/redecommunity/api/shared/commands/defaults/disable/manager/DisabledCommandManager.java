@@ -22,7 +22,11 @@ public class DisabledCommandManager {
 
         Set<DisabledCommand> disabledCommands = disabledCommandDao.findAll();
 
+        System.out.println("Adicionando todos os comandos desativados...");
+
         DisabledCommandManager.disabledCommands.addAll(disabledCommands);
+
+        System.out.println("Todos comandos desativados foram adicionados.");
     }
 
     public static List<DisabledCommand> getDisabledCommands() {
