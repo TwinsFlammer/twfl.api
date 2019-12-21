@@ -1,7 +1,7 @@
-package com.redecommunity.api.bungeecord.commands.defaults.disable.listener;
+package com.redecommunity.api.shared.commands.defaults.disable.listener;
 
-import com.redecommunity.api.bungeecord.commands.defaults.disable.data.DisabledCommand;
-import com.redecommunity.api.bungeecord.commands.defaults.disable.manager.DisabledCommandManager;
+import com.redecommunity.api.shared.commands.defaults.disable.data.DisabledCommand;
+import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
 import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListener;
 import com.redecommunity.common.shared.databases.redis.handler.annonation.ChannelName;
 import com.redecommunity.common.shared.databases.redis.handler.event.JedisMessageEvent;
