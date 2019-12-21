@@ -1,5 +1,6 @@
 package com.redecommunity.api.bungeecord.commands;
 
+import com.google.common.collect.Maps;
 import com.redecommunity.api.bungeecord.commands.enums.CommandRestriction;
 import com.redecommunity.api.shared.commands.defaults.disable.data.DisabledCommand;
 import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
@@ -12,6 +13,10 @@ import lombok.Getter;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 /**
  * Created by @SrGutyerrez
  */
@@ -20,6 +25,7 @@ public abstract class CustomCommand extends Command {
     private final CommandRestriction commandRestriction;
     private final Group group;
     private final String[] aliases;
+    private final HashMap<Integer, CustomArgumentCommand> arguments = Maps.newHashMap();
 
     public CustomCommand(String name, CommandRestriction commandRestriction, String groupName, String... aliases) {
         super(name);
@@ -56,6 +62,28 @@ public abstract class CustomCommand extends Command {
                     language.getMessage("messages.default_commands.command_disabled")
             );
             return;
+        }
+
+        for (int i = 0; i < args.length; i++) {
+            String argumentName = args[i];
+
+            int finalI = i;
+
+            CustomArgumentCommand customArgumentCommand = this.arguments
+                    .entrySet()
+                    .stream()
+                    .filter(Objects::nonNull)
+                    .filter(entry -> entry.getKey() == finalI)
+                    .map(Map.Entry::getValue)
+                    .findFirst()
+                    .orElse(null);
+
+            if (customArgumentCommand == null) continue;
+
+            if (customArgumentCommand.getName().equalsIgnoreCase(argumentName)) {
+                customArgumentCommand.onCommand(user, args);
+                return;
+            }
         }
 
         this.onCommand(user, args);
