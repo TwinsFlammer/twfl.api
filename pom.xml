@@ -18,6 +18,7 @@
     <modules>
         <module>rc.api-bungee</module>
         <module>rc.api-spigot</module>
+        <module>rc.api-shared</module>
     </modules>
 
     <dependencies>
