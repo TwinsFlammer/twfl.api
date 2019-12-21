@@ -35,6 +35,10 @@ public abstract class CustomCommand extends Command {
         this.aliases = aliases;
     }
 
+    public void setArgument(Integer index, CustomArgumentCommand customArgumentCommand) {
+        this.arguments.put(index, customArgumentCommand);
+    }
+
     @Override
     public final void execute(CommandSender sender, String[] args) {
         if (this.commandRestriction != null && !this.commandRestriction.isValid(sender)) return;
