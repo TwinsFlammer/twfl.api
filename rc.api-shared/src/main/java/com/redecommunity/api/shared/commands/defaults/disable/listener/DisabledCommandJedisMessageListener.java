@@ -20,6 +20,8 @@ public class DisabledCommandJedisMessageListener implements JedisMessageListener
     public void onMessage(JedisMessageEvent event) {
         String message = event.getMessage();
 
+        System.out.println(message);
+
         JSONObject jsonObject = (JSONObject) JSONValue.parse(message);
 
         String action = (String) jsonObject.get("action");
@@ -30,7 +32,7 @@ public class DisabledCommandJedisMessageListener implements JedisMessageListener
 
         if (action.equalsIgnoreCase("enable")) {
             DisabledCommandManager.removeDisabledCommand(name);
-        } else {
+        } else if (action.equalsIgnoreCase("disable")) {
             Integer userId = ((Long) jsonObject.get("user_id")).intValue();
             Long time = (Long) jsonObject.get("time");
 
