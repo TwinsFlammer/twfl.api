@@ -3,6 +3,7 @@ package com.redecommunity.api.bungeecord.manager;
 import com.redecommunity.api.bungeecord.BungeeAPI;
 import com.redecommunity.api.bungeecord.commands.CustomCommand;
 import com.redecommunity.api.bungeecord.commands.registry.CommandRegistry;
+import com.redecommunity.api.shared.commands.defaults.disable.listener.DisabledCommandJedisMessageListener;
 import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
@@ -11,6 +12,9 @@ import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListe
 import com.redecommunity.common.shared.util.ClassGetter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Listener;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by @SrGutyerrez
@@ -110,6 +114,10 @@ class ChannelManager {
 }
 
 class JedisMessageListenerManager {
+    private List<JedisMessageListener> listeners = Arrays.asList(
+            new DisabledCommandJedisMessageListener()
+    );
+
     JedisMessageListenerManager() {
         ClassGetter.getClassesForPackage(BungeeAPI.class).forEach(clazz -> {
             if (JedisMessageListener.class.isAssignableFrom(clazz)) {
@@ -122,5 +130,7 @@ class JedisMessageListenerManager {
                 }
             }
         });
+
+        this.listeners.forEach(jedisMessageListener -> Common.getInstance().getJedisMessageManager().registerListener(jedisMessageListener));
     }
 }
