@@ -3,8 +3,6 @@ package com.redecommunity.api.bungeecord.manager;
 import com.redecommunity.api.bungeecord.BungeeAPI;
 import com.redecommunity.api.bungeecord.commands.CustomCommand;
 import com.redecommunity.api.bungeecord.commands.registry.CommandRegistry;
-import com.redecommunity.api.shared.commands.defaults.disable.listener.DisabledCommandJedisMessageListener;
-import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
@@ -12,9 +10,6 @@ import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListe
 import com.redecommunity.common.shared.util.ClassGetter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Listener;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by @SrGutyerrez
@@ -25,7 +20,7 @@ public class StartManager {
         // COMMAND REGISTER
         new CommandRegistry();
 
-        new DaoManager();
+        new TableManager();
 
         new DataManager();
 
@@ -58,12 +53,11 @@ class ListenerManager {
 
 class DataManager {
     DataManager() {
-        new DisabledCommandManager();
     }
 }
 
-class DaoManager {
-    DaoManager() {
+class TableManager {
+    TableManager() {
         ClassGetter.getClassesForPackage(BungeeAPI.class).forEach(clazz -> {
             if (Table.class.isAssignableFrom(clazz)) {
                 try {
