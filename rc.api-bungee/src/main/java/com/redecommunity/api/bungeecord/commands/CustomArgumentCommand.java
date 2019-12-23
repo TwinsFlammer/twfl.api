@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 public abstract class CustomArgumentCommand {
+    private final Integer index;
     private final String name;
 
     public abstract void onCommand(User user, String[] args);
