@@ -41,7 +41,7 @@ public class DisabledCommandJedisMessageListener implements JedisMessageListener
                     time
             );
 
-            DisabledCommandManager.getDisabledCommands().add(disabledCommand);
+            DisabledCommandManager.setCommandDisabled(disabledCommand);
         }
     }
 }
