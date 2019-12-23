@@ -1,6 +1,8 @@
 package com.redecommunity.api.bungeecord.util;
 
+import com.redecommunity.common.shared.permissions.user.data.User;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -63,12 +65,20 @@ public class JSONText {
         return this;
     }
 
-    public void send(ProxiedPlayer proxiedPlayer) {
+    public void send(User user) {
+        ProxiedPlayer proxiedPlayer = ProxyServer.getInstance().getPlayer(user.getUniqueId());
+
+        if (proxiedPlayer == null) return;
+
+        this.send(proxiedPlayer);
+    }
+
+    private void send(ProxiedPlayer proxiedPlayer) {
         this.component.setExtra(baseComponent);
         proxiedPlayer.sendMessage(this.component);
     }
 
-    public void send(CommandSender sender) {
+    private void send(CommandSender sender) {
         this.component.setExtra(baseComponent);
         sender.sendMessage(this.component);
     }
