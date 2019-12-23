@@ -29,10 +29,6 @@ public class DisabledCommandManager {
         DisabledCommandManager.disabledCommands.addAll(disabledCommands);
     }
 
-    public static List<DisabledCommand> getDisabledCommands() {
-        return DisabledCommandManager.disabledCommands;
-    }
-
     public static Boolean isAlreadyDisabled(String name) {
         return DisabledCommandManager.disabledCommands
                 .stream()
@@ -52,6 +48,9 @@ public class DisabledCommandManager {
     }
 
     public static void publish(DisabledCommand disabledCommand, Action action) {
+        if (action == Action.ENABLE) DisabledCommandManager.disabledCommands.remove(disabledCommand);
+        else DisabledCommandManager.disabledCommands.add(disabledCommand);
+
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("action", action.getName());
