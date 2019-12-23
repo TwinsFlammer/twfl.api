@@ -2,6 +2,7 @@ package com.redecommunity.api.bungeecord;
 
 import com.redecommunity.api.bungeecord.manager.StartManager;
 import com.redecommunity.api.bungeecord.reflection.Reflection;
+import com.redecommunity.api.shared.API;
 
 /**
  * Created by @SrGutyerrez
@@ -15,11 +16,15 @@ public class BungeeAPI extends CommunityPlugin {
 
     private Reflection reflection;
 
+    private API api;
+
     @Override
     public void onEnablePlugin() {
         this.reflection = new Reflection();
 
         new StartManager();
+
+        this.api = new API();
     }
 
     @Override
@@ -33,5 +38,9 @@ public class BungeeAPI extends CommunityPlugin {
 
     public Reflection getReflection() {
         return this.reflection;
+    }
+
+    public API getApi() {
+        return this.api;
     }
 }
