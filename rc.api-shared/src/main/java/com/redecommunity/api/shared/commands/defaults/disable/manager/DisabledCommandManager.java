@@ -29,6 +29,10 @@ public class DisabledCommandManager {
         DisabledCommandManager.disabledCommands.addAll(disabledCommands);
     }
 
+    public static boolean setCommandDisabled(DisabledCommand disabledcommand) {
+        return DisabledCommandManager.disabledCommands.add(disabledcommand);
+    }
+
     public static Boolean isAlreadyDisabled(String name) {
         return DisabledCommandManager.disabledCommands
                 .stream()
