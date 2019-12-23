@@ -1,6 +1,6 @@
 package com.redecommunity.api.bungeecord.commands;
 
-import com.google.common.collect.Maps;
+import com.google.common.collect.Lists;
 import com.redecommunity.api.bungeecord.commands.enums.CommandRestriction;
 import com.redecommunity.api.shared.commands.defaults.disable.data.DisabledCommand;
 import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
@@ -13,9 +13,9 @@ import lombok.Getter;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Created by @SrGutyerrez
@@ -25,7 +25,7 @@ public abstract class CustomCommand extends Command {
     private final CommandRestriction commandRestriction;
     private final Group group;
     private final String[] aliases;
-    private final HashMap<Integer, CustomArgumentCommand> arguments = Maps.newHashMap();
+    private final List<CustomArgumentCommand> arguments = Lists.newArrayList();
 
     public CustomCommand(String name, CommandRestriction commandRestriction, String groupName, String... aliases) {
         super(name);
@@ -35,8 +35,8 @@ public abstract class CustomCommand extends Command {
         this.aliases = aliases;
     }
 
-    public void setArgument(Integer index, CustomArgumentCommand customArgumentCommand) {
-        this.arguments.put(index, customArgumentCommand);
+    public void setArgument(CustomArgumentCommand customArgumentCommand) {
+        this.arguments.add(customArgumentCommand);
     }
 
     @Override
@@ -73,20 +73,21 @@ public abstract class CustomCommand extends Command {
 
             int finalI = i;
 
-            CustomArgumentCommand customArgumentCommand = this.arguments
-                    .entrySet()
+            System.out.println(finalI);
+
+            List<CustomArgumentCommand> customArgumentCommands = this.arguments
                     .stream()
                     .filter(Objects::nonNull)
-                    .filter(entry -> entry.getKey() == finalI)
-                    .map(Map.Entry::getValue)
-                    .findFirst()
-                    .orElse(null);
+                    .filter(customArgumentCommand1 -> customArgumentCommand1.getIndex() == finalI)
+                    .collect(Collectors.toList());
 
-            if (customArgumentCommand == null) continue;
+            if (customArgumentCommands.isEmpty()) continue;
 
-            if (customArgumentCommand.getName().equalsIgnoreCase(argumentName)) {
-                customArgumentCommand.onCommand(user, args);
-                return;
+            for (CustomArgumentCommand customArgumentCommand : customArgumentCommands) {
+                if (customArgumentCommand.getName().equalsIgnoreCase(argumentName)) {
+                    customArgumentCommand.onCommand(user, args);
+                    return;
+                }
             }
         }
 
