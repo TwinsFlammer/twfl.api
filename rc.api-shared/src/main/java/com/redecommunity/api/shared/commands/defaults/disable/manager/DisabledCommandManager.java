@@ -3,6 +3,10 @@ package com.redecommunity.api.shared.commands.defaults.disable.manager;
 import com.google.common.collect.Lists;
 import com.redecommunity.api.shared.commands.defaults.disable.dao.DisabledCommandDao;
 import com.redecommunity.api.shared.commands.defaults.disable.data.DisabledCommand;
+import com.redecommunity.common.shared.Common;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import org.json.simple.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -47,6 +51,19 @@ public class DisabledCommandManager {
         DisabledCommandManager.disabledCommands.removeIf(disabledCommand -> disabledCommand.getName().equalsIgnoreCase(name));
     }
 
+    public static void publish(DisabledCommand disabledCommand, Action action) {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("action", action.getName());
+        jsonObject.put("id", disabledCommand.getId());
+        jsonObject.put("name", disabledCommand.getName());
+        jsonObject.put("user_id", disabledCommand.getUserId());
+        jsonObject.put("time", disabledCommand.getTime());
+
+        Common.getInstance().getDatabaseManager().getRedisManager().getDatabases().values()
+                .forEach(redis -> redis.sendMessage(DisabledCommandManager.CHANNEL_NAME, jsonObject.toString()));
+    }
+
     public static DisabledCommand toDisabledCommand(ResultSet resultSet) throws SQLException {
         return new DisabledCommand(
                 resultSet.getInt("id"),
@@ -54,5 +71,14 @@ public class DisabledCommandManager {
                 resultSet.getString("name"),
                 resultSet.getLong("time")
         );
+    }
+
+    @RequiredArgsConstructor
+    @Getter
+    public enum Action {
+        ENABLE("enable"),
+        DISABLE("disable");
+
+        private final String name;
     }
 }
