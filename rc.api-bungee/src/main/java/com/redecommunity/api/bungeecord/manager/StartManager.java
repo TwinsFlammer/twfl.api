@@ -114,10 +114,6 @@ class ChannelManager {
 }
 
 class JedisMessageListenerManager {
-    private List<JedisMessageListener> listeners = Arrays.asList(
-            new DisabledCommandJedisMessageListener()
-    );
-
     JedisMessageListenerManager() {
         ClassGetter.getClassesForPackage(BungeeAPI.class).forEach(clazz -> {
             if (JedisMessageListener.class.isAssignableFrom(clazz)) {
@@ -130,7 +126,5 @@ class JedisMessageListenerManager {
                 }
             }
         });
-
-        this.listeners.forEach(jedisMessageListener -> Common.getInstance().getJedisMessageManager().registerListener(jedisMessageListener));
     }
 }
