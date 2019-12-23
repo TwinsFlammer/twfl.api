@@ -20,12 +20,10 @@ public class DisabledCommandJedisMessageListener implements JedisMessageListener
     public void onMessage(JedisMessageEvent event) {
         String message = event.getMessage();
 
-        System.out.println(message);
-
         JSONObject jsonObject = (JSONObject) JSONValue.parse(message);
 
         String action = (String) jsonObject.get("action");
-        Integer id = (Integer) jsonObject.get("id");
+        Integer id = ((Long) jsonObject.get("id")).intValue();
         String name = (String) jsonObject.get("name");
 
         if (!Arrays.asList(actions).contains(action)) return;
