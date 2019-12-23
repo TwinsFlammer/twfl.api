@@ -64,9 +64,6 @@ public class DisabledCommandManager {
         jsonObject.put("time", disabledCommand.getTime());
 
         Common.getInstance().getDatabaseManager().getRedisManager().getDatabases().values().forEach(redis -> redis.sendMessage(DisabledCommandManager.CHANNEL_NAME, jsonObject.toString()));
-
-
-        System.out.println("Desativado");
     }
 
     public static DisabledCommand toDisabledCommand(ResultSet resultSet) throws SQLException {
