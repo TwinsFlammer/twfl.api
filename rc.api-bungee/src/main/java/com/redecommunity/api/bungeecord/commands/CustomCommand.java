@@ -73,8 +73,6 @@ public abstract class CustomCommand extends Command {
 
             int finalI = i;
 
-            System.out.println(finalI);
-
             List<CustomArgumentCommand> customArgumentCommands = this.arguments
                     .stream()
                     .filter(Objects::nonNull)
