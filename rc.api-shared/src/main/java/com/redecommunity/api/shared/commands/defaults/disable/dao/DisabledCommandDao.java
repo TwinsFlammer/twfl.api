@@ -69,7 +69,10 @@ public class DisabledCommandDao extends Table {
 
             DisabledCommand disabledCommand = this.findOne("name", object.getName());
 
-            DisabledCommandManager.getDisabledCommands().add(disabledCommand);
+            DisabledCommandManager.publish(
+                    disabledCommand,
+                    DisabledCommandManager.Action.DISABLE
+            );
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
