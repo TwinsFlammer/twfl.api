@@ -9,6 +9,7 @@ import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import com.redecommunity.common.shared.util.Helper;
 import lombok.Getter;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
@@ -83,7 +84,7 @@ public abstract class CustomCommand extends Command {
 
             for (CustomArgumentCommand customArgumentCommand : customArgumentCommands) {
                 if (customArgumentCommand.getName().equalsIgnoreCase(argumentName)) {
-                    customArgumentCommand.onCommand(user, args);
+                    customArgumentCommand.onCommand(user, Helper.removeFirst(args));
                     return;
                 }
             }
