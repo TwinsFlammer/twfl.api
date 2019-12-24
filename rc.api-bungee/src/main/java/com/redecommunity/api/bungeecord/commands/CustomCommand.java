@@ -4,11 +4,14 @@ import com.google.common.collect.Lists;
 import com.redecommunity.api.bungeecord.commands.enums.CommandRestriction;
 import com.redecommunity.api.shared.commands.defaults.disable.data.DisabledCommand;
 import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
+import com.redecommunity.api.shared.log.dao.LogDao;
+import com.redecommunity.api.shared.log.data.Log;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.util.Helper;
 import lombok.Getter;
 import net.md_5.bungee.api.CommandSender;
@@ -27,6 +30,15 @@ public abstract class CustomCommand extends Command {
     private final Group group;
     private final String[] aliases;
     private final List<CustomArgumentCommand> arguments = Lists.newArrayList();
+
+    private final String[] allowed = new String[] {
+            "login",
+            "logar",
+            "register",
+            "registrar",
+            "changepassword",
+            "mudarsenha",
+    };
 
     public CustomCommand(String name, CommandRestriction commandRestriction, String groupName, String... aliases) {
         super(name);
@@ -68,6 +80,23 @@ public abstract class CustomCommand extends Command {
             );
             return;
         }
+
+        Server server = user.getServer();
+
+        Log log = new Log(
+                user.getId(),
+                user.getHighestGroup().getPriority() > 80,
+                System.currentTimeMillis(),
+                "SURVIVAL",
+                server.getId(),
+                Log.LogType.COMMAND,
+                Log.LogType.DEFAULT,
+                Helper.toMessage(args)
+        );
+
+        LogDao logDao = new LogDao();
+
+        logDao.insert(log);
 
         for (int i = 0; i < args.length; i++) {
             String argumentName = args[i];
