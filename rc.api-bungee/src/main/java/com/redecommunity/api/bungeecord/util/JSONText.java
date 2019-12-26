@@ -9,28 +9,20 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by @SrGutyerrez
  */
-public class JSONText {
+public class JSONText implements Serializable {
     private TextComponent component;
     private TextComponent textComponent;
     private List<BaseComponent> baseComponent = new ArrayList<>();
 
     public JSONText() {
         this.component = new TextComponent("");
-    }
-
-    public JSONText(String prefix) {
-        this.component = new TextComponent(prefix);
-    }
-
-    public JSONText prefix(String prefix) {
-        text(prefix);
-        return this;
     }
 
     public JSONText text(String text) {
