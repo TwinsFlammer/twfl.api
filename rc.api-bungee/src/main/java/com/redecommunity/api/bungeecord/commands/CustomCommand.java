@@ -81,22 +81,24 @@ public abstract class CustomCommand extends Command {
             return;
         }
 
-        Server server = user.getServer();
+        if (!user.isConsole()) {
+            Server server = user.getServer();
 
-        Log log = new Log(
-                user.getId(),
-                user.getHighestGroup().getPriority() > 80,
-                System.currentTimeMillis(),
-                "SURVIVAL",
-                server.getId(),
-                Log.LogType.COMMAND,
-                Log.LogType.DEFAULT,
-                Helper.toMessage(args)
-        );
+            Log log = new Log(
+                    user.getId(),
+                    user.getHighestGroup().getPriority() > 80,
+                    System.currentTimeMillis(),
+                    "SURVIVAL",
+                    server.getId(),
+                    Log.LogType.COMMAND,
+                    Log.LogType.DEFAULT,
+                    Helper.toMessage(args)
+            );
 
-        LogDao logDao = new LogDao();
+            LogDao logDao = new LogDao();
 
-        logDao.insert(log);
+            logDao.insert(log);
+        }
 
         for (int i = 0; i < args.length; i++) {
             String argumentName = args[i];
