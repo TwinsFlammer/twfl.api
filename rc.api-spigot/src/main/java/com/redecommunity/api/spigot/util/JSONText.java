@@ -29,15 +29,6 @@ public class JSONText {
         this.component = new TextComponent("");
     }
 
-    public JSONText(String prefix) {
-        this.component = new TextComponent(prefix);
-    }
-
-    public JSONText prefix(String prefix) {
-        text(prefix);
-        return this;
-    }
-
     public JSONText text(String text) {
         this.textComponent = new TextComponent(TextComponent.fromLegacyText(text));
         return this;
