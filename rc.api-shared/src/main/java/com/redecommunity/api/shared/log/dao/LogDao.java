@@ -68,7 +68,6 @@ public class LogDao extends Table {
                         "%d," +
                         "%s," +
                         "%s," +
-                        "%s," +
                         "%s" +
                         ")",
                 this.getTableName() + object.getType().getTableName(),
