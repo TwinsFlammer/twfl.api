@@ -66,6 +66,13 @@ public class JSONText {
     }
 
     public void send(User user) {
+        if (user.isConsole()) {
+            CommandSender sender = ProxyServer.getInstance().getConsole();
+
+            this.send(sender);
+            return;
+        }
+
         ProxiedPlayer proxiedPlayer = ProxyServer.getInstance().getPlayer(user.getUniqueId());
 
         if (proxiedPlayer == null) return;
