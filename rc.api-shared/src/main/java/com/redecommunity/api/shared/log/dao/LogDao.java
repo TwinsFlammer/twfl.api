@@ -64,12 +64,12 @@ public class LogDao extends Table {
                         "%d," +
                         "%b," +
                         "%d," +
-                        "%s," +
+                        "'%s'," +
                         "%d," +
-                        "%s," +
-                        "%s," +
-                        "%s" +
-                        ")",
+                        "'%s'," +
+                        "'%s'," +
+                        "'%s'" +
+                        ");",
                 this.getTableName() + object.getType().getTableName(),
                 object.getUserId(),
                 object.isStaff(),
