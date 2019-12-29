@@ -17,6 +17,7 @@ import lombok.Getter;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public abstract class CustomCommand extends Command {
     private final String[] aliases;
     private final List<CustomArgumentCommand> arguments = Lists.newArrayList();
 
-    private final String[] allowed = new String[] {
+    private final String[] allowed = new String[]{
             "login",
             "logar",
             "register",
@@ -48,8 +49,10 @@ public abstract class CustomCommand extends Command {
         this.aliases = aliases;
     }
 
-    public void setArgument(CustomArgumentCommand customArgumentCommand) {
-        this.arguments.add(customArgumentCommand);
+    public void addArgument(CustomArgumentCommand... customArgumentCommands) {
+        List<CustomArgumentCommand> customArgumentCommands1 = Arrays.asList(customArgumentCommands);
+
+        this.arguments.addAll(customArgumentCommands1);
     }
 
     @Override
