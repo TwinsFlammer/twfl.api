@@ -32,7 +32,7 @@ public abstract class CustomCommand extends Command {
     private final String[] aliases;
     private final List<CustomArgumentCommand> arguments = Lists.newArrayList();
 
-    private final String[] allowed = new String[]{
+    private final String[] blacklisted = new String[]{
             "login",
             "logar",
             "register",
@@ -84,7 +84,7 @@ public abstract class CustomCommand extends Command {
             return;
         }
 
-        if (!user.isConsole()) {
+        if (!user.isConsole() && !Arrays.asList(this.blacklisted).contains(this.getName())) {
             Server server = user.getServer();
 
             Log log = new Log(
