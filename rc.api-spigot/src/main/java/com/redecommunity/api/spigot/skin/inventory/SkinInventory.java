@@ -30,5 +30,14 @@ public class SkinInventory extends CustomInventory {
                         )
                         .editable(false)
         );
+
+        this.setDesign(
+                "XXXXXXXXX",
+                "XOOOOOOOX",
+                "XOOOOOOOX",
+                "XOOOOOOOX",
+                "XXXXXXXXX",
+                "XXXXXXXXX"
+        );
     }
 }
