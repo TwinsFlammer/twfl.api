@@ -108,10 +108,12 @@ public class CustomInventory extends CraftInventory {
                     } else changeSlot = false;
                 }
             }
+            System.out.println("Passando...");
 
             System.out.println(changeSlot);
 
             if (changeSlot) {
+                System.out.println("MUDAR");
                 super.setItem(i, null);
 
                 this.customItems.remove(i);
