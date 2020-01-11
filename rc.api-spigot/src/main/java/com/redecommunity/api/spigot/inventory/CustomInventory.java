@@ -118,8 +118,7 @@ public class CustomInventory extends CraftInventory {
                 System.out.println("MUDAR");
                 super.setItem(i, null);
 
-                this.customItems.remove(i);
-                this.customItems.put(slot, customItem);
+                this.setItem(slot, customItem);
             }
         }
     }
