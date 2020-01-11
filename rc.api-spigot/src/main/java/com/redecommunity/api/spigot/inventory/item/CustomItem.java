@@ -44,6 +44,8 @@ public class CustomItem {
         ItemMeta itemMeta = this.meta();
         itemMeta.setDisplayName(name);
 
+        this.setItemMeta(itemMeta);
+
         return this;
     }
 
@@ -55,6 +57,8 @@ public class CustomItem {
         ItemMeta itemMeta = this.meta();
         itemMeta.setLore(lore);
 
+        this.setItemMeta(itemMeta);
+
         return this;
     }
 
@@ -63,6 +67,8 @@ public class CustomItem {
 
         for (ItemFlag itemFlag : ItemFlag.values())
             itemMeta.addItemFlags(itemFlag);
+
+        this.setItemMeta(itemMeta);
 
         this.setItemMeta(itemMeta);
 
