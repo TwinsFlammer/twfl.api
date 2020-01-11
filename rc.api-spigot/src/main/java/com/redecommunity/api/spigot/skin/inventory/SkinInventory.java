@@ -29,6 +29,15 @@ public class SkinInventory extends CustomInventory {
                                 "SAK@OKSAD"
                         )
                         .editable(false)
+                        .onClick(event -> {
+                            System.out.println("Clicou porra!!!");
+
+                            event.getViewers().forEach(humanEntity -> {
+                                System.out.println(humanEntity.getName());
+
+                                humanEntity.closeInventory();
+                            });
+                        })
         );
 
         this.setDesign(
