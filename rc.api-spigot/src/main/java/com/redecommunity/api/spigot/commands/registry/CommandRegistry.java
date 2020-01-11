@@ -22,16 +22,16 @@ public class CommandRegistry {
         SimpleCommandMap simpleCommandMap = craftServer.getCommandMap();
 
         try {
-            Field commandMapField = SimpleCommandMap.class.getDeclaredField("knowCommands");
+            Field commandMapField = SimpleCommandMap.class.getDeclaredField("knownCommands");
 
             commandMapField.setAccessible(true);
 
 
-            Field knowCommandsField = simpleCommandMap.getClass().getDeclaredField("knowCommands");
+            Field knowCommandsField = simpleCommandMap.getClass().getDeclaredField("knownCommands");
 
             knowCommandsField.setAccessible(true);
 
-            Map<String, Command> commands = (Map<String, Command>) knowCommandsField.get("knowCommands");
+            Map<String, Command> commands = (Map<String, Command>) knowCommandsField.get("knownCommands");
 
             simpleCommandMap.getCommands()
                     .stream()
