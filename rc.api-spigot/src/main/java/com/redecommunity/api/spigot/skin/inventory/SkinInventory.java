@@ -15,6 +15,7 @@ public class SkinInventory extends CustomInventory {
         user.getSkins().forEach(skin -> {
             this.addItem(
                     new CustomItem(Material.SKULL_ITEM)
+                            .data(3)
                             .name("§e" + skin.getOwner())
             );
         });
