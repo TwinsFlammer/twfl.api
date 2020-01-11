@@ -2,7 +2,7 @@ package com.redecommunity.api.spigot.inventory;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.redecommunity.api.spigot.inventory.item.Item;
+import com.redecommunity.api.spigot.inventory.item.CustomItem;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.server.v1_8_R3.*;
@@ -25,13 +25,15 @@ import java.util.function.Consumer;
 /**
  * Created by @SrGutyerrez
  */
-public class InventoryBuilder extends CraftInventory {
+public class CustomInventory extends CraftInventory {
     private Boolean cancelled = false;
-    private HashMap<Integer, Item> items = Maps.newHashMap();
+    private HashMap<Integer, CustomItem> customItems = Maps.newHashMap();
 
     private Consumer<InventoryCloseEvent> closeEventConsumer;
 
-    public InventoryBuilder(String name, Integer rows) {
+    private String[] design;
+
+    public CustomInventory(String name, Integer rows) {
         super(
                 new MinecraftInventory(
                         rows * 9,
@@ -40,7 +42,7 @@ public class InventoryBuilder extends CraftInventory {
         );
     }
 
-    public InventoryBuilder(String name, InventoryType inventoryType) {
+    public CustomInventory(String name, InventoryType inventoryType) {
         super(
                 new MinecraftInventory(
                         inventoryType,
@@ -49,22 +51,52 @@ public class InventoryBuilder extends CraftInventory {
         );
     }
 
-    public InventoryBuilder setItem(int index, Item item) {
-        super.setItem(index, item.build());
+    public CustomInventory setItem(int index, CustomItem customItem) {
+        super.setItem(index, customItem.build());
 
-        this.items.put(index, item);
+        this.customItems.put(index, customItem);
 
         return this;
     }
 
-    public InventoryBuilder addItem(Item item) {
+    public CustomInventory addItem(CustomItem customItem) {
         for (int i = 0; i < this.getSize(); i++)
             if (this.getContents()[i] == null || this.getContents()[i].getType() == Material.AIR) {
-                this.setItem(i, item);
+                this.setItem(i, customItem);
                 break;
             }
 
         return this;
+    }
+
+    public CustomInventory setDesign(String... design) {
+        this.design = design;
+
+        this.organize();
+
+        return this;
+    }
+
+    private void organize() {
+        for (int i = 0; i < this.inventory.getSize(); i++) {
+            for (String design : this.design) {
+                CustomItem customItem = this.customItems.get(i);
+
+                char[] chars = design.toCharArray();
+
+                Integer slot = 0;
+
+                for (char char1 : chars) {
+                    if (char1 != 'X') {
+                        this.customItems.remove(i);
+
+                        this.customItems.put(slot, customItem);
+
+                        slot++;
+                    }
+                }
+            }
+        }
     }
 
     public void onClick(InventoryClickEvent event) {
@@ -73,15 +105,19 @@ public class InventoryBuilder extends CraftInventory {
 
         Integer slot = event.getSlot();
 
-        Item item = this.items.getOrDefault(slot, null);
+        CustomItem customItem = this.customItems.getOrDefault(slot, null);
 
-        if (item != null && item.getInventoryClickEventConsumer() != null)
-            item.getInventoryClickEventConsumer().accept(event);
+        if (customItem != null && customItem.getInventoryClickEventConsumer() != null)
+            customItem.getInventoryClickEventConsumer().accept(event);
+    }
+
+    public void onClose(InventoryCloseEvent event) {
+        if (this.closeEventConsumer != null)  this.closeEventConsumer.accept(event);
     }
 
     static class MinecraftInventory implements IInventory {
 
-        private final net.minecraft.server.v1_8_R3.ItemStack[] items;
+        private final ItemStack[] items;
 
         @Setter
         @Getter
@@ -99,7 +135,7 @@ public class InventoryBuilder extends CraftInventory {
         public MinecraftInventory(int size, String title) {
             Validate.notNull(title, "Title cannot be null");
 
-            this.items = new net.minecraft.server.v1_8_R3.ItemStack[size];
+            this.items = new ItemStack[size];
             this.name = title;
             this.viewers = Lists.newArrayList();
             this.type = InventoryType.CHEST;
@@ -108,7 +144,7 @@ public class InventoryBuilder extends CraftInventory {
         public MinecraftInventory(InventoryType type, String title) {
             Validate.notNull(title, "Title cannot be null");
 
-            this.items = new net.minecraft.server.v1_8_R3.ItemStack[type.getDefaultSize()];
+            this.items = new ItemStack[type.getDefaultSize()];
             this.name = title;
             this.viewers = Lists.newArrayList();
             this.type = type;
@@ -120,14 +156,14 @@ public class InventoryBuilder extends CraftInventory {
         }
 
         @Override
-        public net.minecraft.server.v1_8_R3.ItemStack getItem(int i) {
+        public ItemStack getItem(int i) {
             return items[i];
         }
 
         @Override
-        public net.minecraft.server.v1_8_R3.ItemStack splitStack(int i, int j) {
-            net.minecraft.server.v1_8_R3.ItemStack stack = this.getItem(i);
-            net.minecraft.server.v1_8_R3.ItemStack result;
+        public ItemStack splitStack(int i, int j) {
+            ItemStack stack = this.getItem(i);
+            ItemStack result;
             if (stack == null) {
                 return null;
             }
@@ -143,9 +179,9 @@ public class InventoryBuilder extends CraftInventory {
         }
 
         @Override
-        public net.minecraft.server.v1_8_R3.ItemStack splitWithoutUpdate(int i) {
-            net.minecraft.server.v1_8_R3.ItemStack stack = this.getItem(i);
-            net.minecraft.server.v1_8_R3.ItemStack result;
+        public ItemStack splitWithoutUpdate(int i) {
+            ItemStack stack = this.getItem(i);
+            ItemStack result;
             if (stack == null) {
                 return null;
             }
@@ -160,7 +196,7 @@ public class InventoryBuilder extends CraftInventory {
         }
 
         @Override
-        public void setItem(int i, net.minecraft.server.v1_8_R3.ItemStack itemstack) {
+        public void setItem(int i, ItemStack itemstack) {
             items[i] = itemstack;
             if (itemstack != null && this.getMaxStackSize() > 0 && itemstack.count > this.getMaxStackSize()) {
                 itemstack.count = this.getMaxStackSize();
@@ -177,7 +213,7 @@ public class InventoryBuilder extends CraftInventory {
         }
 
         @Override
-        public net.minecraft.server.v1_8_R3.ItemStack[] getContents() {
+        public ItemStack[] getContents() {
             return items;
         }
 
@@ -195,7 +231,7 @@ public class InventoryBuilder extends CraftInventory {
             return null;
         }
 
-        public boolean b(int i, net.minecraft.server.v1_8_R3.ItemStack itemstack) {
+        public boolean b(int i, ItemStack itemstack) {
             return true;
         }
 
