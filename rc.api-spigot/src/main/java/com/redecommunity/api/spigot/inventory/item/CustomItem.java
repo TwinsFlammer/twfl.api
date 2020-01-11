@@ -24,7 +24,7 @@ public class CustomItem {
     @Getter
     private Consumer<InventoryClickEvent> inventoryClickEventConsumer;
 
-    private Boolean editable = false;
+    private Boolean editable = true;
 
     public CustomItem(Material material) {
         this.itemStack = new ItemStack(material);
