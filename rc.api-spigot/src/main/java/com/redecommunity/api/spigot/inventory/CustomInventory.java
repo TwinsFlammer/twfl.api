@@ -98,8 +98,11 @@ public class CustomInventory extends CraftInventory {
                 for (char char1 : chars) {
                     System.out.println(char1);
                     if (char1 != 'X') {
+                        super.setItem(i, null);
+
                         System.out.println(">> " + char1);
                         this.customItems.remove(i);
+
 
                         this.customItems.put(slot, customItem);
 
