@@ -114,6 +114,8 @@ public class CustomInventory extends CraftInventory {
                 }
             }
 
+            System.out.println(changeSlot);
+
             if (changeSlot) {
                 super.setItem(i, null);
 
