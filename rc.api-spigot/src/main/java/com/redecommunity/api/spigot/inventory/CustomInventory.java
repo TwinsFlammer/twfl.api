@@ -84,7 +84,9 @@ public class CustomInventory extends CraftInventory {
 
     private void organize() {
         for (int i = 0; i < this.inventory.getSize(); i++) {
+            System.out.println(i);
             for (String design : this.design) {
+                System.out.println(design);
                 CustomItem customItem = this.customItems.get(i);
 
                 if (customItem == null || !customItem.isEditable()) continue;
@@ -94,11 +96,14 @@ public class CustomInventory extends CraftInventory {
                 Integer slot = 0;
 
                 for (char char1 : chars) {
+                    System.out.println(char1);
                     if (char1 != 'X') {
+                        System.out.println(">> " + char1);
                         this.customItems.remove(i);
 
                         this.customItems.put(slot, customItem);
 
+                        System.out.println(slot);
                         slot++;
                     }
                 }
