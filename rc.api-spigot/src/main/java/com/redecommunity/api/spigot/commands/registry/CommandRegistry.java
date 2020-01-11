@@ -31,7 +31,7 @@ public class CommandRegistry {
 
             knowCommandsField.setAccessible(true);
 
-            Map<String, Command> commands = (Map<String, Command>) knowCommandsField.get("knownCommands");
+            Map<String, Command> commands = (Map<String, Command>) knowCommandsField.get(simpleCommandMap);
 
             simpleCommandMap.getCommands()
                     .stream()
