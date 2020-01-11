@@ -57,7 +57,10 @@ public class CustomInventory extends CraftInventory {
     }
 
     public CustomInventory setItem(int index, CustomItem customItem) {
-        super.setItem(index, customItem.build());
+        super.setItem(
+                index,
+                customItem.build()
+        );
 
         this.customItems.put(index, customItem);
 
@@ -83,6 +86,10 @@ public class CustomInventory extends CraftInventory {
     }
 
     private void organize() {
+        this.customItems.entrySet().forEach(entrySet -> {
+            System.out.println(entrySet.getKey());
+            System.out.println(entrySet.getValue());
+        });
         for (int i = 0; i < this.inventory.getSize(); i++) {
             System.out.println(i);
             for (String design : this.design) {
