@@ -21,6 +21,7 @@ import org.bukkit.inventory.InventoryHolder;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
@@ -33,7 +34,7 @@ public class CustomInventory extends CraftInventory {
 
     private Consumer<InventoryCloseEvent> closeEventConsumer;
 
-    private List<Character> design;
+    private HashMap<Integer, Character> design;
 
     public CustomInventory(String name, Integer rows) {
         super(
@@ -79,7 +80,7 @@ public class CustomInventory extends CraftInventory {
     }
 
     public CustomInventory setDesign(String... design) {
-        this.design = Lists.newArrayList();
+        this.design = Maps.newHashMap();
 
         Integer slot = 0;
 
@@ -90,7 +91,7 @@ public class CustomInventory extends CraftInventory {
                 char char1 = chars[i];
 
                 if (char1 != 'X') {
-                    this.design.set(
+                    this.design.put(
                             slot,
                             char1
                     );
@@ -110,8 +111,8 @@ public class CustomInventory extends CraftInventory {
 
         Integer index = 0;
 
-        for (Character character : this.design) {
-            Integer slot = this.design.indexOf(character);
+        for (Map.Entry<Integer, Character> entrySet : this.design.entrySet()) {
+            Integer slot = entrySet.getKey();
 
             CustomItem customItem = this.customItems.get(index);
 
