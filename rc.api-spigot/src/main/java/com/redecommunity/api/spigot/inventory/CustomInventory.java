@@ -86,15 +86,9 @@ public class CustomInventory extends CraftInventory {
     }
 
     private void organize() {
-        this.customItems.entrySet().forEach(entrySet -> {
-            System.out.println(entrySet.getKey());
-            System.out.println(entrySet.getValue());
-        });
         for (int i = 0; i < this.inventory.getSize(); i++) {
-            System.out.println(i);
-
             Boolean changeSlot = false;
-            Integer slot = 0;
+            Integer slot = -1;
 
             CustomItem customItem = this.customItems.get(i);
 
@@ -105,7 +99,6 @@ public class CustomInventory extends CraftInventory {
                 char[] chars = design.toCharArray();
 
                 for (char char1 : chars) {
-                    System.out.println(char1);
                     if (char1 != 'X') {
                         changeSlot = true;
 
