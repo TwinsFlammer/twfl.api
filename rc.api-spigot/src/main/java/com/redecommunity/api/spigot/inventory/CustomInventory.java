@@ -94,6 +94,8 @@ public class CustomInventory extends CraftInventory {
 
             if (customItem == null || !customItem.isEditable()) continue;
 
+            System.out.println("Não é null");
+
             for (String design : this.design) {
 
                 char[] chars = design.toCharArray();
