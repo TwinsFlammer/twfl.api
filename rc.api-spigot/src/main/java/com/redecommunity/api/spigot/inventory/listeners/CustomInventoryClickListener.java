@@ -1,7 +1,7 @@
 package com.redecommunity.api.spigot.inventory.listeners;
 
-import com.redecommunity.api.spigot.inventory.InventoryBuilder;
-import com.redecommunity.api.spigot.inventory.manager.InventoryBuilderManager;
+import com.redecommunity.api.spigot.inventory.CustomInventory;
+import com.redecommunity.api.spigot.inventory.manager.CustomInventoryManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -10,13 +10,13 @@ import org.bukkit.inventory.Inventory;
 /**
  * Created by @SrGutyerrez
  */
-public class InventoryBuilderClickListener implements Listener {
+public class CustomInventoryClickListener implements Listener {
     @EventHandler
     public void onClick(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
 
-        InventoryBuilder inventoryBuilder = InventoryBuilderManager.getInventoryBuilder(inventory);
+        CustomInventory customInventory = CustomInventoryManager.getCustomInventory(inventory);
 
-        inventoryBuilder.onClick(event);
+        customInventory.onClick(event);
     }
 }
