@@ -90,14 +90,12 @@ public class CustomInventory extends CraftInventory {
             for (int i = 0; i < chars.length; i++) {
                 char char1 = chars[i];
 
-                if (char1 != 'X') {
-                    this.design.put(
-                            slot,
-                            char1
-                    );
+                if (char1 != 'X') this.design.put(
+                        slot,
+                        char1
+                );
 
-                    slot++;
-                }
+                slot++;
             }
         }
 
