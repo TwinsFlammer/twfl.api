@@ -97,17 +97,26 @@ public class CustomInventory extends CraftInventory {
             System.out.println("Não é null");
 
             for (String design : this.design) {
+                if (changeSlot) break;
 
                 char[] chars = design.toCharArray();
 
-                for (char char1 : chars) {
-                    if (char1 != 'X') {
+//                for (char char1 : chars) {
+//                    if (char1 != 'X') {
+//                        changeSlot = true;
+//
+//                        System.out.println("YEAH");
+//
+//                        slot++;
+//                    } else changeSlot = false;
+//                }
+                for (int j = 0; j < chars.length; j++) {
+                    char char1 = chars[j];
+
+                    if (char1 != 'X' && i == j) {
                         changeSlot = true;
-
-                        System.out.println("YEAH");
-
-                        slot++;
-                    } else changeSlot = false;
+                        break;
+                    }
                 }
             }
             System.out.println("Passando...");
@@ -118,7 +127,11 @@ public class CustomInventory extends CraftInventory {
                 System.out.println("MUDAR");
                 super.setItem(i, null);
 
+                this.customItems.remove(i);
+
                 this.setItem(slot, customItem);
+
+                changeSlot = false;
             }
         }
     }
