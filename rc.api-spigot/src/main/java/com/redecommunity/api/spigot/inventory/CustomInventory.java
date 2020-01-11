@@ -22,6 +22,7 @@ import org.bukkit.inventory.InventoryHolder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.IntStream;
 
 /**
  * Created by @SrGutyerrez
@@ -32,7 +33,7 @@ public class CustomInventory extends CraftInventory {
 
     private Consumer<InventoryCloseEvent> closeEventConsumer;
 
-    private String[] design;
+    private List<Character> design;
 
     public CustomInventory(String name, Integer rows) {
         super(
@@ -78,7 +79,20 @@ public class CustomInventory extends CraftInventory {
     }
 
     public CustomInventory setDesign(String... design) {
-        this.design = design;
+        this.design = Lists.newArrayList();
+
+        for (String design1 : design) {
+            char[] chars = design1.toCharArray();
+
+            for (int i = 0; i < chars.length; i++) {
+                char char1 = chars[i];
+
+                if (char1 != 'X') this.design.set(
+                        i,
+                        char1
+                );
+            }
+        }
 
         this.organize();
 
@@ -86,57 +100,25 @@ public class CustomInventory extends CraftInventory {
     }
 
     private void organize() {
-        for (int i = 0; i < this.inventory.getSize(); i++) {
-            Boolean changeSlot = false;
-            Integer slot = -1;
+        if (this.design == null) return;
 
-            CustomItem customItem = this.customItems.get(i);
+        IntStream.range(0, this.design.size())
+                .forEach(index -> {
+                    char char1 = this.design.get(index);
 
-            if (customItem == null || !customItem.isEditable()) continue;
+                    Integer slot = this.design.indexOf(char1);
 
-            System.out.println("Não é null");
+                    CustomItem customItem = this.customItems.get(slot);
 
-            for (String design : this.design) {
-                if (changeSlot) break;
+                    if (customItem != null && customItem.isEditable()) {
+                        super.setItem(slot, null);
 
-                char[] chars = design.toCharArray();
-
-//                for (char char1 : chars) {
-//                    if (char1 != 'X') {
-//                        changeSlot = true;
-//
-//                        System.out.println("YEAH");
-//
-//                        slot++;
-//                    } else changeSlot = false;
-//                }
-                for (int j = 0; j < chars.length; j++) {
-                    char char1 = chars[j];
-
-                    System.out.println(i == j);
-
-                    if (char1 != 'X' && i == j) {
-                        System.out.println(char1);
-                        changeSlot = true;
-                        break;
+                        this.setItem(
+                                slot,
+                                customItem
+                        );
                     }
-                }
-            }
-            System.out.println("Passando...");
-
-            System.out.println(changeSlot);
-
-            if (changeSlot) {
-                System.out.println("MUDAR");
-                super.setItem(i, null);
-
-                this.customItems.remove(i);
-
-                this.setItem(slot, customItem);
-
-                changeSlot = false;
-            }
-        }
+                });
     }
 
     public void onClick(InventoryClickEvent event) {
@@ -152,7 +134,7 @@ public class CustomInventory extends CraftInventory {
     }
 
     public void onClose(InventoryCloseEvent event) {
-        if (this.closeEventConsumer != null)  this.closeEventConsumer.accept(event);
+        if (this.closeEventConsumer != null) this.closeEventConsumer.accept(event);
     }
 
     static class MinecraftInventory implements IInventory {
