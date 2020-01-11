@@ -102,23 +102,24 @@ public class CustomInventory extends CraftInventory {
     private void organize() {
         if (this.design == null) return;
 
-        IntStream.range(0, this.design.size())
-                .forEach(index -> {
-                    char char1 = this.design.get(index);
+        Integer index = 0;
 
-                    Integer slot = this.design.indexOf(char1);
+        for (Character character : this.design) {
+            Integer slot = this.design.indexOf(character);
 
-                    CustomItem customItem = this.customItems.get(slot);
+            CustomItem customItem = this.customItems.get(index);
 
-                    if (customItem != null && customItem.isEditable()) {
-                        super.setItem(slot, null);
+            if (customItem != null && customItem.isEditable()) {
+                super.setItem(index, null);
 
-                        this.setItem(
-                                slot,
-                                customItem
-                        );
-                    }
-                });
+                this.setItem(
+                        slot,
+                        customItem
+                );
+            }
+
+            index++;
+        }
     }
 
     public void onClick(InventoryClickEvent event) {
