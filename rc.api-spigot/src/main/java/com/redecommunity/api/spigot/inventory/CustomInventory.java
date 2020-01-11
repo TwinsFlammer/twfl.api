@@ -81,16 +81,22 @@ public class CustomInventory extends CraftInventory {
     public CustomInventory setDesign(String... design) {
         this.design = Lists.newArrayList();
 
+        Integer slot = 0;
+
         for (String design1 : design) {
             char[] chars = design1.toCharArray();
 
             for (int i = 0; i < chars.length; i++) {
                 char char1 = chars[i];
 
-                if (char1 != 'X') this.design.set(
-                        i,
-                        char1
-                );
+                if (char1 != 'X') {
+                    this.design.set(
+                            slot,
+                            char1
+                    );
+
+                    slot++;
+                }
             }
         }
 
