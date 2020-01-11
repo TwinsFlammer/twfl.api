@@ -96,6 +96,8 @@ public class CustomInventory extends CraftInventory {
                 System.out.println(design);
                 CustomItem customItem = this.customItems.get(i);
 
+                System.out.println(customItem == null);
+
                 if (customItem == null || !customItem.isEditable()) continue;
 
                 char[] chars = design.toCharArray();
