@@ -1,0 +1,25 @@
+package com.redecommunity.api.spigot.inventory.manager;
+
+import com.google.common.collect.Lists;
+import com.redecommunity.api.spigot.inventory.CustomInventory;
+import org.bukkit.inventory.Inventory;
+
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * Created by @SrGutyerrez
+ */
+public class CustomInventoryManager {
+    private static List<CustomInventory> inventories = Lists.newArrayList();
+
+    public static CustomInventory getCustomInventory(Inventory inventory) {
+        return CustomInventoryManager.inventories
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(customInventory -> customInventory.getInventory() != null)
+                .filter(customInventory -> customInventory.getInventory().equals(inventory))
+                .findFirst()
+                .orElse(null);
+    }
+}
