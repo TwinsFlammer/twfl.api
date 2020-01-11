@@ -113,7 +113,10 @@ public class CustomInventory extends CraftInventory {
                 for (int j = 0; j < chars.length; j++) {
                     char char1 = chars[j];
 
+                    System.out.println(i == j);
+
                     if (char1 != 'X' && i == j) {
+                        System.out.println(char1);
                         changeSlot = true;
                         break;
                     }
