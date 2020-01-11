@@ -102,6 +102,8 @@ public class CustomInventory extends CraftInventory {
                     if (char1 != 'X') {
                         changeSlot = true;
 
+                        System.out.println("YEAH");
+
                         slot++;
                     } else changeSlot = false;
                 }
