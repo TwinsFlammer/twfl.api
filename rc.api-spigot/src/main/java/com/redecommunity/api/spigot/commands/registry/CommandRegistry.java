@@ -3,8 +3,12 @@ package com.redecommunity.api.spigot.commands.registry;
 import com.redecommunity.api.spigot.CommunityPlugin;
 import com.redecommunity.api.spigot.commands.CustomCommand;
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+
+import java.lang.reflect.Field;
+import java.util.Map;
 
 /**
  * Created by @SrGutyerrez
@@ -17,22 +21,29 @@ public class CommandRegistry {
 
         SimpleCommandMap simpleCommandMap = craftServer.getCommandMap();
 
-//        try {
-//            Field commandMapField = SimpleCommandMap.class.getDeclaredField("knowCommands");
-//
-//            commandMapField.setAccessible(true);
-//
-//
-//            Field knowCommandsField = simpleCommandMap.getClass().getDeclaredField("knowCommands");
-//
-//            knowCommandsField.setAccessible(true);
-//
-//            Map<String, Command> commands = (Map<String, Command>) knowCommandsField.get("knowCommands");
-//
-//
-//        } catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException exception) {
-//            exception.printStackTrace();
-//        }
+        try {
+            Field commandMapField = SimpleCommandMap.class.getDeclaredField("knowCommands");
+
+            commandMapField.setAccessible(true);
+
+
+            Field knowCommandsField = simpleCommandMap.getClass().getDeclaredField("knowCommands");
+
+            knowCommandsField.setAccessible(true);
+
+            Map<String, Command> commands = (Map<String, Command>) knowCommandsField.get("knowCommands");
+
+            simpleCommandMap.getCommands()
+                    .stream()
+                    .filter(command -> command.getName().equalsIgnoreCase(customCommand.getName()))
+                    .forEach(command -> {
+                        command.unregister(simpleCommandMap);
+                        commands.remove(command.getName());
+                        command.getAliases().forEach(commands::remove);
+                    });
+        } catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException exception) {
+            exception.printStackTrace();
+        }
 
         simpleCommandMap.register(
                 customCommand.getName(),
