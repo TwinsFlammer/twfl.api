@@ -92,33 +92,33 @@ public class CustomInventory extends CraftInventory {
         });
         for (int i = 0; i < this.inventory.getSize(); i++) {
             System.out.println(i);
+
+            Boolean changeSlot = false;
+            Integer slot = 0;
+
+            CustomItem customItem = this.customItems.get(i);
+
+            if (customItem == null || !customItem.isEditable()) continue;
+
             for (String design : this.design) {
-                System.out.println(design);
-                CustomItem customItem = this.customItems.get(i);
-
-                System.out.println(customItem == null);
-
-                if (customItem == null || !customItem.isEditable()) continue;
 
                 char[] chars = design.toCharArray();
-
-                Integer slot = 0;
 
                 for (char char1 : chars) {
                     System.out.println(char1);
                     if (char1 != 'X') {
-                        super.setItem(i, null);
+                        changeSlot = true;
 
-                        System.out.println(">> " + char1);
-                        this.customItems.remove(i);
-
-
-                        this.customItems.put(slot, customItem);
-
-                        System.out.println(slot);
                         slot++;
-                    }
+                    } else changeSlot = false;
                 }
+            }
+
+            if (changeSlot) {
+                super.setItem(i, null);
+
+                this.customItems.remove(i);
+                this.customItems.put(slot, customItem);
             }
         }
     }
