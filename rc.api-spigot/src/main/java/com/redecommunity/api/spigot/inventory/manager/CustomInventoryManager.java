@@ -13,6 +13,10 @@ import java.util.Objects;
 public class CustomInventoryManager {
     private static List<CustomInventory> inventories = Lists.newArrayList();
 
+    public static void addCustomInventory(CustomInventory customInventory) {
+        CustomInventoryManager.inventories.add(customInventory);
+    }
+
     public static CustomInventory getCustomInventory(Inventory inventory) {
         return CustomInventoryManager.inventories
                 .stream()
