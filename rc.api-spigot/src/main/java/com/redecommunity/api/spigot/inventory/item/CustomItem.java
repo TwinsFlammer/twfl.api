@@ -19,7 +19,7 @@ import java.util.function.Consumer;
  * Created by @SrGutyerrez
  */
 @RequiredArgsConstructor
-public class Item {
+public class CustomItem {
     private final ItemStack itemStack;
 
     @Getter
@@ -27,39 +27,39 @@ public class Item {
     @Setter
     private Boolean editable = false;
 
-    public Item(Material material) {
+    public CustomItem(Material material) {
         this.itemStack = new ItemStack(material);
     }
 
-    public Item(Item item) {
-        this.itemStack = new ItemStack(item.itemStack);
+    public CustomItem(CustomItem customItem) {
+        this.itemStack = new ItemStack(customItem.itemStack);
     }
 
-    public Item type(Material material) {
+    public CustomItem type(Material material) {
         this.itemStack.setType(material);
 
         return this;
     }
 
-    public Item name(String name) {
+    public CustomItem name(String name) {
         ItemMeta itemMeta = this.meta();
         itemMeta.setDisplayName(name);
 
         return this;
     }
 
-    public Item lore(String... lore) {
+    public CustomItem lore(String... lore) {
         return this.lore(Arrays.asList(lore));
     }
 
-    public Item lore(List<String> lore) {
+    public CustomItem lore(List<String> lore) {
         ItemMeta itemMeta = this.meta();
         itemMeta.setLore(lore);
 
         return this;
     }
 
-    public Item hideAttributes() {
+    public CustomItem hideAttributes() {
         ItemMeta itemMeta = this.meta();
 
         for (ItemFlag itemFlag : ItemFlag.values())
@@ -70,29 +70,29 @@ public class Item {
         return this;
     }
 
-    public Item data(Integer data) {
+    public CustomItem data(Integer data) {
         return this.data(data.shortValue());
     }
 
-    public Item data(Short data) {
+    public CustomItem data(Short data) {
         this.itemStack.setDurability(data);
 
         return this;
     }
 
-    public Item amount(Integer amount) {
+    public CustomItem amount(Integer amount) {
         this.itemStack.setAmount(amount);
 
         return this;
     }
 
-    public Item enchant(Enchantment enchantment, Integer level) {
+    public CustomItem enchant(Enchantment enchantment, Integer level) {
         this.itemStack.addUnsafeEnchantment(enchantment, level);
 
         return this;
     }
 
-    public Item owner(String owner) {
+    public CustomItem owner(String owner) {
         SkullMeta skullMeta = (SkullMeta) this.meta();
 
         skullMeta.setOwner(owner);
@@ -102,14 +102,14 @@ public class Item {
         return this;
     }
 
-    public Item onClick(Consumer<InventoryClickEvent> inventoryClickEventConsumer) {
+    public CustomItem onClick(Consumer<InventoryClickEvent> inventoryClickEventConsumer) {
         this.inventoryClickEventConsumer = inventoryClickEventConsumer;
 
         return this;
     }
 
-    public Item clone() {
-        return new Item(this);
+    public CustomItem clone() {
+        return new CustomItem(this);
     }
 
     public ItemStack build() {
