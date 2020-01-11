@@ -24,7 +24,7 @@ public class CustomItem {
 
     @Getter
     private Consumer<InventoryClickEvent> inventoryClickEventConsumer;
-    @Setter
+
     private Boolean editable = false;
 
     public CustomItem(Material material) {
@@ -98,6 +98,13 @@ public class CustomItem {
         skullMeta.setOwner(owner);
 
         this.setItemMeta(skullMeta);
+
+        return this;
+
+    }
+
+    public CustomItem editable(Boolean editable) {
+        this.editable = editable;
 
         return this;
     }
