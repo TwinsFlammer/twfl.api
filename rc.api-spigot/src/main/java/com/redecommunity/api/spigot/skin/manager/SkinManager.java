@@ -83,10 +83,8 @@ public class SkinManager {
                                 .add("Para que ela seja aplicada é necessário que você ")
                                 .add(
                                         CustomBook.TextBuilder.of("reconecte")
-                                                .style(
-                                                        ChatColor.GREEN,
-                                                        ChatColor.BOLD
-                                                )
+                                                .color(ChatColor.GREEN)
+                                                .style(ChatColor.BOLD)
                                                 .onClick(CustomBook.ClickAction.runCommand("/desconectar"))
                                                 .build()
                                 )
