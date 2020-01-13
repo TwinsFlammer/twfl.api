@@ -21,6 +21,11 @@ public class CustomInventoryManager {
         CustomInventoryManager.inventories.forEach(customInventory -> {
             System.out.println(customInventory == null);
             System.out.println(customInventory.getInventory() == null);
+
+            System.out.println(customInventory.getInventory().getName());
+
+            System.out.println(inventory.getName());
+
             System.out.println(customInventory.getInventory().equals(inventory));
         });
 
