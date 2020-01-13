@@ -1,6 +1,7 @@
 package com.redecommunity.api.spigot.skin.listeners;
 
 import com.redecommunity.api.spigot.skin.manager.SkinManager;
+import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import org.bukkit.entity.Player;
@@ -21,6 +22,17 @@ public class ChangeSkinAsyncPlayerChatListener implements Listener {
         if (!user.isChangingSkin()) return;
 
         String skinName = event.getMessage();
+
+        Language language = user.getLanguage();
+
+        if (skinName.equalsIgnoreCase("cancelar")) {
+            player.sendMessage(
+                    language.getMessage("skin.cancelled")
+            );
+            return;
+        }
+
+        user.setChangingSkin(false);
 
         SkinManager.change(
                 player,
