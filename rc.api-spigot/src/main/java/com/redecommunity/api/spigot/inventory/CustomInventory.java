@@ -96,7 +96,7 @@ public class CustomInventory extends CraftInventory {
             char[] chars = design1.toCharArray();
 
             for (int j = 0; j < chars.length; j++) {
-                Integer index = (currentIndex + 1) * Math.max(i, 1);
+                Integer index = (currentIndex + 1) * i+1;
 
                 if (index > count || index > this.getSize()) break;
 
