@@ -3,6 +3,7 @@ package com.redecommunity.api.spigot.manager;
 import com.redecommunity.api.spigot.SpigotAPI;
 import com.redecommunity.api.spigot.commands.CustomCommand;
 import com.redecommunity.api.spigot.commands.registry.CommandRegistry;
+import com.redecommunity.api.spigot.inventory.manager.CustomInventoryManager;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
@@ -53,6 +54,7 @@ class ListenerManager {
 
 class DataManager {
     DataManager() {
+        new CustomInventoryManager();
     }
 }
 
