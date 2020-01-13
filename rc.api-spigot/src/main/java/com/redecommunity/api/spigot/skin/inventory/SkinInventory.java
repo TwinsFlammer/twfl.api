@@ -1,17 +1,16 @@
 package com.redecommunity.api.spigot.skin.inventory;
 
 import com.redecommunity.api.spigot.inventory.CustomInventory;
+import com.redecommunity.api.spigot.inventory.item.BlockColor;
 import com.redecommunity.api.spigot.inventory.item.CustomItem;
 import com.redecommunity.api.spigot.skin.command.argument.SkinHelpCommand;
 import com.redecommunity.api.spigot.skin.manager.SkinManager;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.skin.data.Skin;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 /**
  * Created by @SrGutyerrez
@@ -94,6 +93,7 @@ public class SkinInventory extends CustomInventory {
                 50,
                 new CustomItem(Material.SKULL_ITEM)
                         .data(3)
+                        .owner(BlockColor.CYAN)
                         .name("§eAjuda")
                         .lore("§7As ações disponíveis neste menu também",
                                 "§7podem ser realizadas por comando.",
