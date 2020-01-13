@@ -132,6 +132,7 @@ public class CustomInventory extends CraftInventory {
     }
 
     public void onClick(InventoryClickEvent event) {
+        System.out.println("Chamou!");
         if (event.getClick() == ClickType.NUMBER_KEY) event.setCancelled(this.cancelled);
         event.setCancelled(this.cancelled);
 
