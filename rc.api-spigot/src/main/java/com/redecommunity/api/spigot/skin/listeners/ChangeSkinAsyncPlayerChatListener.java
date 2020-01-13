@@ -35,7 +35,7 @@ public class ChangeSkinAsyncPlayerChatListener implements Listener {
 
         String skinName = event.getMessage();
 
-        if (!skinName.matches("[A-z0-9]") || skinName.length() > 16) {
+        if (!skinName.matches("[a-zA-Z0-9-_]*") || skinName.length() > 16) {
             player.sendMessage(
                     language.getMessage("skin.invalid_skin_name")
             );
