@@ -18,7 +18,7 @@ public class EnableCommand extends CustomCommand {
     }
 
     @Override
-    public void onCommand(User user, String[] args) {
+    public void onCommand(CommandSender sender, User user, String[] args) {
         Language language = user.getLanguage();
 
         if (args.length != 1) {
