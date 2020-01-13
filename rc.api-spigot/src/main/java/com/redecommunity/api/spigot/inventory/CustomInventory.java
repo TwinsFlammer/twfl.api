@@ -68,12 +68,21 @@ public class CustomInventory extends CraftInventory {
     }
 
     public CustomInventory setItem(int index, CustomItem customItem) {
-        super.setItem(
-                index,
-                customItem.build()
-        );
+//        super.setItem(
+//                index,
+//                customItem.build()
+//        );
 
         this.customItems.put(index, customItem);
+
+        return this;
+    }
+
+    public CustomInventory setItem(int index, CraftItemStack craftItemStack) {
+        super.setItem(
+                index,
+                craftItemStack
+        );
 
         return this;
     }
@@ -135,10 +144,16 @@ public class CustomInventory extends CraftInventory {
             if (customItem != null && customItem.isEditable()) {
                 customInventory.removeItem(index);
 
-                if (character != 'X') customInventory.setItem(
-                        slot,
-                        customItem
-                );
+                if (character != 'X') {
+                    customInventory.setItem(
+                            slot,
+                            customItem
+                    );
+                    customInventory.setItem(
+                            slot,
+                            customItem.build()
+                    );
+                }
             }
 
             index++;
@@ -148,7 +163,7 @@ public class CustomInventory extends CraftInventory {
                     .filter(character1 -> character1 == 'O')
                     .count();
 
-            if (index >= lastSlot * (page == 0 ? 1 : page)) {
+            if (index >= lastSlot * page + 1) {
                 page++;
 
                 System.out.println("Pagina: " + page);
