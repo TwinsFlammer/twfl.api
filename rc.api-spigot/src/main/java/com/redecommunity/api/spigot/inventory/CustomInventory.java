@@ -139,7 +139,7 @@ public class CustomInventory extends CraftInventory {
 
         CustomItem customItem = this.customItems.get(slot);
 
-        System.out.println(customItem == null);
+        System.out.println(customItem.getInventoryClickEventConsumer() == null);
 
         if (customItem != null && customItem.getInventoryClickEventConsumer() != null)
             customItem.getInventoryClickEventConsumer().accept(event);
