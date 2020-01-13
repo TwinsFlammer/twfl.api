@@ -131,6 +131,8 @@ public class CustomInventory extends CraftInventory {
 
             if (character != 'O') continue;
 
+            System.out.println(slot);
+
             CustomItem customItem = this.customItems.get(index);
 
             if (customItem != null && customItem.isEditable()) {
