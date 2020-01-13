@@ -7,6 +7,7 @@ import com.redecommunity.api.spigot.commands.CustomCommand;
 import com.redecommunity.api.spigot.commands.enums.CommandRestriction;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.user.data.User;
+import org.bukkit.command.CommandSender;
 
 public class DisableCommand extends CustomCommand {
     public DisableCommand() {
@@ -14,11 +15,11 @@ public class DisableCommand extends CustomCommand {
     }
 
     @Override
-    public void onCommand(User user, String[] args) {
+    public void onCommand(CommandSender sender, User user, String[] args) {
         Language language = user.getLanguage();
 
         if (args.length != 1) {
-            user.sendMessage(
+            sender.sendMessage(
                     String.format(
                             language.getMessage("messages.default_commands.invalid_usage"),
                             this.getName(),
@@ -31,7 +32,7 @@ public class DisableCommand extends CustomCommand {
         String name = args[0];
 
         if (DisabledCommandManager.isAlreadyDisabled(name)) {
-            user.sendMessage(
+            sender.sendMessage(
                     language.getMessage("messages.default_commands.command_already_disabled")
             );
             return;
@@ -48,7 +49,7 @@ public class DisableCommand extends CustomCommand {
 
         disabledCommandDao.insert(disabledCommand);
 
-        user.sendMessage(
+        sender.sendMessage(
                 language.getMessage("messages.default_commands.command_successfully_disabled")
         );
     }
