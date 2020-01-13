@@ -132,6 +132,8 @@ public class CustomInventory extends CraftInventory {
 
             CustomItem customItem = this.customItems.get(index);
 
+            System.out.println(index % 9);
+
             if (customItem != null && customItem.isEditable()) {
                 customInventory.removeItem(index);
 
