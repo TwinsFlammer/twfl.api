@@ -123,6 +123,10 @@ public class CustomInventory extends CraftInventory {
     private void organize() {
         if (this.design == null) return;
 
+        HashMap<Integer, CustomItem> customItems = Maps.newHashMap();
+
+        customItems.putAll(this.customItems);
+
         Integer index = 0;
 
         for (Map.Entry<Integer, Character> entrySet : this.design.entrySet()) {
@@ -143,7 +147,7 @@ public class CustomInventory extends CraftInventory {
             if (customItem != null && customItem.isEditable()) {
                 super.setItem(index, null);
 
-                this.setItem(
+                customItems.put(
                         slot,
                         customItem
                 );
@@ -151,6 +155,8 @@ public class CustomInventory extends CraftInventory {
 
             index++;
         }
+
+        customItems.forEach(this::setItem);
     }
 
     public void onClick(InventoryClickEvent event) {
