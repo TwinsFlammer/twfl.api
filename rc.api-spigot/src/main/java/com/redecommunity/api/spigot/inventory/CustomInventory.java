@@ -89,6 +89,7 @@ public class CustomInventory extends CraftInventory {
     }
 
     public CustomInventory removeItem(Integer index) {
+        super.setItem(index, null);
         this.customItems.remove(index);
 
         return this;
@@ -132,7 +133,6 @@ public class CustomInventory extends CraftInventory {
             CustomItem customItem = this.customItems.get(index);
 
             if (customItem != null && customItem.isEditable()) {
-                customInventory.setItem(index, (CraftItemStack) null);
                 customInventory.removeItem(index);
 
                 if (character != 'X') customItems.put(
