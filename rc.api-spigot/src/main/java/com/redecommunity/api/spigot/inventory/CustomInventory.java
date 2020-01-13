@@ -94,7 +94,7 @@ public class CustomInventory extends CraftInventory {
             char[] chars = design1.toCharArray();
 
             for (int i = 0; i < chars.length; i++) {
-                if (i > count) break;
+                if (i > (count + 1)) break;
 
                 char char1 = chars[i];
 
