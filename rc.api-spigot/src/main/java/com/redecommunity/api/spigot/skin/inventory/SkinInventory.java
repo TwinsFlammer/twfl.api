@@ -24,7 +24,7 @@ public class SkinInventory extends CustomInventory {
                             .lore("§fUsada pela última vez em: §7" + simpleDateFormat.format(skin.getLastUse()),
                                     "",
                                     (skin.isActive() ? "§aSelecionada." : "§eClique para utilizar essa skin."))
-                            .owner(skin.getOwner())
+                            .owner(skin.getValue())
             );
         });
 
