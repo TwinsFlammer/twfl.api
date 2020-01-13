@@ -32,6 +32,7 @@ import java.util.function.Consumer;
 public class CustomInventory extends CraftInventory {
     @Setter
     private Boolean cancelled = false;
+    @Getter
     private HashMap<Integer, CustomItem> customItems = Maps.newHashMap();
 
     private Consumer<InventoryCloseEvent> closeEventConsumer;
@@ -87,6 +88,12 @@ public class CustomInventory extends CraftInventory {
         return this;
     }
 
+    public CustomInventory removeItem(Integer index) {
+        this.customItems.remove(index);
+
+        return this;
+    }
+
     public CustomInventory setDesign(String... design) {
         this.design = Maps.newTreeMap();
 
@@ -126,6 +133,7 @@ public class CustomInventory extends CraftInventory {
 
             if (customItem != null && customItem.isEditable()) {
                 customInventory.setItem(index, (CraftItemStack) null);
+                customInventory.removeItem(index);
 
                 if (character != 'X') customItems.put(
                         slot,
