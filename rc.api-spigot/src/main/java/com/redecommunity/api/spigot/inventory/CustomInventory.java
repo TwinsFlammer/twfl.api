@@ -23,7 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.stream.IntStream;
 
 /**
  * Created by @SrGutyerrez
@@ -138,7 +137,7 @@ public class CustomInventory extends CraftInventory {
 
         Integer slot = event.getSlot();
 
-        CustomItem customItem = this.customItems.getOrDefault(slot, null);
+        CustomItem customItem = this.customItems.get(slot);
 
         if (customItem != null && customItem.getInventoryClickEventConsumer() != null)
             customItem.getInventoryClickEventConsumer().accept(event);
