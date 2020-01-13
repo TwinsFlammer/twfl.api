@@ -4,6 +4,7 @@ import com.redecommunity.api.spigot.inventory.CustomInventory;
 import com.redecommunity.api.spigot.inventory.item.CustomItem;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 
 /**
  * Created by @SrGutyerrez
@@ -30,15 +31,15 @@ public class SkinInventory extends CustomInventory {
                         )
                         .editable(false)
                         .onClick(event -> {
+                            Player player = (Player) event.getWhoClicked();
+
                             System.out.println("Clicou porra!!!");
 
-                            event.getViewers().forEach(humanEntity -> {
-                                System.out.println(humanEntity.getName());
-
-                                humanEntity.closeInventory();
-                            });
+                            player.closeInventory();
                         })
         );
+
+        this.setCancelled(true);
 
         this.setDesign(
                 "XXXXXXXXX",
