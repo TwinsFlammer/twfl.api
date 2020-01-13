@@ -90,13 +90,17 @@ public class CustomInventory extends CraftInventory {
                 .filter(CustomItem::isEditable)
                 .count();
 
-        for (String design1 : design) {
+        for (int i = 0; i < design.length; i++) {
+            String design1 = design[i];
+
             char[] chars = design1.toCharArray();
 
-            for (int i = 0; i < chars.length; i++) {
-                if ((currentIndex + 1) > count) break;
+            for (int j = 0; j < chars.length; j++) {
+                Integer index = (currentIndex + 1) * Math.max(i, 1);
 
-                char char1 = chars[i];
+                if (index > count || index > this.getSize()) break;
+
+                char char1 = chars[j];
 
                 if (char1 != 'X') {
                     this.design.put(
