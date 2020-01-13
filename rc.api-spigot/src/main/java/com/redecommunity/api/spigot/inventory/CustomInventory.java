@@ -72,7 +72,7 @@ public class CustomInventory extends CraftInventory {
                 customItem == null ? null : customItem.build()
         );
 
-        this.customItems.put(index, customItem);
+        if (customItem != null) this.customItems.put(index, customItem);
 
         return this;
     }
