@@ -132,13 +132,14 @@ public class CustomInventory extends CraftInventory {
     }
 
     public void onClick(InventoryClickEvent event) {
-        System.out.println("Chamou!");
         if (event.getClick() == ClickType.NUMBER_KEY) event.setCancelled(this.cancelled);
         event.setCancelled(this.cancelled);
 
         Integer slot = event.getSlot();
 
         CustomItem customItem = this.customItems.get(slot);
+
+        System.out.println(customItem == null);
 
         if (customItem != null && customItem.getInventoryClickEventConsumer() != null)
             customItem.getInventoryClickEventConsumer().accept(event);
