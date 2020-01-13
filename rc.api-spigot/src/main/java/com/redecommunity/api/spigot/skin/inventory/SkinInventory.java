@@ -18,6 +18,7 @@ public class SkinInventory extends CustomInventory {
                     new CustomItem(Material.SKULL_ITEM)
                             .data(3)
                             .name("§e" + skin.getOwner())
+                            .owner(skin.getTexture())
             );
         });
 
