@@ -40,10 +40,6 @@ public class SkinManager {
 
         user.setSkin(skin);
 
-        sender.sendMessage(
-                language.getMessage("skin.changed")
-        );
-
         if (!(sender instanceof Player)) return false;
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DD/MM/YYYY");
@@ -58,9 +54,10 @@ public class SkinManager {
                                 .add("§aSua skin foi alterada com sucesso!")
                                 .newLine()
                                 .newLine()
-                                .add("Sua nova skin: §7" + skinName)
+                                .add(" Sua nova skin: " + skinName)
                                 .newLine()
-                                .add("Data de atualização: " + simpleDateFormat.format(System.currentTimeMillis()))
+                                .add(" Data de atualização: §7" + simpleDateFormat.format(System.currentTimeMillis()))
+                                .newLine()
                                 .newLine()
                                 .newLine()
                                 .add("Você precisará esperar um total de 15 minutos para poder alterar sua skin novamente.")
