@@ -28,6 +28,7 @@ import java.util.function.Consumer;
  * Created by @SrGutyerrez
  */
 public class CustomInventory extends CraftInventory {
+    @Setter
     private Boolean cancelled = false;
     private HashMap<Integer, CustomItem> customItems = Maps.newHashMap();
 
@@ -138,8 +139,6 @@ public class CustomInventory extends CraftInventory {
         Integer slot = event.getSlot();
 
         CustomItem customItem = this.customItems.get(slot);
-
-        System.out.println(customItem.getInventoryClickEventConsumer() == null);
 
         if (customItem != null && customItem.getInventoryClickEventConsumer() != null)
             customItem.getInventoryClickEventConsumer().accept(event);
