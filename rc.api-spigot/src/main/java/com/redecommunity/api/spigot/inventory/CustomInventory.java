@@ -133,8 +133,6 @@ public class CustomInventory extends CraftInventory {
 
             System.out.println(slot + " > " + character);
 
-            if (character != 'O') continue;
-
             System.out.println(slot);
 
 
@@ -147,10 +145,12 @@ public class CustomInventory extends CraftInventory {
             if (customItem != null && customItem.isEditable()) {
                 super.setItem(index, null);
 
-                customItems.put(
-                        slot,
-                        customItem
-                );
+                if (character != 'X') {
+                    customItems.put(
+                            slot,
+                            customItem
+                    );
+                }
             }
 
             index++;
