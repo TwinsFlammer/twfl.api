@@ -82,7 +82,7 @@ public class CustomInventory extends CraftInventory {
     public CustomInventory setDesign(String... design) {
         this.design = Maps.newHashMap();
 
-        Integer slot = 0;
+        Integer slot = 0, currentIndex = 0;
 
         Integer count = (int) this.customItems
                 .values()
@@ -94,7 +94,7 @@ public class CustomInventory extends CraftInventory {
             char[] chars = design1.toCharArray();
 
             for (int i = 0; i < chars.length; i++) {
-                if ((i+1) > count) break;
+                if ((currentIndex + 1) > count) break;
 
                 char char1 = chars[i];
 
@@ -106,6 +106,7 @@ public class CustomInventory extends CraftInventory {
 
                 }
 
+                currentIndex++;
                 slot++;
             }
         }
