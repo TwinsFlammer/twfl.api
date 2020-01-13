@@ -131,6 +131,8 @@ public class CustomInventory extends CraftInventory {
             Integer slot = entrySet.getKey();
             Character character = entrySet.getValue();
 
+            System.out.println(slot + " > " + character);
+
             if (character != 'O') continue;
 
             System.out.println(slot);
