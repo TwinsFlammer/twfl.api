@@ -19,10 +19,11 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.InventoryHolder;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.function.Consumer;
 
 /**
@@ -35,7 +36,9 @@ public class CustomInventory extends CraftInventory {
 
     private Consumer<InventoryCloseEvent> closeEventConsumer;
 
-    private HashMap<Integer, Character> design;
+    private TreeMap<Integer, Character> design;
+
+    private List<CustomInventory> pages = Lists.newArrayList();
 
     public CustomInventory(String name, Integer rows) {
         super(
@@ -46,6 +49,8 @@ public class CustomInventory extends CraftInventory {
         );
 
         CustomInventoryManager.addCustomInventory(this);
+
+        this.pages.add(this);
     }
 
     public CustomInventory(String name, InventoryType inventoryType) {
@@ -57,12 +62,14 @@ public class CustomInventory extends CraftInventory {
         );
 
         CustomInventoryManager.addCustomInventory(this);
+
+        this.pages.add(this);
     }
 
     public CustomInventory setItem(int index, CustomItem customItem) {
         super.setItem(
                 index,
-                customItem.build()
+                customItem == null ? null : customItem.build()
         );
 
         this.customItems.put(index, customItem);
@@ -81,7 +88,7 @@ public class CustomInventory extends CraftInventory {
     }
 
     public CustomInventory setDesign(String... design) {
-        this.design = Maps.newHashMap();
+        this.design = Maps.newTreeMap();
 
         Integer slot = 0;
 
@@ -91,7 +98,7 @@ public class CustomInventory extends CraftInventory {
             for (int i = 0; i < chars.length; i++) {
                 char char1 = chars[i];
 
-                this.design.put(slot, char1);
+                if (char1 != 'X') this.design.put(slot, char1);
 
                 slot++;
             }
@@ -107,7 +114,9 @@ public class CustomInventory extends CraftInventory {
 
         HashMap<Integer, CustomItem> customItems = Maps.newHashMap();
 
-        Integer index = 0;
+        Integer index = 0, page = 0;
+
+        CustomInventory customInventory = this.pages.get(page);
 
         for (Map.Entry<Integer, Character> entrySet : this.design.entrySet()) {
             Integer slot = entrySet.getKey();
@@ -116,7 +125,7 @@ public class CustomInventory extends CraftInventory {
             CustomItem customItem = this.customItems.get(index);
 
             if (customItem != null && customItem.isEditable()) {
-                super.setItem(index, null);
+                customInventory.setItem(index, (CustomItem) null);
 
                 if (character != 'X') customItems.put(
                         slot,
@@ -125,6 +134,10 @@ public class CustomInventory extends CraftInventory {
             }
 
             index++;
+//
+//            Integer lastSlot = this.design.lastKey();
+//
+//            if (index >= )
         }
 
         this.customItems.values().removeIf(customItem -> !customItem.isEditable());
