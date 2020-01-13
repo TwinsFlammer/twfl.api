@@ -84,22 +84,36 @@ public class CustomInventory extends CraftInventory {
 
         Integer slot = 0;
 
-        for (int i = 0; i < design.length; i++) {
-            String design1 = design[i];
-
+        for (String design1 : design) {
             char[] chars = design1.toCharArray();
 
-            for (int j = 0; j < chars.length; j++) {
-                char char1 = chars[j];
+            for (int i = 0; i < chars.length; i++) {
+                char char1 = chars[i];
 
-                if (char1 != 'X') this.design.put(
-                        slot,
-                        char1
-                );
+                this.design.put(slot, char1);
 
                 slot++;
             }
         }
+
+//        Integer slot = 0;
+//
+//        for (int i = 0; i < design.length; i++) {
+//            String design1 = design[i];
+//
+//            char[] chars = design1.toCharArray();
+//
+//            for (int j = 0; j < chars.length; j++) {
+//                char char1 = chars[j];
+//
+//                if (char1 != 'X') this.design.put(
+//                        slot,
+//                        char1
+//                );
+//
+//                slot++;
+//            }
+//        }
 
         this.organize();
 
@@ -113,6 +127,9 @@ public class CustomInventory extends CraftInventory {
 
         for (Map.Entry<Integer, Character> entrySet : this.design.entrySet()) {
             Integer slot = entrySet.getKey();
+            Character character = entrySet.getValue();
+
+            if (character != 'O') continue;
 
             CustomItem customItem = this.customItems.get(index);
 
