@@ -6,6 +6,7 @@ import com.redecommunity.api.spigot.commands.enums.CommandRestriction;
 import com.redecommunity.api.spigot.skin.command.argument.SkinHelpCommand;
 import com.redecommunity.api.spigot.skin.command.argument.SkinRefreshCommand;
 import com.redecommunity.api.spigot.skin.inventory.SkinInventory;
+import com.redecommunity.api.spigot.skin.manager.SkinManager;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.skin.dao.SkinDao;
@@ -44,27 +45,10 @@ public class SkinCommand extends CustomCommand {
         } else if (args.length == 1) {
             String skinName = args[0];
 
-            SkinDao skinDao = new SkinDao();
-
-            HashMap<String, String> keys = Maps.newHashMap();
-
-            keys.put("owner", skinName.toLowerCase());
-
-            Skin skin = skinDao.findOne(keys);
-
-            if (skin == null) skin = SkinFactory.getSkin(user.getName());
-
-            if (skin == null) {
-                sender.sendMessage(
-                        language.getMessage("skin.can\'t_find_an_skin_with_this_username")
-                );
-                return;
-            }
-
-            user.setSkin(skin);
-
-            sender.sendMessage(
-                    language.getMessage("skin.changed")
+            SkinManager.change(
+                    sender,
+                    user,
+                    skinName
             );
             return;
         } else {
