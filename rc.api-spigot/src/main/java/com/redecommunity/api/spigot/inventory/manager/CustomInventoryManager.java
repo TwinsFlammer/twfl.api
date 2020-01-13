@@ -18,6 +18,12 @@ public class CustomInventoryManager {
     }
 
     public static CustomInventory getCustomInventory(Inventory inventory) {
+        CustomInventoryManager.inventories.forEach(customInventory -> {
+            System.out.println(customInventory == null);
+            System.out.println(customInventory.getInventory() == null);
+            System.out.println(customInventory.getInventory().equals(inventory));
+        });
+
         return CustomInventoryManager.inventories
                 .stream()
                 .filter(Objects::nonNull)
