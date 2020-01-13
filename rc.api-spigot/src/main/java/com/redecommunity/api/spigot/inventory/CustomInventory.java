@@ -82,13 +82,7 @@ public class CustomInventory extends CraftInventory {
     public CustomInventory setDesign(String... design) {
         this.design = Maps.newHashMap();
 
-        Integer slot = 0, currentIndex = 0;
-
-        Integer count = (int) this.customItems
-                .values()
-                .stream()
-                .filter(CustomItem::isEditable)
-                .count();
+        Integer slot = 0;
 
         for (int i = 0; i < design.length; i++) {
             String design1 = design[i];
@@ -96,26 +90,13 @@ public class CustomInventory extends CraftInventory {
             char[] chars = design1.toCharArray();
 
             for (int j = 0; j < chars.length; j++) {
-                Integer index = (currentIndex + 1) * i+1;
-
-                System.out.println(currentIndex);
-                System.out.println(index);
-                System.out.println(count);
-                System.out.println(this.getSize());
-
-                if (index > count || index > this.getSize()) break;
-
                 char char1 = chars[j];
 
-                if (char1 != 'X') {
-                    this.design.put(
-                            slot,
-                            char1
-                    );
+                if (char1 != 'X') this.design.put(
+                        slot,
+                        char1
+                );
 
-                }
-
-                currentIndex++;
                 slot++;
             }
         }
