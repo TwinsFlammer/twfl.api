@@ -6,6 +6,7 @@ import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
@@ -13,13 +14,15 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
  * Created by @SrGutyerrez
  */
 public class ChangeSkinAsyncPlayerChatListener implements Listener {
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
 
         User user = UserManager.getUser(player.getUniqueId());
 
         if (!user.isChangingSkin()) return;
+
+        event.setCancelled(true);
 
         String skinName = event.getMessage();
 
