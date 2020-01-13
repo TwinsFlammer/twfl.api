@@ -125,8 +125,6 @@ public class CustomInventory extends CraftInventory {
 
         HashMap<Integer, CustomItem> customItems = Maps.newHashMap();
 
-        customItems.putAll(this.customItems);
-
         Integer index = 0;
 
         for (Map.Entry<Integer, Character> entrySet : this.design.entrySet()) {
