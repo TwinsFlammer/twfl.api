@@ -43,6 +43,7 @@ public class SkinInventory extends CustomInventory {
         this.setItem(
                 48,
                 new CustomItem(Material.BOOK_AND_QUILL)
+                        .editable(false)
                         .name("§eEscolher uma nova skin")
                         .lore(
                                 "§7Você pode escolher uma nova skin",
@@ -52,7 +53,6 @@ public class SkinInventory extends CustomInventory {
                                 "",
                                 "§aClique para escolher."
                         )
-                        .editable(false)
                         .onClick(event -> {
                             Player player = (Player) event.getWhoClicked();
 
@@ -68,6 +68,7 @@ public class SkinInventory extends CustomInventory {
         this.setItem(
                 49,
                 new CustomItem(Material.BARRIER)
+                        .editable(false)
                         .name("§eAtualizar skin")
                         .lore("§7Isso irá restaurar a sua skin para a skin",
                                 "§7utilizada em sua conta do Minecraft. Caso",
@@ -92,6 +93,7 @@ public class SkinInventory extends CustomInventory {
         this.setItem(
                 50,
                 new CustomItem(Material.SKULL_ITEM)
+                        .editable(false)
                         .data(3)
                         .owner(BlockColor.CYAN)
                         .name("§eAjuda")
