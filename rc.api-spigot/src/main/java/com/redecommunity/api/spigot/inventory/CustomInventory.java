@@ -98,6 +98,7 @@ public class CustomInventory extends CraftInventory {
             for (int j = 0; j < chars.length; j++) {
                 Integer index = (currentIndex + 1) * i+1;
 
+                System.out.println(currentIndex);
                 System.out.println(index);
                 System.out.println(count);
                 System.out.println(this.getSize());
