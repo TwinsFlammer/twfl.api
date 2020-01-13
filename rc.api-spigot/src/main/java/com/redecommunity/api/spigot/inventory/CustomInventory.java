@@ -84,11 +84,17 @@ public class CustomInventory extends CraftInventory {
 
         Integer slot = 0;
 
+        Integer count = (int) this.customItems
+                .values()
+                .stream()
+                .filter(CustomItem::isEditable)
+                .count();
+
         for (String design1 : design) {
             char[] chars = design1.toCharArray();
 
             for (int i = 0; i < chars.length; i++) {
-                if (i > this.customItems.size()) break;
+                if (i > count) break;
 
                 char char1 = chars[i];
 
