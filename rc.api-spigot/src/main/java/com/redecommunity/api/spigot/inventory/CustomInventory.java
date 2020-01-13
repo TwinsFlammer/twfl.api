@@ -125,7 +125,7 @@ public class CustomInventory extends CraftInventory {
             CustomItem customItem = this.customItems.get(index);
 
             if (customItem != null && customItem.isEditable()) {
-                customInventory.setItem(index, (org.bukkit.inventory.ItemStack) null);
+                super.setItem(index, null);
 
                 if (character != 'X') customItems.put(
                         slot,
