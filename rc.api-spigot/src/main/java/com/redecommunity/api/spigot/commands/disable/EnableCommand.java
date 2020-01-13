@@ -56,9 +56,4 @@ public class EnableCommand extends CustomCommand {
                 language.getMessage("messages.default_commands.command_successfully_enabled")
         );
     }
-
-    @Override
-    public boolean execute(CommandSender commandSender, String s, String[] strings) {
-        return false;
-    }
 }
