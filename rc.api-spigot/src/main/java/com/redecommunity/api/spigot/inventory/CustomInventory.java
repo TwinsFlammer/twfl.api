@@ -20,6 +20,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.InventoryHolder;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -96,25 +97,6 @@ public class CustomInventory extends CraftInventory {
             }
         }
 
-//        Integer slot = 0;
-//
-//        for (int i = 0; i < design.length; i++) {
-//            String design1 = design[i];
-//
-//            char[] chars = design1.toCharArray();
-//
-//            for (int j = 0; j < chars.length; j++) {
-//                char char1 = chars[j];
-//
-//                if (char1 != 'X') this.design.put(
-//                        slot,
-//                        char1
-//                );
-//
-//                slot++;
-//            }
-//        }
-
         this.organize();
 
         return this;
@@ -131,30 +113,21 @@ public class CustomInventory extends CraftInventory {
             Integer slot = entrySet.getKey();
             Character character = entrySet.getValue();
 
-            System.out.println(slot + " > " + character);
-
-            System.out.println(slot);
-
-
-            System.out.println(index);
-
             CustomItem customItem = this.customItems.get(index);
-
-            System.out.println(customItem == null);
 
             if (customItem != null && customItem.isEditable()) {
                 super.setItem(index, null);
 
-                if (character != 'X') {
-                    customItems.put(
-                            slot,
-                            customItem
-                    );
-                }
+                if (character != 'X') customItems.put(
+                        slot,
+                        customItem
+                );
             }
 
             index++;
         }
+
+        this.customItems.values().removeIf(customItem -> !customItem.isEditable());
 
         customItems.forEach(this::setItem);
     }
