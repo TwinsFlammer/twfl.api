@@ -69,11 +69,10 @@ public class CustomInventory extends CraftInventory {
     public CustomInventory setItem(int index, CustomItem customItem) {
         super.setItem(
                 index,
-                customItem == null ? null : customItem.build()
+                customItem.build()
         );
 
-        if (customItem != null) this.customItems.put(index, customItem);
-        else this.customItems.remove(index);
+        this.customItems.put(index, customItem);
 
         return this;
     }
@@ -126,7 +125,7 @@ public class CustomInventory extends CraftInventory {
             CustomItem customItem = this.customItems.get(index);
 
             if (customItem != null && customItem.isEditable()) {
-                customInventory.setItem(index, (CustomItem) null);
+                customInventory.setItem(index, (org.bukkit.inventory.ItemStack) null);
 
                 if (character != 'X') customItems.put(
                         slot,
@@ -141,7 +140,7 @@ public class CustomInventory extends CraftInventory {
                     .filter(character1 -> character1 == 'O')
                     .count();
 
-            if (index >= (lastSlot * page == 0 ? 1 : page)) {
+            if (index >= lastSlot * (page == 0 ? 1 : page)) {
                 page++;
 
                 System.out.println("Pagina: " + page);
