@@ -19,11 +19,9 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.InventoryHolder;
 
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.function.Consumer;
 
 /**
@@ -36,8 +34,8 @@ public class CustomInventory extends CraftInventory {
     private HashMap<Integer, CustomItem> customItems = Maps.newHashMap();
 
     private Consumer<InventoryCloseEvent> closeEventConsumer;
-
-    private TreeMap<Integer, Character> design;
+    @Getter
+    private HashMap<Integer, Character> design;
 
     private List<CustomInventory> pages = Lists.newArrayList();
 
@@ -68,21 +66,12 @@ public class CustomInventory extends CraftInventory {
     }
 
     public CustomInventory setItem(int index, CustomItem customItem) {
-//        super.setItem(
-//                index,
-//                customItem.build()
-//        );
-
-        this.customItems.put(index, customItem);
-
-        return this;
-    }
-
-    public CustomInventory setItem(int index, CraftItemStack craftItemStack) {
         super.setItem(
                 index,
-                craftItemStack
+                customItem.build()
         );
+
+        this.customItems.put(index, customItem);
 
         return this;
     }
@@ -97,24 +86,15 @@ public class CustomInventory extends CraftInventory {
         return this;
     }
 
-    public CustomInventory removeItem(Integer index) {
-        super.setItem(index, null);
-        this.customItems.remove(index);
-
-        return this;
-    }
-
     public CustomInventory setDesign(String... design) {
-        this.design = Maps.newTreeMap();
+        this.design = Maps.newHashMap();
 
         Integer slot = 0;
 
         for (String design1 : design) {
             char[] chars = design1.toCharArray();
 
-            for (int i = 0; i < chars.length; i++) {
-                char char1 = chars[i];
-
+            for (char char1 : chars) {
                 this.design.put(slot, char1);
 
                 slot++;
@@ -129,9 +109,7 @@ public class CustomInventory extends CraftInventory {
     private void organize() {
         if (this.design == null) return;
 
-        Integer index = 0, page = 0;
-
-        CustomInventory customInventory = this.pages.get(page);
+        Integer index = 0;
 
         for (Map.Entry<Integer, Character> entrySet : this.design.entrySet()) {
             Integer slot = entrySet.getKey();
@@ -139,39 +117,18 @@ public class CustomInventory extends CraftInventory {
 
             CustomItem customItem = this.customItems.get(index);
 
-            System.out.println(index % 9);
-
             if (customItem != null && customItem.isEditable()) {
-                customInventory.removeItem(index);
-
                 if (character != 'X') {
-                    customInventory.setItem(
+                    super.setItem(index, null);
+
+                    this.setItem(
                             slot,
                             customItem
-                    );
-                    customInventory.setItem(
-                            slot,
-                            customItem.build()
                     );
                 }
             }
 
             index++;
-
-            Integer lastSlot = (int) this.design.values()
-                    .stream()
-                    .filter(character1 -> character1 == 'O')
-                    .count();
-
-            if (index >= lastSlot * page + 1) {
-                page++;
-
-                System.out.println("Pagina: " + page);
-
-                customInventory = new CustomInventory(this.getName(), this.getSize() / 9);
-
-                this.pages.add(customInventory);
-            }
         }
     }
 
