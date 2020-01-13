@@ -118,16 +118,16 @@ public abstract class CustomCommand extends Command {
 
             for (CustomArgumentCommand customArgumentCommand : customArgumentCommands) {
                 if (customArgumentCommand.getName().equalsIgnoreCase(argumentName)) {
-                    customArgumentCommand.onCommand(user, Helper.removeFirst(args));
+                    customArgumentCommand.onCommand(sender, user, Helper.removeFirst(args));
                     return true;
                 }
             }
         }
 
-        this.onCommand(user, args);
+        this.onCommand(sender, user, args);
 
         return false;
     }
 
-    public abstract void onCommand(User user, String[] args);
+    public abstract void onCommand(CommandSender sender, User user, String[] args);
 }
