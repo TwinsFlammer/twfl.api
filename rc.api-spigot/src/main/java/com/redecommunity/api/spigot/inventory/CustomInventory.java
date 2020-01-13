@@ -73,6 +73,7 @@ public class CustomInventory extends CraftInventory {
         );
 
         if (customItem != null) this.customItems.put(index, customItem);
+        else this.customItems.remove(index);
 
         return this;
     }
@@ -140,7 +141,7 @@ public class CustomInventory extends CraftInventory {
                     .filter(character1 -> character1 == 'O')
                     .count();
 
-            if (index >= lastSlot) {
+            if (index >= (lastSlot * page == 0 ? 1 : page)) {
                 page++;
 
                 System.out.println("Pagina: " + page);
