@@ -98,7 +98,7 @@ public class CustomInventory extends CraftInventory {
             for (int i = 0; i < chars.length; i++) {
                 char char1 = chars[i];
 
-                if (char1 != 'X') this.design.put(slot, char1);
+                this.design.put(slot, char1);
 
                 slot++;
             }
@@ -134,10 +134,21 @@ public class CustomInventory extends CraftInventory {
             }
 
             index++;
-//
-//            Integer lastSlot = this.design.lastKey();
-//
-//            if (index >= )
+
+            Integer lastSlot = (int) this.design.values()
+                    .stream()
+                    .filter(character1 -> character1 == 'O')
+                    .count();
+
+            if (index >= lastSlot) {
+                page++;
+
+                System.out.println("Pagina: " + page);
+
+                customInventory = new CustomInventory(this.getName(), this.getSize() / 9);
+
+                this.pages.add(customInventory);
+            }
         }
 
         this.customItems.values().removeIf(customItem -> !customItem.isEditable());
