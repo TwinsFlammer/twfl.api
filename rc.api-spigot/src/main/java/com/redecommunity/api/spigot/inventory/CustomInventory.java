@@ -133,7 +133,12 @@ public class CustomInventory extends CraftInventory {
 
             System.out.println(slot);
 
+
+            System.out.println(index);
+
             CustomItem customItem = this.customItems.get(index);
+
+            System.out.println(customItem == null);
 
             if (customItem != null && customItem.isEditable()) {
                 super.setItem(index, null);
