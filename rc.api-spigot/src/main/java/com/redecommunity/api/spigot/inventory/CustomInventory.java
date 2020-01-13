@@ -88,6 +88,8 @@ public class CustomInventory extends CraftInventory {
             char[] chars = design1.toCharArray();
 
             for (int i = 0; i < chars.length; i++) {
+                if (i > this.customItems.size()) break;
+
                 char char1 = chars[i];
 
                 if (char1 != 'X') {
@@ -96,8 +98,9 @@ public class CustomInventory extends CraftInventory {
                             char1
                     );
 
-                    slot++;
                 }
+
+                slot++;
             }
         }
 
