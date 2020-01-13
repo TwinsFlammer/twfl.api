@@ -17,8 +17,6 @@ public class CustomInventoryClickListener implements Listener {
 
         CustomInventory customInventory = CustomInventoryManager.getCustomInventory(player);
 
-        System.out.println(customInventory == null);
-
         if (customInventory != null) customInventory.onClick(event);
     }
 }
