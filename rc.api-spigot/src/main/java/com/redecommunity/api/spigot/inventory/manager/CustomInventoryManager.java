@@ -26,7 +26,7 @@ public class CustomInventoryManager {
 
             System.out.println(inventory.getName());
 
-            System.out.println(customInventory.getInventory().equals(inventory));
+            System.out.println(customInventory.getHolder().equals(inventory.getHolder()));
         });
 
         return CustomInventoryManager.inventories
