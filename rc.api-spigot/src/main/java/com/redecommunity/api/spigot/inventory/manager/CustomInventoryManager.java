@@ -27,7 +27,7 @@ public class CustomInventoryManager {
 
             System.out.println(customInventory.getViewers().contains(player));
 
-            System.out.println(customInventory.getViewers().stream().anyMatch(humanEntity -> humanEntity.getUniqueId().equals(player.getUniqueId())));
+            System.out.println(">>>" + customInventory.getViewers().stream().anyMatch(humanEntity -> humanEntity.getUniqueId().equals(player.getUniqueId())));
 
             System.out.println(customInventory.getViewers().stream().anyMatch(humanEntity -> {
                 Player player1 = (Player) humanEntity;
