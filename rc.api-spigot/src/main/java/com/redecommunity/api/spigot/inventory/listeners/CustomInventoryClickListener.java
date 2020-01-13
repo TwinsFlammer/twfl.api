@@ -2,10 +2,10 @@ package com.redecommunity.api.spigot.inventory.listeners;
 
 import com.redecommunity.api.spigot.inventory.CustomInventory;
 import com.redecommunity.api.spigot.inventory.manager.CustomInventoryManager;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
 
 /**
  * Created by @SrGutyerrez
@@ -13,9 +13,9 @@ import org.bukkit.inventory.Inventory;
 public class CustomInventoryClickListener implements Listener {
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        Inventory inventory = event.getInventory();
+        Player player = (Player) event.getWhoClicked();
 
-        CustomInventory customInventory = CustomInventoryManager.getCustomInventory(inventory);
+        CustomInventory customInventory = CustomInventoryManager.getCustomInventory(player);
 
         System.out.println(customInventory == null);
 
