@@ -7,6 +7,7 @@ import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.skin.dao.SkinDao;
 import com.redecommunity.common.shared.skin.data.Skin;
 import com.redecommunity.common.shared.skin.factory.SkinFactory;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -21,6 +22,23 @@ public class SkinManager {
     public static Boolean change(CommandSender sender, User user, String skinName) {
         Language language = user.getLanguage();
 
+        if (!user.canChangeSkin()) {
+            sender.sendMessage(
+                    String.format(
+                            language.getMessage("skin.wait_to_change_skin"),
+                            user.getTheTimeToTheNextSkinChange()
+                    )
+            );
+            return false;
+        }
+
+        if (!skinName.matches("[a-zA-Z0-9-_]*") || skinName.length() > 16) {
+            sender.sendMessage(
+                    language.getMessage("skin.invalid_skin_name")
+            );
+            return false;
+        }
+
         SkinDao skinDao = new SkinDao();
 
         HashMap<String, String> keys = Maps.newHashMap();
@@ -29,7 +47,7 @@ public class SkinManager {
 
         Skin skin = skinDao.findOne(keys);
 
-        if (skin == null) skin = SkinFactory.getSkin(user.getName());
+        if (skin == null) skin = SkinFactory.getSkin(skinName);
 
         if (skin == null) {
             sender.sendMessage(
@@ -56,14 +74,23 @@ public class SkinManager {
                                 .newLine()
                                 .add(" Sua nova skin: " + skinName)
                                 .newLine()
-                                .add(" Data de atualização: §7" + simpleDateFormat.format(System.currentTimeMillis()))
+                                .add(" Data de atualização: §7")
+                                .newLine()
+                                .add(" " + simpleDateFormat.format(System.currentTimeMillis()))
                                 .newLine()
                                 .newLine()
                                 .newLine()
-                                .add("Você precisará esperar um total de 15 minutos para poder alterar sua skin novamente.")
-                                .newLine()
-                                .newLine()
-                                .add("Para que ela seja aplicada é necessário que você reconecte ao servidor.")
+                                .add("Para que ela seja aplicada é necessário que você ")
+                                .add(
+                                        CustomBook.TextBuilder.of("reconecte")
+                                                .style(
+                                                        ChatColor.GREEN,
+                                                        ChatColor.BOLD
+                                                )
+                                                .onClick(CustomBook.ClickAction.runCommand("/desconectar"))
+                                                .build()
+                                )
+                                .add(" ao servidor.")
                                 .build()
                 )
                 .build();
