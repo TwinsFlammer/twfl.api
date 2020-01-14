@@ -14,7 +14,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
  * Created by @SrGutyerrez
  */
 public class ChangeSkinAsyncPlayerChatListener implements Listener {
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
 
@@ -23,6 +23,8 @@ public class ChangeSkinAsyncPlayerChatListener implements Listener {
         if (!user.isChangingSkin()) return;
 
         event.setCancelled(true);
+
+        System.out.println("Cancelado: " + event.isCancelled());
 
         String skinName = event.getMessage();
 
