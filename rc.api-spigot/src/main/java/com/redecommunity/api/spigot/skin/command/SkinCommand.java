@@ -39,13 +39,13 @@ public class SkinCommand extends CustomCommand {
         } else if (args.length == 1) {
             String skinName = args[0];
 
-            new Thread(() -> {
+//            new Thread(() -> {
                 SkinManager.change(
                         player,
                         user,
                         skinName
                 );
-            }).start();
+//            }).start();
             return;
         } else {
             sender.sendMessage(
