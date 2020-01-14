@@ -7,6 +7,7 @@ import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.skin.dao.SkinDao;
 import com.redecommunity.common.shared.skin.data.Skin;
 import com.redecommunity.common.shared.skin.factory.SkinFactory;
+import com.redecommunity.common.shared.util.TimeFormatter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -26,7 +27,7 @@ public class SkinManager {
             sender.sendMessage(
                     String.format(
                             language.getMessage("skin.wait_to_change_skin"),
-                            user.getTheTimeToTheNextSkinChange()
+                            TimeFormatter.format(user.getTheTimeToTheNextSkinChange())
                     )
             );
             return false;
