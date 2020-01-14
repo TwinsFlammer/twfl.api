@@ -1,6 +1,5 @@
 package com.redecommunity.api.spigot.skin.command;
 
-import com.google.common.collect.Maps;
 import com.redecommunity.api.spigot.commands.CustomCommand;
 import com.redecommunity.api.spigot.commands.enums.CommandRestriction;
 import com.redecommunity.api.spigot.skin.command.argument.SkinHelpCommand;
@@ -9,14 +8,9 @@ import com.redecommunity.api.spigot.skin.inventory.SkinInventory;
 import com.redecommunity.api.spigot.skin.manager.SkinManager;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.skin.dao.SkinDao;
-import com.redecommunity.common.shared.skin.data.Skin;
-import com.redecommunity.common.shared.skin.factory.SkinFactory;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-
-import java.util.HashMap;
 
 /**
  * Created by @SrGutyerrez
@@ -45,13 +39,13 @@ public class SkinCommand extends CustomCommand {
         } else if (args.length == 1) {
             String skinName = args[0];
 
-            new Thread() {{
-                Boolean result = SkinManager.change(
-                        sender,
+            new Thread(() -> {
+                SkinManager.change(
+                        player,
                         user,
                         skinName
                 );
-            }}.start();
+            }).start();
             return;
         } else {
             sender.sendMessage(
