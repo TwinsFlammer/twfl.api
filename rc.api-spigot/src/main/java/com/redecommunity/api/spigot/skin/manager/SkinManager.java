@@ -66,6 +66,20 @@ public class SkinManager {
                     .findFirst()
                     .get();
 
+            Skin active = user.getSkin();
+
+            if (active != null) {
+                keys.clear();
+
+                keys.put("active", false);
+
+                skinDao.update(
+                        keys,
+                        "id",
+                        active.getId()
+                );
+            }
+
             skin.setActive(true);
 
             keys.clear();
