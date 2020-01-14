@@ -23,6 +23,23 @@ public class SkinInventory extends CustomPaginateInventory {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DD/MM/YYYY");
 
+        for (int i = 0; i < 50; i++) {
+            user.getSkins()
+                    .stream()
+                    .sorted((skin1, skin2) -> skin2.getLastUse().compareTo(skin1.getLastUse()))
+                    .forEach(skin -> {
+                        this.addItem(
+                                new CustomItem(Material.SKULL_ITEM)
+                                        .data(3)
+                                        .name("§e" + skin.getOwner())
+                                        .lore("§fUsada pela última vez em: §7" + simpleDateFormat.format(skin.getLastUse()),
+                                                "",
+                                                (skin.isActive() ? "§aSelecionada." : "§eClique para utilizar essa skin."))
+                                        .owner(skin.getValue())
+                        );
+                    });
+        }
+
         this.setItem(
                 48,
                 new CustomItem(Material.BOOK_AND_QUILL)
@@ -98,23 +115,6 @@ public class SkinInventory extends CustomPaginateInventory {
                             );
                         })
         );
-
-        for (int i = 0; i < 50; i++) {
-            user.getSkins()
-                    .stream()
-                    .sorted((skin1, skin2) -> skin2.getLastUse().compareTo(skin1.getLastUse()))
-                    .forEach(skin -> {
-                        this.addItem(
-                                new CustomItem(Material.SKULL_ITEM)
-                                        .data(3)
-                                        .name("§e" + skin.getOwner())
-                                        .lore("§fUsada pela última vez em: §7" + simpleDateFormat.format(skin.getLastUse()),
-                                                "",
-                                                (skin.isActive() ? "§aSelecionada." : "§eClique para utilizar essa skin."))
-                                        .owner(skin.getValue())
-                        );
-                    });
-        }
 
         this.setCancelled(true);
 
