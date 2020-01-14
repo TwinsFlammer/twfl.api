@@ -57,7 +57,7 @@ public class SkinManager {
             return false;
         }
 
-        if (skin.getUserId() == user.getId()) {
+        if (skin.getUserId() != null && skin.getUserId().equals(user.getId())) {
             final Skin skin1 = skin;
 
             skin = user.getSkins()
