@@ -64,21 +64,21 @@ public class CustomPaginateInventory {
     }
 
     public CustomInventory build() {
-        return this.pages.get(0);
+        CustomInventory customInventory = this.pages.get(0);
+
+        this.customItems.forEach(customInventory::setItem);
+
+        return customInventory;
     }
 
     private void validate() {
         CustomInventory customInventory = this.getCurrentInventory();
-
-        this.customItems.forEach(customInventory::setItem);
 
         if (customInventory.getItemCount() + 1 >= customInventory.getSize()) {
             CustomInventory customInventory1 = new CustomInventory(
                     customInventory.getName(),
                     customInventory.getRows()
             );
-
-            this.customItems.forEach(customInventory1::setItem);
 
             CustomItem previousItem = this.getNextItem(customInventory, false);
             CustomItem nextItem = this.getNextItem(customInventory1, true);
@@ -136,6 +136,8 @@ public class CustomPaginateInventory {
                 .name("§aPágina " + (next ? this.pages.size() + 1 : this.pages.size()))
                 .onClick(event -> {
                     Player player = (Player) event.getWhoClicked();
+
+                    this.customItems.forEach(customInventory::setItem);
 
                     player.openInventory(customInventory);
                 });
