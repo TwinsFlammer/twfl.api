@@ -49,12 +49,6 @@ public class SkinManager {
         Skin skin = skinDao.findOne(keys);
 
         if (skin == null) skin = SkinFactory.getSkin(skinName.toLowerCase());
-        else {
-            skin = skinDao.insert(
-                    user,
-                    skin
-            );
-        }
 
         if (skin == null) {
             sender.sendMessage(
