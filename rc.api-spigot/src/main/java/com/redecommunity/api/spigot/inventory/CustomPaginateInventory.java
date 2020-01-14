@@ -72,6 +72,15 @@ public class CustomPaginateInventory {
                     customInventory.getRows()
             );
 
+            customInventory.getCustomItems()
+                    .entrySet()
+                    .stream()
+                    .filter(entrySet -> !entrySet.getValue().isEditable())
+                    .forEach(entrySet -> customInventory1.setItem(
+                            entrySet.getKey(),
+                            entrySet.getValue()
+                    ));
+
             CustomItem previousItem = this.getNextItem(customInventory, false);
             CustomItem nextItem = this.getNextItem(customInventory1, true);
 
@@ -96,29 +105,36 @@ public class CustomPaginateInventory {
         switch (this.getCurrentInventory().getRows()) {
             case 2:
             case 3:
-            case 4: return 9;
+            case 4:
+                return 9;
             case 5:
-            case 6: return 18;
-            default: return 0;
+            case 6:
+                return 18;
+            default:
+                return 0;
         }
     }
 
     private Integer getNextSlot() {
         switch (this.getCurrentInventory().getRows()) {
-            case 1: return 8;
+            case 1:
+                return 8;
             case 2:
             case 3:
-            case 4: return 17;
+            case 4:
+                return 17;
             case 5:
-            case 6: return 26;
-            default: return 0;
+            case 6:
+                return 26;
+            default:
+                return 0;
         }
     }
 
     private CustomItem getNextItem(CustomInventory customInventory, Boolean next) {
         return new CustomItem(Material.ARROW)
                 .editable(false)
-                .name("§aPágina " + (next ? this.pages.size() + 1 : this.pages.size() - 1))
+                .name("§aPágina " + (next ? this.pages.size() + 1 : this.pages.size()))
                 .onClick(event -> {
                     Player player = (Player) event.getWhoClicked();
 
