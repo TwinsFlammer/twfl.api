@@ -32,7 +32,7 @@ public class SkinCommand extends CustomCommand {
         Player player = (Player) sender;
 
         if (args.length == 0) {
-            Inventory inventory = new SkinInventory(user);
+            Inventory inventory = new SkinInventory(user).build();
 
             player.openInventory(inventory);
             return;
