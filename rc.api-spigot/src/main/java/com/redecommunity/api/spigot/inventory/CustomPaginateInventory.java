@@ -70,13 +70,13 @@ public class CustomPaginateInventory {
     private void validate() {
         CustomInventory customInventory = this.getCurrentInventory();
 
+        this.customItems.forEach(customInventory::setItem);
+
         if (customInventory.getItemCount() + 1 >= customInventory.getSize()) {
             CustomInventory customInventory1 = new CustomInventory(
                     customInventory.getName(),
                     customInventory.getRows()
             );
-
-            this.customItems.forEach(customInventory::setItem);
 
             CustomItem previousItem = this.getNextItem(customInventory, false);
             CustomItem nextItem = this.getNextItem(customInventory1, true);
