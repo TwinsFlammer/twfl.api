@@ -78,6 +78,8 @@ public class CustomPaginateInventory {
                     customInventory.getRows()
             );
 
+            this.customItems.forEach(customInventory1::setItem);
+
             CustomItem previousItem = this.getNextItem(customInventory, false);
             CustomItem nextItem = this.getNextItem(customInventory1, true);
 
