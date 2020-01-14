@@ -72,6 +72,7 @@ public class SkinManager {
                 keys.clear();
 
                 keys.put("active", false);
+                keys.put("last_use", System.currentTimeMillis());
 
                 skinDao.update(
                         keys,
