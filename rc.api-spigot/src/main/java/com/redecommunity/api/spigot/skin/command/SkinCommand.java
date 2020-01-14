@@ -41,16 +41,18 @@ public class SkinCommand extends CustomCommand {
         } else if (args.length == 1) {
             String skinName = args[0];
 
-            Bukkit.getScheduler().runTaskAsynchronously(
-                    SpigotAPI.getInstance(),
-                    () -> {
-                        SkinManager.change(
-                                player,
-                                user,
-                                skinName
-                        );
-                    }
-            );
+//            Bukkit.getScheduler().runTaskAsynchronously(
+//                    SpigotAPI.getInstance(),
+//                    () -> {
+            new Thread(() -> {
+                SkinManager.change(
+                        player,
+                        user,
+                        skinName
+                );
+            }).start();
+//                    }
+//            );
             return;
         } else {
             sender.sendMessage(
