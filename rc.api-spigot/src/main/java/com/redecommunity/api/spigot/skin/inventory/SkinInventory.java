@@ -86,7 +86,8 @@ public class SkinInventory extends CustomPaginateInventory {
                             SkinManager.change(
                                     player,
                                     user,
-                                    player.getName()
+                                    player.getName(),
+                                    true
                             );
                         })
         );
