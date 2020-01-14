@@ -39,6 +39,9 @@ public class CustomInventory extends CraftInventory {
 
     private List<CustomInventory> pages = Lists.newArrayList();
 
+    @Getter
+    private Integer rows;
+
     public CustomInventory(String name, Integer rows) {
         super(
                 new MinecraftInventory(
@@ -48,6 +51,8 @@ public class CustomInventory extends CraftInventory {
         );
 
         CustomInventoryManager.addCustomInventory(this);
+
+        this.rows = rows;
 
         this.pages.add(this);
     }
@@ -61,6 +66,8 @@ public class CustomInventory extends CraftInventory {
         );
 
         CustomInventoryManager.addCustomInventory(this);
+
+        this.rows = rows;
 
         this.pages.add(this);
     }
@@ -104,6 +111,24 @@ public class CustomInventory extends CraftInventory {
         this.organize();
 
         return this;
+    }
+
+    public Integer getMaxSize() {
+        if (this.design == null || this.design.isEmpty()) return this.getSize();
+
+        return (int) this.design
+                .values()
+                .stream()
+                .filter(character -> character == 'O')
+                .count();
+    }
+
+    public Integer getItemCount() {
+        return (int) this.customItems
+                .values()
+                .stream()
+                .filter(CustomItem::isEditable)
+                .count();
     }
 
     private void organize() {
