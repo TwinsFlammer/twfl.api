@@ -1,6 +1,6 @@
 package com.redecommunity.api.spigot.skin.inventory;
 
-import com.redecommunity.api.spigot.inventory.CustomInventory;
+import com.redecommunity.api.spigot.inventory.CustomPaginateInventory;
 import com.redecommunity.api.spigot.inventory.item.BlockColor;
 import com.redecommunity.api.spigot.inventory.item.CustomItem;
 import com.redecommunity.api.spigot.skin.command.argument.SkinHelpCommand;
@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 /**
  * Created by @SrGutyerrez
  */
-public class SkinInventory extends CustomInventory {
+public class SkinInventory extends CustomPaginateInventory {
     public SkinInventory(User user) {
         super("Skins", 6);
 
