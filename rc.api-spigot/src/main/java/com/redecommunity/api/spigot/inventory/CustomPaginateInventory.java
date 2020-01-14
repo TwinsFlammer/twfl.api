@@ -76,10 +76,14 @@ public class CustomPaginateInventory {
                     .entrySet()
                     .stream()
                     .filter(entrySet -> !entrySet.getValue().isEditable())
-                    .forEach(entrySet -> customInventory1.setItem(
-                            entrySet.getKey(),
-                            entrySet.getValue()
-                    ));
+                    .forEach(entrySet -> {
+                        System.out.println(entrySet.getKey());
+
+                        customInventory1.setItem(
+                                entrySet.getKey(),
+                                entrySet.getValue()
+                        );
+                    });
 
             CustomItem previousItem = this.getNextItem(customInventory, false);
             CustomItem nextItem = this.getNextItem(customInventory1, true);
