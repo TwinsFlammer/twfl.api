@@ -67,7 +67,7 @@ public class CustomInventory extends CraftInventory {
 
         CustomInventoryManager.addCustomInventory(this);
 
-        this.rows = rows;
+        this.rows = inventoryType.getDefaultSize();
 
         this.pages.add(this);
     }
