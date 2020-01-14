@@ -39,17 +39,19 @@ public class ChangeSkinAsyncPlayerChatListener implements Listener {
             return;
         }
 
-        Bukkit.getScheduler().runTaskAsynchronously(
-                SpigotAPI.getInstance(),
-                () -> {
-                    Boolean result = SkinManager.change(
-                            player,
-                            user,
-                            skinName
-                    );
+//        Bukkit.getScheduler().runTaskAsynchronously(
+//                SpigotAPI.getInstance(),
+//                () -> {
+        new Thread(() -> {
+            Boolean result = SkinManager.change(
+                    player,
+                    user,
+                    skinName
+            );
 
-                    user.setChangingSkin(result);
-                }
-        );
+            user.setChangingSkin(result);
+        }).start();
+//                }
+//        );
     }
 }
