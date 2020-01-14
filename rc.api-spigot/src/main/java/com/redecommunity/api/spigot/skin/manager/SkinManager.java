@@ -50,17 +50,7 @@ public class SkinManager {
 
         Skin skin = skinDao.findOne(keys);
 
-        if (skin == null) {
-            try {
-                CompletableFuture<Skin> future = CompletableFuture.supplyAsync(() ->
-                        SkinFactory.getSkin(skinName.toLowerCase())
-                );
-
-                skin = future.get();
-            } catch (InterruptedException | ExecutionException exception) {
-                exception.printStackTrace();
-            }
-        }
+        if (skin == null) skin = SkinFactory.getSkin(skinName.toLowerCase());
 
         if (skin == null) {
             sender.sendMessage(
