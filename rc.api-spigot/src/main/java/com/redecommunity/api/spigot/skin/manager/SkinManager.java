@@ -57,7 +57,19 @@ public class SkinManager {
             return false;
         }
 
-        user.setSkin(skin);
+        if (skin.getUserId() == user.getId()) {
+            final Skin skin1 = skin;
+
+            skin = user.getSkins()
+                    .stream()
+                    .filter(skin2 -> skin2.getId().equals(skin1.getId()))
+                    .findFirst()
+                    .get();
+
+            skin.setActive(true);
+        } else {
+            user.setSkin(skin);
+        }
 
         if (!(sender instanceof Player)) return false;
 
