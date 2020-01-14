@@ -53,6 +53,16 @@ public class CustomPaginateInventory {
         return this;
     }
 
+    public CustomPaginateInventory setCancelled(Boolean cancelled) {
+        this.pages.forEach(customInventory -> customInventory.setCancelled(cancelled));
+
+        return this;
+    }
+
+    public CustomInventory build() {
+        return this.pages.get(0);
+    }
+
     private void validate() {
         CustomInventory customInventory = this.getCurrentInventory();
 
