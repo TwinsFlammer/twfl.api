@@ -24,8 +24,6 @@ public class ChangeSkinAsyncPlayerChatListener implements Listener {
 
         event.setCancelled(true);
 
-        System.out.println("Cancelado: " + event.isCancelled());
-
         String skinName = event.getMessage();
 
         Language language = user.getLanguage();
