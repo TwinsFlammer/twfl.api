@@ -1,11 +1,9 @@
 package com.redecommunity.api.spigot.skin.listeners;
 
-import com.redecommunity.api.spigot.SpigotAPI;
 import com.redecommunity.api.spigot.skin.manager.SkinManager;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -39,9 +37,6 @@ public class ChangeSkinAsyncPlayerChatListener implements Listener {
             return;
         }
 
-//        Bukkit.getScheduler().runTaskAsynchronously(
-//                SpigotAPI.getInstance(),
-//                () -> {
         new Thread(() -> {
             Boolean result = SkinManager.change(
                     player,
@@ -51,7 +46,5 @@ public class ChangeSkinAsyncPlayerChatListener implements Listener {
 
             user.setChangingSkin(result);
         }).start();
-//                }
-//        );
     }
 }
