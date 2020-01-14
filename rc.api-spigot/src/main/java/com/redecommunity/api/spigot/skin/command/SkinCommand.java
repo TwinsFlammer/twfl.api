@@ -29,11 +29,11 @@ public class SkinCommand extends CustomCommand {
     public void onCommand(CommandSender sender, User user, String[] args) {
         Language language = user.getLanguage();
 
-        Inventory inventory = new SkinInventory(user);
-
         Player player = (Player) sender;
 
         if (args.length == 0) {
+            Inventory inventory = new SkinInventory(user);
+
             player.openInventory(inventory);
             return;
         } else if (args.length == 1) {
