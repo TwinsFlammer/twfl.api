@@ -98,6 +98,8 @@ public class SkinManager {
             user.setSkin(skin);
         }
 
+        user.getSkins().add(skin);
+
         if (!(sender instanceof Player)) return false;
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DD/MM/YYYY");
