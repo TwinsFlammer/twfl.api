@@ -15,14 +15,21 @@ import org.bukkit.inventory.ItemStack;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by @SrGutyerrez
  */
 public class SkinManager {
     public static Boolean change(CommandSender sender, User user, String skinName) {
+        return SkinManager.change(
+                sender,
+                user,
+                skinName,
+                false
+        );
+    }
+
+    public static Boolean change(CommandSender sender, User user, String skinName, Boolean refresh) {
         Language language = user.getLanguage();
 
         if (!user.canChangeSkin()) {
@@ -48,9 +55,13 @@ public class SkinManager {
 
         keys.put("owner", skinName.toLowerCase());
 
-        Skin skin = skinDao.findOne(keys);
+        Skin skin = null;
 
-        if (skin == null) skin = SkinFactory.getSkin(skinName.toLowerCase());
+        if (refresh) {
+            skin = SkinFactory.getSkin(skinName.toLowerCase());
+        } else skin = skinDao.findOne(keys);
+
+        if (skin == null && !refresh) skin = SkinFactory.getSkin(skinName.toLowerCase());
 
         if (skin == null) {
             sender.sendMessage(
