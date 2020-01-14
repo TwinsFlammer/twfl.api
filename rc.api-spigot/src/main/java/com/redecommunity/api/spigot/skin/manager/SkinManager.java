@@ -42,7 +42,7 @@ public class SkinManager {
 
         SkinDao skinDao = new SkinDao();
 
-        HashMap<String, String> keys = Maps.newHashMap();
+        HashMap<String, Object> keys = Maps.newHashMap();
 
         keys.put("owner", skinName.toLowerCase());
 
@@ -67,6 +67,16 @@ public class SkinManager {
                     .get();
 
             skin.setActive(true);
+
+            keys.clear();
+
+            keys.put("active", true);
+
+            skinDao.update(
+                    keys,
+                    "id",
+                    skin.getId()
+            );
         } else {
             user.setSkin(skin);
         }
