@@ -26,7 +26,7 @@ public class SkinInventory extends CustomInventory {
         for (int i = 0; i < 50; i++) {
             user.getSkins()
                     .stream()
-                    .sorted((o1, o2) -> o2.getLastUse().compareTo(o1.getLastUse()))
+                    .sorted((skin1, skin2) -> skin2.getLastUse().compareTo(skin1.getLastUse()))
                     .forEach(skin -> {
                         this.addItem(
                                 new CustomItem(Material.SKULL_ITEM)
