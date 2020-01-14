@@ -15,6 +15,8 @@ import org.bukkit.inventory.ItemStack;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by @SrGutyerrez
@@ -48,7 +50,17 @@ public class SkinManager {
 
         Skin skin = skinDao.findOne(keys);
 
-        if (skin == null) skin = SkinFactory.getSkin(skinName.toLowerCase());
+        if (skin == null) {
+            try {
+                CompletableFuture<Skin> future = CompletableFuture.supplyAsync(() ->
+                        SkinFactory.getSkin(skinName.toLowerCase())
+                );
+
+                skin = future.get();
+            } catch (InterruptedException | ExecutionException exception) {
+                exception.printStackTrace();
+            }
+        }
 
         if (skin == null) {
             sender.sendMessage(
