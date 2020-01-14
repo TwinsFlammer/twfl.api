@@ -37,7 +37,7 @@ public class ChangeSkinAsyncPlayerChatListener implements Listener {
             return;
         }
 
-        new Thread() {{
+        new Thread(() -> {
             Boolean result = SkinManager.change(
                     player,
                     user,
@@ -45,6 +45,6 @@ public class ChangeSkinAsyncPlayerChatListener implements Listener {
             );
 
             user.setChangingSkin(result);
-        }}.start();
+        }).start();
     }
 }
