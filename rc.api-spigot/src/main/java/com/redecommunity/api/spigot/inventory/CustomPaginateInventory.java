@@ -1,10 +1,13 @@
 package com.redecommunity.api.spigot.inventory;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.redecommunity.api.spigot.inventory.item.CustomItem;
+import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -12,6 +15,9 @@ import java.util.List;
  */
 public class CustomPaginateInventory {
     private List<CustomInventory> pages = Lists.newArrayList();
+
+    @Getter
+    private HashMap<Integer, CustomItem> customItems = Maps.newHashMap();
 
     public CustomPaginateInventory(String name, Integer rows) {
         CustomInventory customInventory = new CustomInventory(
@@ -27,9 +33,7 @@ public class CustomPaginateInventory {
     }
 
     public CustomPaginateInventory setItem(Integer index, CustomItem customItem) {
-        this.validate();
-
-        this.getCurrentInventory().setItem(
+        this.customItems.put(
                 index,
                 customItem
         );
@@ -72,18 +76,7 @@ public class CustomPaginateInventory {
                     customInventory.getRows()
             );
 
-            customInventory.getCustomItems()
-                    .entrySet()
-                    .stream()
-                    .filter(entrySet -> !entrySet.getValue().isEditable())
-                    .forEach(entrySet -> {
-                        System.out.println(entrySet.getKey());
-
-                        customInventory1.setItem(
-                                entrySet.getKey(),
-                                entrySet.getValue()
-                        );
-                    });
+            this.customItems.forEach(customInventory1::setItem);
 
             CustomItem previousItem = this.getNextItem(customInventory, false);
             CustomItem nextItem = this.getNextItem(customInventory1, true);
