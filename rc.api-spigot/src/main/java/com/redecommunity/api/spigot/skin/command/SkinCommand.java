@@ -1,6 +1,5 @@
 package com.redecommunity.api.spigot.skin.command;
 
-import com.redecommunity.api.spigot.SpigotAPI;
 import com.redecommunity.api.spigot.commands.CustomCommand;
 import com.redecommunity.api.spigot.commands.enums.CommandRestriction;
 import com.redecommunity.api.spigot.skin.command.argument.SkinHelpCommand;
@@ -9,7 +8,6 @@ import com.redecommunity.api.spigot.skin.inventory.SkinInventory;
 import com.redecommunity.api.spigot.skin.manager.SkinManager;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.user.data.User;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -41,9 +39,6 @@ public class SkinCommand extends CustomCommand {
         } else if (args.length == 1) {
             String skinName = args[0];
 
-//            Bukkit.getScheduler().runTaskAsynchronously(
-//                    SpigotAPI.getInstance(),
-//                    () -> {
             new Thread(() -> {
                 SkinManager.change(
                         player,
@@ -51,8 +46,6 @@ public class SkinCommand extends CustomCommand {
                         skinName
                 );
             }).start();
-//                    }
-//            );
             return;
         } else {
             sender.sendMessage(
