@@ -45,11 +45,13 @@ public class SkinCommand extends CustomCommand {
         } else if (args.length == 1) {
             String skinName = args[0];
 
-            SkinManager.change(
-                    sender,
-                    user,
-                    skinName
-            );
+            new Thread() {{
+                Boolean result = SkinManager.change(
+                        sender,
+                        user,
+                        skinName
+                );
+            }}.start();
             return;
         } else {
             sender.sendMessage(
