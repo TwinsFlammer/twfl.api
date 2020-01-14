@@ -30,18 +30,21 @@ public class ChangeSkinAsyncPlayerChatListener implements Listener {
 
         if (skinName.equalsIgnoreCase("cancelar")) {
             user.setChangingSkin(false);
+
             player.sendMessage(
                     language.getMessage("skin.cancelled")
             );
             return;
         }
 
-        Boolean result = SkinManager.change(
-                player,
-                user,
-                skinName
-        );
+        new Thread() {{
+            Boolean result = SkinManager.change(
+                    player,
+                    user,
+                    skinName
+            );
 
-        user.setChangingSkin(result);
+            user.setChangingSkin(result);
+        }}.start();
     }
 }
