@@ -1,6 +1,5 @@
 package com.redecommunity.api.spigot.skin.inventory;
 
-import com.google.common.collect.Maps;
 import com.redecommunity.api.spigot.inventory.CustomPaginateInventory;
 import com.redecommunity.api.spigot.inventory.item.BlockColor;
 import com.redecommunity.api.spigot.inventory.item.CustomItem;
@@ -9,13 +8,10 @@ import com.redecommunity.api.spigot.skin.manager.SkinManager;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
-import com.redecommunity.common.shared.skin.dao.SkinDao;
-import com.redecommunity.common.shared.skin.data.Skin;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 
 /**
  * Created by @SrGutyerrez
@@ -42,6 +38,7 @@ public class SkinInventory extends CustomPaginateInventory {
         user.getSkins()
                 .stream()
                 .sorted((skin1, skin2) -> skin2.getLastUse().compareTo(skin1.getLastUse()))
+                .sorted((skin1, skin2) -> skin2.isActive().compareTo(skin1.isActive()))
                 .forEach(skin -> {
                     User user1 = UserManager.getUser(skin.getOwner());
 
