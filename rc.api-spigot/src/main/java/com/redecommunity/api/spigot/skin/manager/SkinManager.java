@@ -129,10 +129,12 @@ public class SkinManager {
             }
 
             skin.setActive(true);
+            skin.setLastUse(System.currentTimeMillis());
 
             keys.clear();
 
             keys.put("active", true);
+            keys.put("last_use", skin.getLastUse());
 
             skinDao.update(
                     keys,
