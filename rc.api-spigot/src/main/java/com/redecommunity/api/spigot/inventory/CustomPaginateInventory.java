@@ -89,7 +89,7 @@ public class CustomPaginateInventory {
         CustomInventory customInventory = this.getCurrentInventory();
 
         System.out.println(customInventory.getItemCount());
-        System.out.println(customInventory.getSize());
+        System.out.println(customInventory.getMaxSize());
 
         if (customInventory.getItemCount() + 1 >= customInventory.getMaxSize()) {
             CustomInventory customInventory1 = new CustomInventory(
