@@ -104,13 +104,9 @@ public class SkinManager {
             return false;
         }
 
-        Skin skin1 = skin;
+        if (skin.getUserId() != null && skin.getUserId().equals(user.getId())) {
+            Skin skin1 = skin;
 
-        Boolean alreadyHaveSkin = user.getSkins()
-                .stream()
-                .anyMatch(skin2 -> skin2.getId().equals(skin1.getId()));
-
-        if (skin.getUserId() != null && skin.getUserId().equals(user.getId()) || alreadyHaveSkin) {
             skin = user.getSkins()
                     .stream()
                     .filter(skin2 -> skin2.getId().equals(skin1.getId()))
@@ -148,10 +144,6 @@ public class SkinManager {
         } else {
             user.setSkin(skin);
         }
-
-        user.getSkins().add(skin);
-
-        if (!(sender instanceof Player)) return false;
 
         SkinManager.openBook(
                 player,
