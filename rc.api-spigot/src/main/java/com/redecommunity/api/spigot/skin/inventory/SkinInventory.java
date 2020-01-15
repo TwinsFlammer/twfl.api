@@ -22,7 +22,18 @@ import java.util.HashMap;
  */
 public class SkinInventory extends CustomPaginateInventory {
     public SkinInventory(User user) {
-        super("Skins", 6);
+        super(
+                "Skins",
+                6,
+                "XXXXXXXXX",
+                "XOOOOOOOX",
+                "XOOOOOOOX",
+                "XOOOOOOOX",
+                "XXXXXXXXX",
+                "XXXXXXXXX"
+        );
+
+        this.setCancelled(true);
 
         Language language = user.getLanguage();
 
@@ -160,17 +171,6 @@ public class SkinInventory extends CustomPaginateInventory {
                                     null
                             );
                         })
-        );
-
-        this.setCancelled(true);
-
-        this.setDesign(
-                "XXXXXXXXX",
-                "XOOOOOOOX",
-                "XOOOOOOOX",
-                "XOOOOOOOX",
-                "XXXXXXXXX",
-                "XXXXXXXXX"
         );
     }
 }
