@@ -66,6 +66,17 @@ public class CustomPaginateInventory {
     public CustomInventory build() {
         CustomInventory customInventory = this.pages.get(0);
 
+        if (customInventory.isEmpty()) {
+            Integer emptySlot = this.getEmptySlot();
+
+            CustomItem emptyItem = this.getEmptyItem();
+
+            customInventory.setItem(
+                    emptySlot,
+                    emptyItem
+            );
+        }
+
         this.customItems.forEach(customInventory::setItem);
 
         return customInventory;
@@ -130,9 +141,26 @@ public class CustomPaginateInventory {
         }
     }
 
+    private Integer getEmptySlot() {
+        switch (this.getCurrentInventory().getRows()) {
+            case 1:
+                return 4;
+            case 2:
+            case 3:
+            case 4:
+                return 13;
+            case 5:
+            case 6:
+                return 22;
+            default:
+                return 0;
+        }
+    }
+
     private CustomItem getNextItem(CustomInventory customInventory, Boolean next) {
         return new CustomItem(Material.ARROW)
                 .editable(false)
+                .cancelled(true)
                 .name("§aPágina " + (next ? this.pages.size() + 1 : this.pages.size()))
                 .onClick(event -> {
                     Player player = (Player) event.getWhoClicked();
@@ -141,5 +169,13 @@ public class CustomPaginateInventory {
 
                     player.openInventory(customInventory);
                 });
+    }
+
+
+    private CustomItem getEmptyItem() {
+        return new CustomItem(Material.WEB)
+                .editable(false)
+                .cancelled(true)
+                .name("§c--/--");
     }
 }
