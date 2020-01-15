@@ -144,8 +144,6 @@ public class CustomInventory extends CraftInventory {
             }
         }
 
-        this.organize();
-
         return this;
     }
 
@@ -171,7 +169,7 @@ public class CustomInventory extends CraftInventory {
                 .count();
     }
 
-    private void organize() {
+    public void organize() {
         if (this.design == null) return;
 
         Integer index = 0;
