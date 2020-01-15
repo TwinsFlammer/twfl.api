@@ -113,6 +113,17 @@ public class SkinManager {
 
         if (!(sender instanceof Player)) return false;
 
+        Player player = (Player) sender;
+
+        SkinManager.openBook(
+                player,
+                skinName
+        );
+
+        return true;
+    }
+
+    public static void openBook(Player player, String skinName) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DD/MM/YYYY");
 
         ItemStack itemStack = CustomBook.writtenBook()
@@ -146,13 +157,9 @@ public class SkinManager {
                 )
                 .build();
 
-        Player player = (Player) sender;
-
         CustomBook.openPlayer(
                 player,
                 itemStack
         );
-
-        return true;
     }
 }
