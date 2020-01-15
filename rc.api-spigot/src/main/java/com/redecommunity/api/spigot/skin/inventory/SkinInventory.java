@@ -63,39 +63,6 @@ public class SkinInventory extends CustomPaginateInventory {
                                                 user,
                                                 skin.getOwner()
                                         );
-//
-//                                        SkinDao skinDao = new SkinDao();
-//
-//                                        HashMap<String, Object> keys = Maps.newHashMap();
-//
-//                                        Skin active = user.getSkin();
-//
-//                                        active.setActive(false);
-//
-//                                        keys.put("active", false);
-//
-//                                        skinDao.update(
-//                                                keys,
-//                                                "id",
-//                                                active.getId()
-//                                        );
-//
-//                                        skin.setActive(true);
-//                                        skin.setLastUse(System.currentTimeMillis());
-//
-//                                        keys.put("active", skin.isActive());
-//                                        keys.put("last_use", skin.getLastUse());
-//
-//                                        skinDao.update(
-//                                                keys,
-//                                                "id",
-//                                                skin.getId()
-//                                        );
-//
-//                                        SkinManager.openBook(
-//                                                player,
-//                                                user1 == null ? skin.getOwner() : user1.getDisplayName()
-//                                        );
                                     })
                     );
                 });
@@ -140,8 +107,6 @@ public class SkinInventory extends CustomPaginateInventory {
                                 "§aClique para atualizar")
                         .onClick(event -> {
                             Player player = (Player) event.getWhoClicked();
-
-                            player.closeInventory();
 
                             new Thread(() -> {
                                 SkinManager.change(
