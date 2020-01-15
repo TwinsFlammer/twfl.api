@@ -41,8 +41,11 @@ public class CustomItem {
         this.itemStack = new ItemStack(material);
     }
 
-    public CustomItem(CustomItem customItem) {
-        this.itemStack = new ItemStack(customItem.itemStack);
+    private CustomItem(ItemStack itemStack, Consumer<InventoryClickEvent> inventoryClickEventConsumer, Boolean editable, Boolean cancelled) {
+        this.itemStack = itemStack;
+        this.inventoryClickEventConsumer = inventoryClickEventConsumer;
+        this.editable = editable;
+        this.cancelled = cancelled;
     }
 
     public CustomItem type(Material material) {
@@ -464,7 +467,12 @@ public class CustomItem {
     }
 
     public CustomItem clone() {
-        return new CustomItem(this);
+        return new CustomItem(
+                this.itemStack,
+                this.inventoryClickEventConsumer,
+                this.editable,
+                this.cancelled
+        );
     }
 
     public ItemStack build() {
