@@ -104,9 +104,13 @@ public class SkinManager {
             return false;
         }
 
-        if (skin.getUserId() != null && skin.getUserId().equals(user.getId())) {
-            final Skin skin1 = skin;
+        Skin skin1 = skin;
 
+        Boolean alreadyHaveSkin = user.getSkins()
+                .stream()
+                .anyMatch(skin2 -> skin2.getId().equals(skin1.getId()));
+
+        if (skin.getUserId() != null && skin.getUserId().equals(user.getId()) || alreadyHaveSkin) {
             skin = user.getSkins()
                     .stream()
                     .filter(skin2 -> skin2.getId().equals(skin1.getId()))
