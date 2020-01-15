@@ -57,6 +57,23 @@ public class CustomInventory extends CraftInventory {
         this.pages.add(this);
     }
 
+    public CustomInventory(String name, Integer rows, String... design) {
+        super(
+                new MinecraftInventory(
+                        rows * 9,
+                        name
+                )
+        );
+
+        CustomInventoryManager.addCustomInventory(this);
+
+        this.rows = rows;
+
+        this.pages.add(this);
+
+        this.setDesign(design);
+    }
+
     public CustomInventory(String name, InventoryType inventoryType) {
         super(
                 new MinecraftInventory(
@@ -70,6 +87,23 @@ public class CustomInventory extends CraftInventory {
         this.rows = inventoryType.getDefaultSize();
 
         this.pages.add(this);
+    }
+
+    public CustomInventory(String name, InventoryType inventoryType, String... design) {
+        super(
+                new MinecraftInventory(
+                        inventoryType,
+                        name
+                )
+        );
+
+        CustomInventoryManager.addCustomInventory(this);
+
+        this.rows = inventoryType.getDefaultSize();
+
+        this.pages.add(this);
+
+        this.setDesign(design);
     }
 
     public CustomInventory setItem(int index, CustomItem customItem) {
