@@ -35,7 +35,7 @@ public class CustomItem {
     @Getter
     private Consumer<InventoryClickEvent> inventoryClickEventConsumer;
 
-    private Boolean editable = true;
+    private Boolean editable = true, cancelled = false;
 
     public CustomItem(Material material) {
         this.itemStack = new ItemStack(material);
@@ -181,6 +181,12 @@ public class CustomItem {
 
     public CustomItem editable(Boolean editable) {
         this.editable = editable;
+
+        return this;
+    }
+
+    public CustomItem cancelled(Boolean cancelled) {
+        this.cancelled = cancelled;
 
         return this;
     }
@@ -467,6 +473,10 @@ public class CustomItem {
 
     public Boolean isEditable() {
         return this.editable;
+    }
+
+    public Boolean isCancelled() {
+        return this.cancelled;
     }
 
     private ItemMeta meta() {
