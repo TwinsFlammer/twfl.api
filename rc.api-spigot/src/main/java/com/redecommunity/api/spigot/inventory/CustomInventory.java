@@ -154,7 +154,7 @@ public class CustomInventory extends CraftInventory {
 
                 if (character != 'X') this.setItem(
                         slot,
-                        customItem
+                        customItem1
                 );
             }
 
