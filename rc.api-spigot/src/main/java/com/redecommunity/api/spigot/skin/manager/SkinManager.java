@@ -49,19 +49,53 @@ public class SkinManager {
             return false;
         }
 
+        Player player = (Player) sender;
+
         SkinDao skinDao = new SkinDao();
 
         HashMap<String, Object> keys = Maps.newHashMap();
 
+        if (refresh) {
+            Skin skin = SkinFactory.getSkin(skinName.toLowerCase());
+
+            if (skin == null) return false;
+
+            keys.put("owner", skinName.toLowerCase());
+
+            Skin find = skinDao.findOne(keys);
+
+            if (find != null) {
+                keys.clear();
+
+                keys.put("active", true);
+                keys.put("signature", skin.getSignature());
+                keys.put("value", skin.getValue());
+                keys.put("last_use", skin.getLastUse());
+
+                skinDao.update(
+                        keys,
+                        "id",
+                        find.getId()
+                );
+            } else {
+                user.setSkin(skin);
+            }
+
+            SkinManager.openBook(
+                    player,
+                    skinName
+            );
+
+            return true;
+        }
+
+        keys.clear();
+
         keys.put("owner", skinName.toLowerCase());
 
-        Skin skin = null;
+        Skin skin = skinDao.findOne(keys);
 
-        if (refresh) {
-            skin = SkinFactory.getSkin(skinName.toLowerCase());
-        } else skin = skinDao.findOne(keys);
-
-        if (skin == null && !refresh) skin = SkinFactory.getSkin(skinName.toLowerCase());
+        if (skin == null) skin = SkinFactory.getSkin(skinName.toLowerCase());
 
         if (skin == null) {
             sender.sendMessage(
@@ -112,8 +146,6 @@ public class SkinManager {
         user.getSkins().add(skin);
 
         if (!(sender instanceof Player)) return false;
-
-        Player player = (Player) sender;
 
         SkinManager.openBook(
                 player,
