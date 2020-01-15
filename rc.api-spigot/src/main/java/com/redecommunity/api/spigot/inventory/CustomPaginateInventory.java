@@ -44,6 +44,9 @@ public class CustomPaginateInventory {
     public CustomPaginateInventory addItem(CustomItem customItem) {
         this.validate();
 
+
+        System.out.println("Adiciona o item");
+
         this.getCurrentInventory().addItem(
                 customItem
         );
