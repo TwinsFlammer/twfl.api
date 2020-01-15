@@ -168,7 +168,22 @@ public class CustomInventory extends CraftInventory {
                 .filter(Objects::nonNull)
                 .filter(CustomItem::isEditable);
 
-        customItemStream.forEach(customItem -> {
+//        Iterator<?> iterator = this.customItems.entrySet().iterator();
+//
+//        while (iterator.hasNext()) {
+//            Map.Entry<Integer, CustomItem> entry = (Map.Entry<Integer, CustomItem>) iterator.next();
+//
+//            Integer slot = entry.getKey();
+//            CustomItem customItem = entry.getValue();
+//
+//
+//        }
+
+        Iterator<CustomItem> customItemIterator = customItemStream.iterator();
+
+        while (customItemIterator.hasNext()) {
+            CustomItem customItem = customItemIterator.next();
+
             Integer slot = this.customItems
                     .entrySet()
                     .stream()
@@ -183,7 +198,24 @@ public class CustomInventory extends CraftInventory {
                     slot,
                     null
             );
-        });
+        }
+
+//        customItemStream.forEach(customItem -> {
+//            Integer slot = this.customItems
+//                    .entrySet()
+//                    .stream()
+//                    .filter(entrySet -> entrySet.getValue().equals(customItem))
+//                    .map(Map.Entry::getKey)
+//                    .findFirst()
+//                    .get();
+//
+//            this.customItems.remove(slot);
+//
+//            super.setItem(
+//                    slot,
+//                    null
+//            );
+//        });
 
         List<CustomItem> customItems = customItemStream.collect(Collectors.toList());
 
