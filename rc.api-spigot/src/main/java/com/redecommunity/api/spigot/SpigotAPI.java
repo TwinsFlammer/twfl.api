@@ -47,6 +47,6 @@ public class SpigotAPI extends CommunityPlugin {
     }
 
     public static void unloadUser(User user) {
-        UserManager.getUsers().remove(user);
+        UserManager.removeUser(user.getId());
     }
 }
