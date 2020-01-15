@@ -88,6 +88,9 @@ public class CustomPaginateInventory {
     private void validate() {
         CustomInventory customInventory = this.getCurrentInventory();
 
+        System.out.println(customInventory.getItemCount());
+        System.out.println(customInventory.getSize());
+
         if (customInventory.getItemCount() + 1 >= customInventory.getSize()) {
             CustomInventory customInventory1 = new CustomInventory(
                     customInventory.getName(),
