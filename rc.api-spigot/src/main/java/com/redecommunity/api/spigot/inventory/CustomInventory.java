@@ -169,11 +169,17 @@ public class CustomInventory extends CraftInventory {
         while (entrySetIterator.hasNext()) {
             Map.Entry<Integer, CustomItem> entrySet = entrySetIterator.next();
 
+            Integer slot = entrySet.getKey();
             CustomItem customItem = entrySet.getValue();
 
             if (!customItem.isEditable()) continue;
 
             customItems.add(customItem);
+
+            super.setItem(
+                    slot,
+                    null
+            );
 
             entrySetIterator.remove();
         }
@@ -188,17 +194,15 @@ public class CustomInventory extends CraftInventory {
 
             CustomItem customItem = customItems.get(index);
 
-            if (customItem.isEditable()) {
-                System.out.println("Index: " + index);
+            System.out.println("Index: " + index);
 
-                if (character != 'X') {
-                    System.out.println("Slot: " + slot);
+            if (character != 'X') {
+                System.out.println("Slot: " + slot);
 
-                    this.setItem(
-                            slot,
-                            customItem
-                    );
-                }
+                this.setItem(
+                        slot,
+                        customItem
+                );
             }
 
             index++;
