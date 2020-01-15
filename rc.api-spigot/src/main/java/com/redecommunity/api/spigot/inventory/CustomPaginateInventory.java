@@ -85,8 +85,6 @@ public class CustomPaginateInventory {
     public CustomPaginateInventory addItem(CustomItem customItem) {
         this.validate();
 
-        System.out.println("Adiciona o item");
-
         this.getCurrentInventory().addItem(
                 customItem
         );
@@ -125,11 +123,7 @@ public class CustomPaginateInventory {
     private void validate() {
         CustomInventory customInventory = this.getCurrentInventory();
 
-        System.out.println(customInventory.getItemCount());
-        System.out.println(customInventory.getMaxSize());
-
         if (customInventory.getItemCount() >= customInventory.getMaxSize() + 1) {
-            System.out.println("Cria inventário novo.");
             CustomInventory customInventory1 = new CustomInventory(
                     customInventory.getName(),
                     customInventory.getRows(),
