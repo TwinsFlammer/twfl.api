@@ -192,7 +192,7 @@ public class CustomInventory extends CraftInventory {
                     .findFirst()
                     .get();
 
-            this.customItems.remove(slot);
+            customItemIterator.remove();
 
             super.setItem(
                     slot,
