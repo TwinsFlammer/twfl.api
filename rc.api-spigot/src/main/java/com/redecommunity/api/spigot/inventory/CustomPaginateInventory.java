@@ -109,6 +109,8 @@ public class CustomPaginateInventory {
             );
         }
 
+        if (this.pages.size() == 1) customInventory.organize();
+
         this.customItems.forEach(customInventory::setItem);
 
         return customInventory;
@@ -121,6 +123,8 @@ public class CustomPaginateInventory {
         System.out.println(customInventory.getMaxSize());
 
         if (customInventory.getItemCount() + 1 >= customInventory.getMaxSize()) {
+            customInventory.organize();
+
             System.out.println("Cria inventário novo.");
             CustomInventory customInventory1 = new CustomInventory(
                     customInventory.getName(),
