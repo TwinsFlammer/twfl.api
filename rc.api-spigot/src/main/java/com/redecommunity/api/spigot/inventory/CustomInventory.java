@@ -162,62 +162,19 @@ public class CustomInventory extends CraftInventory {
     public void organize() {
         if (this.design == null) return;
 
-        Stream<CustomItem> customItemStream = this.customItems
-                .values()
-                .stream()
-                .filter(Objects::nonNull)
-                .filter(CustomItem::isEditable);
+        List<CustomItem> customItems = Lists.newArrayList();
 
-//        Iterator<?> iterator = this.customItems.entrySet().iterator();
-//
-//        while (iterator.hasNext()) {
-//            Map.Entry<Integer, CustomItem> entry = (Map.Entry<Integer, CustomItem>) iterator.next();
-//
-//            Integer slot = entry.getKey();
-//            CustomItem customItem = entry.getValue();
-//
-//
-//        }
+        Iterator<Map.Entry<Integer, CustomItem>> entrySetIterator = this.customItems.entrySet().iterator();
 
-        Iterator<CustomItem> customItemIterator = customItemStream.iterator();
+        while (entrySetIterator.hasNext()) {
+            Map.Entry<Integer, CustomItem> entrySet = entrySetIterator.next();
 
-        while (customItemIterator.hasNext()) {
-            CustomItem customItem = customItemIterator.next();
+            CustomItem customItem = entrySet.getValue();
 
-            Integer slot = this.customItems
-                    .entrySet()
-                    .stream()
-                    .filter(entrySet -> entrySet.getValue().equals(customItem))
-                    .map(Map.Entry::getKey)
-                    .findFirst()
-                    .get();
+            customItems.add(customItem);
 
-            customItemIterator.remove();
-
-            super.setItem(
-                    slot,
-                    null
-            );
+            entrySetIterator.remove();
         }
-
-//        customItemStream.forEach(customItem -> {
-//            Integer slot = this.customItems
-//                    .entrySet()
-//                    .stream()
-//                    .filter(entrySet -> entrySet.getValue().equals(customItem))
-//                    .map(Map.Entry::getKey)
-//                    .findFirst()
-//                    .get();
-//
-//            this.customItems.remove(slot);
-//
-//            super.setItem(
-//                    slot,
-//                    null
-//            );
-//        });
-
-        List<CustomItem> customItems = customItemStream.collect(Collectors.toList());
 
         Integer index = 0;
 
