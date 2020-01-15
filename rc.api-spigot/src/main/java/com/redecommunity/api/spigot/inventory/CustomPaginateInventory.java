@@ -128,7 +128,7 @@ public class CustomPaginateInventory {
         System.out.println(customInventory.getItemCount());
         System.out.println(customInventory.getMaxSize());
 
-        if (customInventory.getItemCount()+1 >= customInventory.getMaxSize()) {
+        if (customInventory.getItemCount() >= customInventory.getMaxSize() + 1) {
             System.out.println("Cria inventário novo.");
             CustomInventory customInventory1 = new CustomInventory(
                     customInventory.getName(),
