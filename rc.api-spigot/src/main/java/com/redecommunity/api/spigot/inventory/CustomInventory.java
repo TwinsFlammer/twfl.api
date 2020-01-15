@@ -19,10 +19,10 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.InventoryHolder;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by @SrGutyerrez
@@ -162,19 +162,41 @@ public class CustomInventory extends CraftInventory {
     public void organize() {
         if (this.design == null) return;
 
+        Stream<CustomItem> customItemStream = this.customItems
+                .values()
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(CustomItem::isEditable);
+
+        customItemStream.forEach(customItem -> {
+            Integer slot = this.customItems
+                    .entrySet()
+                    .stream()
+                    .filter(entrySet -> entrySet.getValue().equals(customItem))
+                    .map(Map.Entry::getKey)
+                    .findFirst()
+                    .get();
+
+            this.customItems.remove(slot);
+
+            super.setItem(
+                    slot,
+                    null
+            );
+        });
+
+        List<CustomItem> customItems = customItemStream.collect(Collectors.toList());
+
         Integer index = 0;
 
         for (Map.Entry<Integer, Character> entrySet : this.design.entrySet()) {
             Integer slot = entrySet.getKey();
             Character character = entrySet.getValue();
 
-            CustomItem customItem = this.customItems.get(index);
+            CustomItem customItem = customItems.get(index);
 
-            if (customItem != null && customItem.isEditable()) {
+            if (customItem.isEditable()) {
                 System.out.println("Index: " + index);
-
-                super.setItem(index, null);
-                this.customItems.remove(index);
 
                 if (character != 'X') {
                     System.out.println("Slot: " + slot);
