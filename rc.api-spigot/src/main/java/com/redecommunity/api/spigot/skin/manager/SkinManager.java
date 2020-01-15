@@ -116,10 +116,11 @@ public class SkinManager {
             Skin active = user.getSkin();
 
             if (active != null) {
+                active.setActive(false);
+
                 keys.clear();
 
                 keys.put("active", false);
-                keys.put("last_use", System.currentTimeMillis());
 
                 skinDao.update(
                         keys,
