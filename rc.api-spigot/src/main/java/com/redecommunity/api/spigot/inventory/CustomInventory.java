@@ -144,9 +144,11 @@ public class CustomInventory extends CraftInventory {
             Integer slot = entrySet.getKey();
             Character character = entrySet.getValue();
 
-            CustomItem customItem = this.customItems.get(index).clone();
+            CustomItem customItem = this.customItems.get(index);
 
             if (customItem != null && customItem.isEditable()) {
+                CustomItem customItem1 = customItem.clone();
+
                 super.setItem(index, null);
                 this.customItems.remove(index);
 
