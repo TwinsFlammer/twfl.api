@@ -113,6 +113,10 @@ public class CustomInventory extends CraftInventory {
         return this;
     }
 
+    public Boolean isEmpty() {
+        return this.customItems.isEmpty();
+    }
+
     public Integer getMaxSize() {
         if (this.design == null || this.design.isEmpty()) return this.getSize();
 
@@ -157,13 +161,22 @@ public class CustomInventory extends CraftInventory {
 
     public void onClick(InventoryClickEvent event) {
         if (event.getClick() == ClickType.NUMBER_KEY) event.setCancelled(this.cancelled);
+
         event.setCancelled(this.cancelled);
 
         Integer slot = event.getSlot();
 
         CustomItem customItem = this.customItems.get(slot);
 
-        if (customItem != null && customItem.getInventoryClickEventConsumer() != null)
+        if (customItem == null) return;
+
+        if (customItem.isCancelled()) {
+            if (event.getClick() == ClickType.NUMBER_KEY) event.setCancelled(true);
+
+            event.setCancelled(true);
+        }
+
+        if (customItem.getInventoryClickEventConsumer() != null)
             customItem.getInventoryClickEventConsumer().accept(event);
     }
 
