@@ -37,8 +37,6 @@ public class CustomInventory extends CraftInventory {
     @Getter
     private HashMap<Integer, Character> design;
 
-    private List<CustomInventory> pages = Lists.newArrayList();
-
     @Getter
     private Integer rows;
 
@@ -53,8 +51,6 @@ public class CustomInventory extends CraftInventory {
         CustomInventoryManager.addCustomInventory(this);
 
         this.rows = rows;
-
-        this.pages.add(this);
     }
 
     public CustomInventory(String name, Integer rows, String... design) {
@@ -68,8 +64,6 @@ public class CustomInventory extends CraftInventory {
         CustomInventoryManager.addCustomInventory(this);
 
         this.rows = rows;
-
-        this.pages.add(this);
 
         this.setDesign(design);
     }
@@ -85,8 +79,6 @@ public class CustomInventory extends CraftInventory {
         CustomInventoryManager.addCustomInventory(this);
 
         this.rows = inventoryType.getDefaultSize();
-
-        this.pages.add(this);
     }
 
     public CustomInventory(String name, InventoryType inventoryType, String... design) {
@@ -100,8 +92,6 @@ public class CustomInventory extends CraftInventory {
         CustomInventoryManager.addCustomInventory(this);
 
         this.rows = inventoryType.getDefaultSize();
-
-        this.pages.add(this);
 
         this.setDesign(design);
     }
