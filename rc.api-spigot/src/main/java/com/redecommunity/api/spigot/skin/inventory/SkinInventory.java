@@ -39,62 +39,60 @@ public class SkinInventory extends CustomPaginateInventory {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DD/MM/YYYY");
 
-        for (int i = 0; i < 5; i++) {
-            user.getSkins()
-                    .stream()
-                    .sorted((skin1, skin2) -> skin2.getLastUse().compareTo(skin1.getLastUse()))
-                    .forEach(skin -> {
-                        this.addItem(
-                                new CustomItem(Material.SKULL_ITEM)
-                                        .data(3)
-                                        .name("§e" + skin.getOwner())
-                                        .lore("§fUsada pela última vez em: §7" + simpleDateFormat.format(skin.getLastUse()),
-                                                "",
-                                                (skin.isActive() ? "§aSelecionada." : "§eClique para utilizar essa skin."))
-                                        .owner(skin.getValue())
-                                        .onClick(event -> {
-                                            if (skin.isActive()) return;
+        user.getSkins()
+                .stream()
+                .sorted((skin1, skin2) -> skin2.getLastUse().compareTo(skin1.getLastUse()))
+                .forEach(skin -> {
+                    User user1 = UserManager.getUser(skin.getOwner());
 
-                                            Player player = (Player) event.getWhoClicked();
+                    this.addItem(
+                            new CustomItem(Material.SKULL_ITEM)
+                                    .data(3)
+                                    .name("§e" + (user1 == null ? skin.getOwner() : user1.getDisplayName()))
+                                    .lore("§fUsada pela última vez em: §7" + simpleDateFormat.format(skin.getLastUse()),
+                                            "",
+                                            (skin.isActive() ? "§aSelecionada." : "§eClique para utilizar essa skin."))
+                                    .owner(skin.getValue())
+                                    .onClick(event -> {
+                                        if (skin.isActive()) return;
 
-                                            SkinDao skinDao = new SkinDao();
+                                        Player player = (Player) event.getWhoClicked();
 
-                                            HashMap<String, Object> keys = Maps.newHashMap();
+                                        SkinDao skinDao = new SkinDao();
 
-                                            Skin active = user.getSkin();
+                                        HashMap<String, Object> keys = Maps.newHashMap();
 
-                                            active.setActive(false);
+                                        Skin active = user.getSkin();
 
-                                            keys.put("active", false);
+                                        active.setActive(false);
 
-                                            skinDao.update(
-                                                    keys,
-                                                    "id",
-                                                    active.getId()
-                                            );
+                                        keys.put("active", false);
 
-                                            skin.setActive(true);
-                                            skin.setLastUse(System.currentTimeMillis());
+                                        skinDao.update(
+                                                keys,
+                                                "id",
+                                                active.getId()
+                                        );
 
-                                            keys.put("active", skin.isActive());
-                                            keys.put("last_use", skin.getLastUse());
+                                        skin.setActive(true);
+                                        skin.setLastUse(System.currentTimeMillis());
 
-                                            skinDao.update(
-                                                    keys,
-                                                    "id",
-                                                    skin.getId()
-                                            );
+                                        keys.put("active", skin.isActive());
+                                        keys.put("last_use", skin.getLastUse());
 
-                                            User user1 = UserManager.getUser(skin.getOwner());
+                                        skinDao.update(
+                                                keys,
+                                                "id",
+                                                skin.getId()
+                                        );
 
-                                            SkinManager.openBook(
-                                                    player,
-                                                    user1 == null ? skin.getOwner() : user1.getDisplayName()
-                                            );
-                                        })
-                        );
-                    });
-        }
+                                        SkinManager.openBook(
+                                                player,
+                                                user1 == null ? skin.getOwner() : user1.getDisplayName()
+                                        );
+                                    })
+                    );
+                });
 
         this.setItem(
                 48,
@@ -139,12 +137,14 @@ public class SkinInventory extends CustomPaginateInventory {
 
                             player.closeInventory();
 
-                            SkinManager.change(
-                                    player,
-                                    user,
-                                    player.getName(),
-                                    true
-                            );
+                            new Thread(() -> {
+                                SkinManager.change(
+                                        player,
+                                        user,
+                                        player.getName(),
+                                        true
+                                );
+                            }).start();
                         })
         );
         this.setItem(
