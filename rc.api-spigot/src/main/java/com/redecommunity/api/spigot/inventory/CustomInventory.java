@@ -21,8 +21,6 @@ import org.bukkit.inventory.InventoryHolder;
 
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by @SrGutyerrez
@@ -97,8 +95,6 @@ public class CustomInventory extends CraftInventory {
     }
 
     public CustomInventory setItem(int index, CustomItem customItem) {
-        System.out.println("> " + index);
-
         super.setItem(
                 index,
                 customItem.build()
@@ -194,11 +190,7 @@ public class CustomInventory extends CraftInventory {
 
             CustomItem customItem = customItems.get(index);
 
-            System.out.println("Index: " + index);
-
             if (character != 'X') {
-                System.out.println("Slot: " + slot);
-
                 this.setItem(
                         slot,
                         customItem
