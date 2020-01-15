@@ -203,9 +203,9 @@ public class CustomInventory extends CraftInventory {
                         slot,
                         customItem
                 );
-            }
 
-            index++;
+                index++;
+            }
         }
     }
 
