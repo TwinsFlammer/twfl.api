@@ -4,8 +4,10 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.redecommunity.api.spigot.inventory.item.CustomItem;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +18,9 @@ import java.util.List;
 public class CustomPaginateInventory {
     private List<CustomInventory> pages = Lists.newArrayList();
 
+    @Setter
+    private Boolean cancelled = false;
+
     @Getter
     private HashMap<Integer, CustomItem> customItems = Maps.newHashMap();
 
@@ -23,6 +28,35 @@ public class CustomPaginateInventory {
         CustomInventory customInventory = new CustomInventory(
                 name,
                 rows
+        );
+
+        this.pages.add(customInventory);
+    }
+
+    public CustomPaginateInventory(String name, Integer rows, String... design) {
+        CustomInventory customInventory = new CustomInventory(
+                name,
+                rows,
+                design
+        );
+
+        this.pages.add(customInventory);
+    }
+
+    public CustomPaginateInventory(String name, InventoryType inventoryType) {
+        CustomInventory customInventory = new CustomInventory(
+                name,
+                inventoryType
+        );
+
+        this.pages.add(customInventory);
+    }
+
+    public CustomPaginateInventory(String name, InventoryType inventoryType, String... design) {
+        CustomInventory customInventory = new CustomInventory(
+                name,
+                inventoryType,
+                design
         );
 
         this.pages.add(customInventory);
@@ -44,7 +78,6 @@ public class CustomPaginateInventory {
     public CustomPaginateInventory addItem(CustomItem customItem) {
         this.validate();
 
-
         System.out.println("Adiciona o item");
 
         this.getCurrentInventory().addItem(
@@ -60,14 +93,10 @@ public class CustomPaginateInventory {
         return this;
     }
 
-    public CustomPaginateInventory setCancelled(Boolean cancelled) {
-        this.pages.forEach(customInventory -> customInventory.setCancelled(cancelled));
-
-        return this;
-    }
-
     public CustomInventory build() {
         CustomInventory customInventory = this.pages.get(0);
+
+        customInventory.setCancelled(this.cancelled);
 
         if (customInventory.isEmpty()) {
             Integer emptySlot = this.getEmptySlot();
@@ -92,10 +121,13 @@ public class CustomPaginateInventory {
         System.out.println(customInventory.getMaxSize());
 
         if (customInventory.getItemCount() + 1 >= customInventory.getMaxSize()) {
+            System.out.println("Cria inventário novo.");
             CustomInventory customInventory1 = new CustomInventory(
                     customInventory.getName(),
                     customInventory.getRows()
             );
+
+            customInventory1.setCancelled(this.cancelled);
 
             CustomItem previousItem = this.getNextItem(customInventory, false);
             CustomItem nextItem = this.getNextItem(customInventory1, true);
