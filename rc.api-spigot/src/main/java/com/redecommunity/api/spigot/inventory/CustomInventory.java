@@ -73,6 +73,8 @@ public class CustomInventory extends CraftInventory {
     }
 
     public CustomInventory setItem(int index, CustomItem customItem) {
+        System.out.println("> " + index);
+
         super.setItem(
                 index,
                 customItem.build()
@@ -147,14 +149,12 @@ public class CustomInventory extends CraftInventory {
             CustomItem customItem = this.customItems.get(index);
 
             if (customItem != null && customItem.isEditable()) {
-                CustomItem customItem1 = customItem.clone();
-
                 super.setItem(index, null);
                 this.customItems.remove(index);
 
                 if (character != 'X') this.setItem(
                         slot,
-                        customItem1
+                        customItem
                 );
             }
 
