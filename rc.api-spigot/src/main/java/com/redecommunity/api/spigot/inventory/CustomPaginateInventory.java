@@ -24,7 +24,8 @@ public class CustomPaginateInventory {
     @Getter
     private HashMap<Integer, CustomItem> customItems = Maps.newHashMap();
 
-    private HashMap<Integer, Character> design;
+    @Getter
+    protected String[] design;
 
     public CustomPaginateInventory(String name, Integer rows) {
         CustomInventory customInventory = new CustomInventory(
@@ -44,7 +45,7 @@ public class CustomPaginateInventory {
 
         this.pages.add(customInventory);
 
-        this.design = customInventory.getDesign();
+        this.design = design;
     }
 
     public CustomPaginateInventory(String name, InventoryType inventoryType) {
@@ -65,7 +66,7 @@ public class CustomPaginateInventory {
 
         this.pages.add(customInventory);
 
-        this.design = customInventory.getDesign();
+        this.design = design;
     }
 
     private CustomInventory getCurrentInventory() {
@@ -131,7 +132,8 @@ public class CustomPaginateInventory {
             System.out.println("Cria inventário novo.");
             CustomInventory customInventory1 = new CustomInventory(
                     customInventory.getName(),
-                    customInventory.getRows()
+                    customInventory.getRows(),
+                    this.getDesign()
             );
 
             customInventory1.setCancelled(this.cancelled);
