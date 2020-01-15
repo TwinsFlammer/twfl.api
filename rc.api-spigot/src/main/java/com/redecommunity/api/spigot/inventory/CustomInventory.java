@@ -171,6 +171,8 @@ public class CustomInventory extends CraftInventory {
 
             CustomItem customItem = entrySet.getValue();
 
+            if (!customItem.isEditable()) continue;
+
             customItems.add(customItem);
 
             entrySetIterator.remove();
