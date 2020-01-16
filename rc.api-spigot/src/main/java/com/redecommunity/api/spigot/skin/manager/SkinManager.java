@@ -60,6 +60,7 @@ public class SkinManager {
 
             if (skin == null) return false;
 
+            keys.put("user_id", user.getId());
             keys.put("owner", skinName.toLowerCase());
 
             Skin find = skinDao.findOne(keys);
@@ -105,43 +106,11 @@ public class SkinManager {
         }
 
         if (skin.getUserId() != null && skin.getUserId().equals(user.getId())) {
-            Skin skin1 = skin;
+            user.getSkins().stream()
+                    .filter(Skin::isActive)
+                    .forEach(Skin::deactivate);
 
-            skin = user.getSkins()
-                    .stream()
-                    .filter(skin2 -> skin2.getId().equals(skin1.getId()))
-                    .findFirst()
-                    .get();
-
-            Skin active = user.getSkin();
-
-            if (active != null) {
-                active.setActive(false);
-
-                keys.clear();
-
-                keys.put("active", false);
-
-                skinDao.update(
-                        keys,
-                        "id",
-                        active.getId()
-                );
-            }
-
-            skin.setActive(true);
-            skin.setLastUse(System.currentTimeMillis());
-
-            keys.clear();
-
-            keys.put("active", true);
-            keys.put("last_use", skin.getLastUse());
-
-            skinDao.update(
-                    keys,
-                    "id",
-                    skin.getId()
-            );
+            skin.active();
         } else {
             user.setSkin(skin);
         }
@@ -159,7 +128,7 @@ public class SkinManager {
 
         ItemStack itemStack = CustomBook.writtenBook()
                 .title("Skin")
-                .author("Gutyerrez")
+                .author(player.getName())
                 .pages(
                         new CustomBook.PageBuilder()
                                 .add("")
