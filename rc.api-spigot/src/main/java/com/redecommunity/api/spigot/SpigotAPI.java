@@ -5,6 +5,9 @@ import com.redecommunity.api.spigot.manager.StartManager;
 import com.redecommunity.api.spigot.reflection.Reflection;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import com.redecommunity.common.shared.server.data.Server;
+import com.redecommunity.common.shared.server.manager.ServerManager;
+import org.bukkit.Bukkit;
 
 /**
  * Created by @SrGutyerrez
@@ -36,6 +39,13 @@ public class SpigotAPI extends CommunityPlugin {
 
     public static SpigotAPI getInstance() {
         return SpigotAPI.instance;
+    }
+
+    public static Server getCurrentServer() {
+        String address = Bukkit.getIp();
+        Integer port = Bukkit.getPort();
+
+        return ServerManager.getServer(address, port);
     }
 
     public Reflection getReflection() {
