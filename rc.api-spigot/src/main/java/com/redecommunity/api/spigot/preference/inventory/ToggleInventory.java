@@ -21,9 +21,8 @@ public class ToggleInventory extends CustomPaginateInventory {
                 4
         );
 
-        System.out.println(page);
-
         this.setCancelled(true);
+        this.setCustomInventory(true);
 
         Arrays.stream(Preference.values())
                 .filter(preference -> preference.getPage().equals(page))
@@ -47,13 +46,8 @@ public class ToggleInventory extends CustomPaginateInventory {
                 });
 
         if (page > 1) {
-            System.out.println("Não é página 1");
-
-            System.out.println("Página: " + page);
-
-            System.out.println("Página anterior: " + (page - 1));
-
             CustomItem previousItem = this.getPaginateItem(null, false)
+                    .name("§aPágina " + (page-1))
                     .onClick(event -> {
                         Player player = (Player) event.getWhoClicked();
 
@@ -72,6 +66,7 @@ public class ToggleInventory extends CustomPaginateInventory {
 
         if (page < 3) {
             CustomItem nextItem = this.getPaginateItem(null, false)
+                    .name("§aPágina " + (page+1))
                     .onClick(event -> {
                         Player player = (Player) event.getWhoClicked();
 
