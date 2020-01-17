@@ -7,6 +7,7 @@ import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.preference.Preference;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 
@@ -52,9 +53,14 @@ public class ToggleInventory extends CustomPaginateInventory {
 
             System.out.println("Página anterior: " + (page - 1));
 
-            CustomInventory customInventory = new ToggleInventory(user, page - 1).build();
+            CustomItem previousItem = this.getPaginateItem(null, false)
+                    .onClick(event -> {
+                        Player player = (Player) event.getWhoClicked();
 
-            CustomItem previousItem = this.getPaginateItem(customInventory, false);
+                        CustomInventory customInventory = new ToggleInventory(user, page - 1).build();
+
+                        player.openInventory(customInventory);
+                    });
 
             Integer previousSlot = this.getPreviousSlot();
 
@@ -65,9 +71,14 @@ public class ToggleInventory extends CustomPaginateInventory {
         }
 
         if (page < 3) {
-            CustomInventory customInventory = new ToggleInventory(user, page + 1).build();
+            CustomItem nextItem = this.getPaginateItem(null, false)
+                    .onClick(event -> {
+                        Player player = (Player) event.getWhoClicked();
 
-            CustomItem nextItem = this.getPaginateItem(customInventory, true);
+                        CustomInventory customInventory = new ToggleInventory(user, page - 1).build();
+
+                        player.openInventory(customInventory);
+                    });
 
             Integer nextSlot = this.getNextSlot();
 
