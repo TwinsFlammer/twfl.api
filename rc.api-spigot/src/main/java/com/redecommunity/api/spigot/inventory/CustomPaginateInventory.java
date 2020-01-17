@@ -19,7 +19,7 @@ public class CustomPaginateInventory {
     private List<CustomInventory> pages = Lists.newArrayList();
 
     @Setter
-    private Boolean cancelled = false;
+    private Boolean cancelled = false, customInventory = false;
 
     @Getter
     private HashMap<Integer, CustomItem> customItems = Maps.newHashMap();
@@ -103,7 +103,7 @@ public class CustomPaginateInventory {
 
         customInventory.setCancelled(this.cancelled);
 
-        if (customInventory.isEmpty()) {
+        if (customInventory.isEmpty() && !this.customInventory) {
             Integer emptySlot = this.getEmptySlot();
 
             CustomItem emptyItem = this.getEmptyItem();
