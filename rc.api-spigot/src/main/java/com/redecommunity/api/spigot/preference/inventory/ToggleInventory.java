@@ -35,7 +35,7 @@ public class ToggleInventory extends CustomPaginateInventory {
                                 user,
                                 preference
                         );
-                    } else if (preference == Preference.JOIN_MESSAGE && user.hasGroup("elite")) {
+                    } else if (preference == Preference.JOIN_MESSAGE && user.hasGroup(GroupNames.HELPER)) {
                         this.setItem(
                                 user,
                                 preference
