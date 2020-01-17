@@ -1,5 +1,6 @@
 package com.redecommunity.api.spigot.preference.inventory;
 
+import com.redecommunity.api.spigot.inventory.CustomInventory;
 import com.redecommunity.api.spigot.inventory.CustomPaginateInventory;
 import com.redecommunity.api.spigot.inventory.item.CustomItem;
 import com.redecommunity.common.shared.permissions.group.GroupNames;
@@ -41,6 +42,32 @@ public class ToggleInventory extends CustomPaginateInventory {
                         );
                     }
                 });
+
+        if (page != 1) {
+            CustomInventory customInventory = new ToggleInventory(user, page - 1).build();
+
+            CustomItem previousItem = this.getPaginateItem(customInventory, false);
+
+            Integer previousSlot = this.getPreviousSlot();
+
+            this.setItem(
+                    previousSlot,
+                    previousItem
+            );
+        }
+
+        if (page != 3) {
+            CustomInventory customInventory = new ToggleInventory(user, page + 1).build();
+
+            CustomItem nextItem = this.getPaginateItem(customInventory, true);
+
+            Integer nextSlot = this.getNextSlot();
+
+            this.setItem(
+                    nextSlot,
+                    nextItem
+            );
+        }
     }
 
     private void setItem(User user, Preference preference) {
