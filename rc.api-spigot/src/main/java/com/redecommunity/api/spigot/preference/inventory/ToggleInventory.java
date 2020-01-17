@@ -75,7 +75,7 @@ public class ToggleInventory extends CustomPaginateInventory {
                     .onClick(event -> {
                         Player player = (Player) event.getWhoClicked();
 
-                        CustomInventory customInventory = new ToggleInventory(user, page - 1).build();
+                        CustomInventory customInventory = new ToggleInventory(user, page + 1).build();
 
                         player.openInventory(customInventory);
                     });
