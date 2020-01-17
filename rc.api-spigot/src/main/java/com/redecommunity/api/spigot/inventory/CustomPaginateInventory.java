@@ -132,8 +132,8 @@ public class CustomPaginateInventory {
 
             customInventory1.setCancelled(this.cancelled);
 
-            CustomItem previousItem = this.getNextItem(customInventory, false);
-            CustomItem nextItem = this.getNextItem(customInventory1, true);
+            CustomItem previousItem = this.getPaginateItem(customInventory, false);
+            CustomItem nextItem = this.getPaginateItem(customInventory1, true);
 
             Integer previousSlot = this.getPreviousSlot();
             Integer nextSlot = this.getNextSlot();
@@ -152,7 +152,7 @@ public class CustomPaginateInventory {
         }
     }
 
-    private Integer getPreviousSlot() {
+    public Integer getPreviousSlot() {
         switch (this.getCurrentInventory().getRows()) {
             case 2:
             case 3:
@@ -166,7 +166,7 @@ public class CustomPaginateInventory {
         }
     }
 
-    private Integer getNextSlot() {
+    public Integer getNextSlot() {
         switch (this.getCurrentInventory().getRows()) {
             case 1:
                 return 8;
@@ -182,7 +182,7 @@ public class CustomPaginateInventory {
         }
     }
 
-    private Integer getEmptySlot() {
+    public Integer getEmptySlot() {
         switch (this.getCurrentInventory().getRows()) {
             case 1:
                 return 4;
@@ -198,11 +198,11 @@ public class CustomPaginateInventory {
         }
     }
 
-    private CustomItem getNextItem(CustomInventory customInventory, Boolean next) {
+    public CustomItem getPaginateItem(CustomInventory customInventory, Boolean nextPage) {
         return new CustomItem(Material.ARROW)
                 .editable(false)
                 .cancelled(true)
-                .name("§aPágina " + (next ? this.pages.size() + 1 : this.pages.size()))
+                .name("§aPágina " + (nextPage ? this.pages.size() + 1 : this.pages.size()))
                 .onClick(event -> {
                     Player player = (Player) event.getWhoClicked();
 
@@ -213,7 +213,7 @@ public class CustomPaginateInventory {
     }
 
 
-    private CustomItem getEmptyItem() {
+    public CustomItem getEmptyItem() {
         return new CustomItem(Material.WEB)
                 .editable(false)
                 .cancelled(true)
