@@ -20,6 +20,8 @@ public class ToggleInventory extends CustomPaginateInventory {
                 4
         );
 
+        System.out.println(page);
+
         this.setCancelled(true);
 
         Arrays.stream(Preference.values())
@@ -43,7 +45,13 @@ public class ToggleInventory extends CustomPaginateInventory {
                     }
                 });
 
-        if (page != 1) {
+        if (page > 1) {
+            System.out.println("Não é página 1");
+
+            System.out.println("Página: " + page);
+
+            System.out.println("Página anterior: " + (page - 1));
+
             CustomInventory customInventory = new ToggleInventory(user, page - 1).build();
 
             CustomItem previousItem = this.getPaginateItem(customInventory, false);
@@ -56,7 +64,7 @@ public class ToggleInventory extends CustomPaginateInventory {
             );
         }
 
-        if (page != 3) {
+        if (page < 3) {
             CustomInventory customInventory = new ToggleInventory(user, page + 1).build();
 
             CustomItem nextItem = this.getPaginateItem(customInventory, true);
