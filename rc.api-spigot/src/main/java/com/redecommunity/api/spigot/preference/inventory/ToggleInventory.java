@@ -32,22 +32,36 @@ public class ToggleInventory extends CustomPaginateInventory {
                                 user,
                                 preference
                         );
-                    } else if (preference == Preference.CHAT_STAFF && user.hasGroup(GroupNames.HELPER)) {
+                    } else if (preference == Preference.CHAT_STAFF) {
+                        if (user.hasGroup(GroupNames.HELPER))
+                            this.setItem(
+                                    user,
+                                    preference
+                            );
+                        else {
+                            this.setItem(
+                                    user,
+                                    preference,
+                                    false
+                            );
+                        }
+                    } else if (user.hasGroup(GroupNames.HELPER)) {
                         this.setItem(
                                 user,
                                 preference
                         );
-                    } else if (preference == Preference.JOIN_MESSAGE && user.hasGroup(GroupNames.HELPER)) {
+                    } else {
                         this.setItem(
                                 user,
-                                preference
+                                preference,
+                                false
                         );
                     }
                 });
 
         if (page > 1) {
             CustomItem previousItem = this.getPaginateItem(null, false)
-                    .name("§aPágina " + (page-1))
+                    .name("§aPágina " + (page - 1))
                     .onClick(event -> {
                         Player player = (Player) event.getWhoClicked();
 
@@ -66,7 +80,7 @@ public class ToggleInventory extends CustomPaginateInventory {
 
         if (page < 3) {
             CustomItem nextItem = this.getPaginateItem(null, false)
-                    .name("§aPágina " + (page+1))
+                    .name("§aPágina " + (page + 1))
                     .onClick(event -> {
                         Player player = (Player) event.getWhoClicked();
 
@@ -85,7 +99,31 @@ public class ToggleInventory extends CustomPaginateInventory {
     }
 
     private void setItem(User user, Preference preference) {
+        this.setItem(
+                user,
+                preference,
+                true
+        );
+    }
+
+    private void setItem(User user, Preference preference, Boolean has) {
         Boolean value = user.isEnabled(preference);
+
+        if (!has) {
+            this.setItem(
+                    preference.getSlot(),
+                    new CustomItem(Material.BARRIER)
+                            .name("§c" + preference.getDisplayName())
+                            .lore(preference.getDescription())
+            );
+            this.setItem(
+                    preference.getStatusSlot(),
+                    new CustomItem(Material.BARRIER)
+                            .name("§c" + preference.getDisplayName())
+                            .lore(preference.getDescription())
+            );
+            return;
+        }
 
         this.setItem(
                 preference.getSlot(),
