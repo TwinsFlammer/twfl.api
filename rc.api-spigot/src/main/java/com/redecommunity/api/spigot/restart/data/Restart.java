@@ -45,7 +45,7 @@ public class Restart {
         this.warnTimes[0] = 0L;
 
         for (Integer i = 1; i < this.maxWarnings; i++)
-            this.warnTimes[i] = this.restartTime - System.currentTimeMillis() / i;
+            this.warnTimes[i] = this.restartTime / i;
 
         Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleAtFixedRate(
                 () -> {
