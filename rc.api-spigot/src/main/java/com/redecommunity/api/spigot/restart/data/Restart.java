@@ -55,7 +55,7 @@ public class Restart {
                 },
                 0,
                 1,
-                TimeUnit.SECONDS
+                TimeUnit.MILLISECONDS
         );
     }
 
