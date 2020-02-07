@@ -51,6 +51,10 @@ public class SpigotAPI extends CommunityPlugin {
         new StartManager();
 
         this.api = new API();
+
+        Server server = SpigotAPI.getCurrentServer();
+
+        server.setStatus(SpigotAPI.getDefaultStatus());
     }
 
     @Override
