@@ -44,7 +44,7 @@ public class Restart {
         Long startTime = Restart.this.restartTime - System.currentTimeMillis();
 
         for (int i = 0; i < warnTimes.length; i++) {
-            warnTimes[i] = startTime / currentWarning + 2;
+            warnTimes[i] = startTime / currentWarning + 3;
 
             currentWarning--;
         }
