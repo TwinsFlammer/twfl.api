@@ -51,6 +51,10 @@ public class Restart {
 
             System.out.println(warnTime);
             System.out.println(TimeFormatter.format(warnTime));
+
+
+            System.out.println(Restart.scheduledFuture.isDone());
+            System.out.println(Restart.scheduledFuture.isCancelled());
         };
 
         Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleAtFixedRate(
@@ -59,8 +63,6 @@ public class Restart {
                 1,
                 TimeUnit.MILLISECONDS
         );
-
-        System.out.println(Restart.scheduledFuture.isDone());
     }
 
     public void cancel() {
