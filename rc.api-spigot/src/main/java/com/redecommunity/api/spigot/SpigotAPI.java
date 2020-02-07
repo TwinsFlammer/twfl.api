@@ -77,6 +77,9 @@ public class SpigotAPI extends CommunityPlugin {
             Printer.INFO.coloredPrint(
                     "&cNão é possível localizar o servidor com o ip 0.0.0.0, altere na server.properties"
             );
+
+            Bukkit.getServer().shutdown();
+
             return null;
         }
 
