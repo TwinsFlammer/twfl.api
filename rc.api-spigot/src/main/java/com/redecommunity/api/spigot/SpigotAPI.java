@@ -54,6 +54,9 @@ public class SpigotAPI extends CommunityPlugin {
 
         Server server = SpigotAPI.getCurrentServer();
 
+        System.out.println(ServerManager.getServers().size());
+        System.out.println(server == null );
+
         server.setStatus(SpigotAPI.getDefaultStatus());
     }
 
