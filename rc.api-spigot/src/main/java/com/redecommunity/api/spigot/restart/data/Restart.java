@@ -37,10 +37,11 @@ public class Restart {
 
         server.setStatus(4);
 
-        Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleAtFixedRate(
+        Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleWithFixedDelay(
                 () -> {
                     System.out.println("Que porra é essa");
                     if (System.currentTimeMillis() >= this.restartTime) {
+                        System.out.println("É pra cancelar essa porra aqui...");
                         this.cancel();
 
                         this.shutdown();
