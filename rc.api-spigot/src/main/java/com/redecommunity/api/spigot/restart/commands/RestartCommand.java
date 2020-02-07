@@ -39,5 +39,11 @@ public class RestartCommand extends CustomCommand {
         Restart restart = new Restart(time, 3);
 
         restart.start();
+
+        SpigotAPI.getInstance().setRestart(restart);
+
+        sender.sendMessage(
+                Helper.colorize(language.getMessage("restart.restarting"))
+        );
     }
 }
