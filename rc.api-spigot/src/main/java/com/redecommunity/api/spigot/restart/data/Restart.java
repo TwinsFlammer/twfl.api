@@ -27,7 +27,7 @@ public class Restart {
 
     private final Integer maxWarnings;
 
-    private Integer currentWarning;
+    private Integer currentWarning = maxWarnings;
 
     private static ScheduledFuture<?> scheduledFuture;
 
@@ -36,7 +36,6 @@ public class Restart {
         Server server = SpigotAPI.getCurrentServer();
 
         server.setStatus(4);
-
 
         Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleAtFixedRate(
                 () -> {
