@@ -70,10 +70,11 @@ public class SpigotAPI extends CommunityPlugin {
     }
 
     public static Integer getDefaultStatus() {
-
-        System.out.println(SpigotAPI.getInstance().getDataFolder() + File.separator + "configuration.json");
-
         try {
+            File folder = SpigotAPI.getInstance().getDataFolder();
+
+            if (!folder.exists()) folder.mkdirs();
+
             File file = new File(SpigotAPI.getInstance().getDataFolder() + File.separator + "configuration.json");
 
             if (!file.exists()) {
