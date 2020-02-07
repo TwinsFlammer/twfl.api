@@ -57,7 +57,7 @@ public class Restart {
                         }
                         System.out.println("bora lá...");
 
-                        Long warnTime = Restart.this.restartTime - System.currentTimeMillis() / Restart.this.currentWarning;
+                        Long warnTime = (Restart.this.restartTime - System.currentTimeMillis()) / Restart.this.currentWarning;
 
                         System.out.println(warnTime);
                         System.out.println(TimeFormatter.format(warnTime));
