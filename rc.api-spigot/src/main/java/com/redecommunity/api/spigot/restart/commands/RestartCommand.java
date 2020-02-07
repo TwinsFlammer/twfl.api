@@ -8,7 +8,6 @@ import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.server.data.Server;
-import com.redecommunity.common.shared.server.manager.ServerManager;
 import com.redecommunity.common.shared.util.Helper;
 import org.bukkit.command.CommandSender;
 
@@ -40,7 +39,5 @@ public class RestartCommand extends CustomCommand {
         Restart restart = new Restart(time, 3);
 
         restart.start();
-
-
     }
 }
