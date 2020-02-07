@@ -41,6 +41,6 @@ public class PluginFile {
     }
 
     private File loadFile() throws IOException {
-        return new File(SpigotAPI.getInstance().getDataFolder() + File.separator + "plugins.json");
+        return new File(SpigotAPI.getInstance().getDataFolder() + File.separator + "configuration.json");
     }
 }
