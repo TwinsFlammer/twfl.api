@@ -42,12 +42,10 @@ public class Restart {
 
         this.warnTimes = new Long[maxWarnings];
 
-        this.warnTimes[0] = 0L;
-
         Long startTime = Restart.this.restartTime - System.currentTimeMillis();
 
-        for (int i = 1; i < warnTimes.length; i++) {
-            warnTimes[i] = startTime / currentWarning;
+        for (int i = 0; i < warnTimes.length; i++) {
+            warnTimes[i] = startTime / currentWarning + 1;
 
             currentWarning--;
         }
