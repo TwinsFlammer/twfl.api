@@ -68,7 +68,7 @@ public class SpigotAPI extends CommunityPlugin {
 
     public static Integer getDefaultStatus() {
         try {
-            File file = new File(SpigotAPI.getInstance().getDataFolder() + File.separator + "plugins.json");
+            File file = new File(SpigotAPI.getInstance().getDataFolder() + File.separator + "configuration.json");
 
             if (!file.exists()) {
                 file.createNewFile();
