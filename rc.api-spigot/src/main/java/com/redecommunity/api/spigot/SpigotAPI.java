@@ -66,6 +66,8 @@ public class SpigotAPI extends CommunityPlugin {
     public static Server getCurrentServer() {
         String address = Bukkit.getIp();
 
+        System.out.println(address);
+
         if (address == null || address.equals("0.0.0.0") || address.equals("127.0.0.1")) {
             Printer.INFO.coloredPrint(
                     "&cNão é possível localizar o servidor com o ip 0.0.0.0, altere na server.properties"
