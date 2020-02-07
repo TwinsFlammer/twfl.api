@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 /**
  * Created by @SrGutyerrez
@@ -64,11 +65,17 @@ public class SpigotAPI extends CommunityPlugin {
     }
 
     public static Server getCurrentServer() {
+        final String[] defaultAddresses = new String[] {
+                "0.0.0.0",
+                "127.0.0.1",
+                ""
+        };
+
         String address = Bukkit.getIp();
 
-        System.out.println(address);
+        System.out.println("IP> " + address);
 
-        if (address == null || address.equals("0.0.0.0") || address.equals("127.0.0.1")) {
+        if (Arrays.asList(defaultAddresses).contains(address)) {
             Printer.INFO.coloredPrint(
                     "&cNão é possível localizar o servidor com o ip 0.0.0.0, altere na server.properties"
             );
