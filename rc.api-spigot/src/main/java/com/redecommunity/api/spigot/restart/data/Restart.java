@@ -53,7 +53,7 @@ public class Restart {
             System.out.println(TimeFormatter.format(warnTime));
         };
 
-        ScheduledFuture<?> capture = Common.getInstance().getScheduler().scheduleWithFixedDelay(
+        ScheduledFuture<?> capture = Common.getInstance().getScheduler().scheduleAtFixedRate(
                 runnable,
                 0,
                 1,
@@ -62,7 +62,7 @@ public class Restart {
 
         Restart.scheduledFuture = capture;
 
-        Common.getInstance().getScheduler().scheduleWithFixedDelay(
+        Common.getInstance().getScheduler().scheduleAtFixedRate(
                 runnable,
                 0,
                 1,
@@ -71,6 +71,7 @@ public class Restart {
     }
 
     public void cancel() {
+        System.out.println("cancelar...");
         Server server = SpigotAPI.getCurrentServer();
 
         Integer defaultStatus = SpigotAPI.getDefaultStatus();
