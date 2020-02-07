@@ -32,17 +32,20 @@ public class Restart {
     private static ScheduledFuture<?> scheduledFuture;
 
     public void start() {
+        System.out.println("Starta ae");
         Server server = SpigotAPI.getCurrentServer();
 
         server.setStatus(4);
 
         Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleAtFixedRate(
                 () -> {
+                    System.out.println("Que porra é essa");
                     if (System.currentTimeMillis() >= this.restartTime) {
                         this.cancel();
 
                         this.shutdown();
                     }
+                    System.out.println("bora lá...");
 
                     Long warnTime = this.restartTime - System.currentTimeMillis() / currentWarning;
 
