@@ -56,7 +56,7 @@ public class SpigotAPI extends CommunityPlugin {
 
         Server server = SpigotAPI.getCurrentServer();
 
-        server.setStatus(SpigotAPI.getDefaultStatus());
+        if (server != null) server.setStatus(SpigotAPI.getDefaultStatus());
     }
 
     @Override
@@ -73,12 +73,11 @@ public class SpigotAPI extends CommunityPlugin {
 
         String address = Bukkit.getIp();
 
-        System.out.println("IP> " + address);
-
         if (Arrays.asList(defaultAddresses).contains(address)) {
             Printer.INFO.coloredPrint(
                     "&cNão é possível localizar o servidor com o ip 0.0.0.0, altere na server.properties"
             );
+            return null;
         }
 
         Integer port = Bukkit.getPort();
