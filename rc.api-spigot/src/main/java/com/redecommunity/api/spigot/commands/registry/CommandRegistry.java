@@ -1,5 +1,6 @@
 package com.redecommunity.api.spigot.commands.registry;
 
+import com.google.common.collect.Lists;
 import com.redecommunity.api.spigot.CommunityPlugin;
 import com.redecommunity.api.spigot.commands.CustomCommand;
 import org.bukkit.Bukkit;
@@ -33,7 +34,7 @@ public class CommandRegistry {
 
             Map<String, Command> commands = (Map<String, Command>) knowCommandsField.get(simpleCommandMap);
 
-            simpleCommandMap.getCommands()
+            Lists.newArrayList(simpleCommandMap.getCommands())
                     .stream()
                     .filter(command -> command.getName().equalsIgnoreCase(customCommand.getName()))
                     .forEach(command -> {
