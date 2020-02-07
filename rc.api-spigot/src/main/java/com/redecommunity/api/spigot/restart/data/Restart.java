@@ -33,7 +33,6 @@ public class Restart {
     private static ScheduledFuture<?> scheduledFuture;
 
     public void start() {
-        System.out.println("Starta ae");
         Server server = SpigotAPI.getCurrentServer();
 
         server.setStatus(4);
@@ -45,7 +44,7 @@ public class Restart {
         Long startTime = Restart.this.restartTime - System.currentTimeMillis();
 
         for (int i = 0; i < warnTimes.length; i++) {
-            warnTimes[i] = startTime / currentWarning + 1;
+            warnTimes[i] = startTime / currentWarning + 2;
 
             currentWarning--;
         }
@@ -53,15 +52,12 @@ public class Restart {
         Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleAtFixedRate(
                 () -> {
                     try {
-                        System.out.println("Que porra é essa");
                         if (System.currentTimeMillis() >= this.restartTime) {
                             System.out.println("É pra cancelar essa porra aqui...");
                             this.cancel();
 
                             this.shutdown();
                         }
-                        System.out.println("bora lá...");
-
                         for (Long time : this.warnTimes) {
                             System.out.println(time + " => " + TimeFormatter.format(time));
                         }
