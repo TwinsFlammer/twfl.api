@@ -42,7 +42,7 @@ public class Restart {
 
         this.warnTimes = new Long[maxWarnings];
 
-        for (Integer i = 0; i < this.maxWarnings; i++)
+        for (Integer i = 1; i < this.maxWarnings; i++)
             this.warnTimes[i] = this.restartTime / i;
 
         Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleAtFixedRate(
