@@ -62,8 +62,9 @@ public class Restart {
                         System.out.println(warnTime);
                         System.out.println(TimeFormatter.format(warnTime));
 
-                        System.out.println(Restart.scheduledFuture.isDone());
-                        System.out.println(Restart.scheduledFuture.isCancelled());
+                        for (Long time : this.warnTimes) {
+                            System.out.println(time + " => " + TimeFormatter.format(time));
+                        }
                     } catch (Exception exception) {
                         exception.printStackTrace();
                     }
