@@ -36,7 +36,7 @@ public class RestartCommand extends CustomCommand {
 
         Long time = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(3);
 
-        Restart restart = new Restart(time, 5);
+        Restart restart = new Restart(time, 3);
 
         restart.start();
 
