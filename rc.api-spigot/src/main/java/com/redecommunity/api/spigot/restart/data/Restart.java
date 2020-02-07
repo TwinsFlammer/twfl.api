@@ -7,6 +7,7 @@ import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import com.redecommunity.common.shared.server.data.Server;
+import com.redecommunity.common.shared.util.TimeFormatter;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
@@ -24,6 +25,10 @@ public class Restart {
     @Getter
     private final Long restartTime;
 
+    private final Integer maxWarnings;
+
+    private Integer currentWarning;
+
     private static ScheduledFuture<?> scheduledFuture;
 
     public void start() {
@@ -38,6 +43,11 @@ public class Restart {
 
                         this.shutdown();
                     }
+
+                    Long warnTime = this.restartTime - System.currentTimeMillis() / currentWarning;
+
+                    System.out.println(warnTime);
+                    System.out.println(TimeFormatter.format(warnTime));
                 },
                 0,
                 1,
@@ -83,7 +93,7 @@ public class Restart {
         );
     }
 
-    private void broadcast() {
+    private void warn() {
 
     }
 }
