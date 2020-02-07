@@ -47,11 +47,10 @@ public class Restart {
             }
             System.out.println("bora lá...");
 
-            Long warnTime = this.restartTime - System.currentTimeMillis() / currentWarning;
+            Long warnTime = Restart.this.restartTime - System.currentTimeMillis() / currentWarning;
 
             System.out.println(warnTime);
             System.out.println(TimeFormatter.format(warnTime));
-
 
             System.out.println(Restart.scheduledFuture.isDone());
             System.out.println(Restart.scheduledFuture.isCancelled());
