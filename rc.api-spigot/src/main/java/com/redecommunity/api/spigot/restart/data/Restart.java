@@ -53,21 +53,14 @@ public class Restart {
             System.out.println(TimeFormatter.format(warnTime));
         };
 
-        ScheduledFuture<?> capture = Common.getInstance().getScheduler().scheduleAtFixedRate(
+        Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleAtFixedRate(
                 runnable,
                 0,
                 1,
                 TimeUnit.MILLISECONDS
         );
 
-        Restart.scheduledFuture = capture;
-
-        Common.getInstance().getScheduler().scheduleAtFixedRate(
-                runnable,
-                0,
-                1,
-                TimeUnit.MILLISECONDS
-        );
+        System.out.println(Restart.scheduledFuture.isDone());
     }
 
     public void cancel() {
