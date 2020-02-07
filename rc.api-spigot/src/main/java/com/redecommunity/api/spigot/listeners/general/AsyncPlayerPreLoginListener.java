@@ -29,7 +29,7 @@ public class AsyncPlayerPreLoginListener implements Listener {
 
         if (server == null) return;
 
-        String serverId = "0 || " + server.getId();
+        String serverId = "AND `server_id`=0 OR `server_id`=" + server.getId();
 
         Set<UserGroup> groups = userGroupDao.findAll(user.getId(), serverId);
 
