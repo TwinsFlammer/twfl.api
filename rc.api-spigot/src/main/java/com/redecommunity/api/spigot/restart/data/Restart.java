@@ -38,22 +38,26 @@ public class Restart {
         server.setStatus(4);
 
         Runnable runnable = () -> {
-            System.out.println("Que porra é essa");
-            if (System.currentTimeMillis() >= this.restartTime) {
-                System.out.println("É pra cancelar essa porra aqui...");
-                this.cancel();
+            try {
+                System.out.println("Que porra é essa");
+                if (System.currentTimeMillis() >= this.restartTime) {
+                    System.out.println("É pra cancelar essa porra aqui...");
+                    this.cancel();
 
-                this.shutdown();
+                    this.shutdown();
+                }
+                System.out.println("bora lá...");
+
+                Long warnTime = Restart.this.restartTime - System.currentTimeMillis() / currentWarning;
+
+                System.out.println(warnTime);
+                System.out.println(TimeFormatter.format(warnTime));
+
+                System.out.println(Restart.scheduledFuture.isDone());
+                System.out.println(Restart.scheduledFuture.isCancelled());
+            } catch (Exception exception) {
+                exception.printStackTrace();
             }
-            System.out.println("bora lá...");
-
-            Long warnTime = Restart.this.restartTime - System.currentTimeMillis() / currentWarning;
-
-            System.out.println(warnTime);
-            System.out.println(TimeFormatter.format(warnTime));
-
-            System.out.println(Restart.scheduledFuture.isDone());
-            System.out.println(Restart.scheduledFuture.isCancelled());
         };
 
         Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleAtFixedRate(
