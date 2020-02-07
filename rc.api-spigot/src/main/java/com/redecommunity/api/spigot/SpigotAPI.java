@@ -11,6 +11,7 @@ import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.server.manager.ServerManager;
+import com.redecommunity.common.shared.util.Printer;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.io.Charsets;
@@ -54,9 +55,6 @@ public class SpigotAPI extends CommunityPlugin {
 
         Server server = SpigotAPI.getCurrentServer();
 
-        System.out.println(ServerManager.getServers().size());
-        System.out.println(server == null );
-
         server.setStatus(SpigotAPI.getDefaultStatus());
     }
 
@@ -67,6 +65,13 @@ public class SpigotAPI extends CommunityPlugin {
 
     public static Server getCurrentServer() {
         String address = Bukkit.getIp();
+
+        if (address == null || address.equals("0.0.0.0")) {
+            Printer.INFO.coloredPrint(
+                    "&cNão é possível localizar o servidor com o ip 0.0.0.0, altere na server.properties"
+            );
+        }
+
         Integer port = Bukkit.getPort();
 
         return ServerManager.getServer(address, port);
