@@ -42,6 +42,8 @@ public class Restart {
 
         this.warnTimes = new Long[maxWarnings];
 
+        this.warnTimes[0] = 0L;
+
         for (Integer i = 1; i < this.maxWarnings; i++)
             this.warnTimes[i] = this.restartTime / i;
 
