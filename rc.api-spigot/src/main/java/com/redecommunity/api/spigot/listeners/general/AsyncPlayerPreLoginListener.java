@@ -27,7 +27,9 @@ public class AsyncPlayerPreLoginListener implements Listener {
 
         Server server = SpigotAPI.getCurrentServer();
 
-        String serverId = "00 || " + server.getId();
+        if (server == null) return;
+
+        String serverId = "0 || " + server.getId();
 
         Set<UserGroup> groups = userGroupDao.findAll(user.getId(), serverId);
 
