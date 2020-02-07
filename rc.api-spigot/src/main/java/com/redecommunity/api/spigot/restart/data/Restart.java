@@ -37,34 +37,33 @@ public class Restart {
 
         server.setStatus(4);
 
-        Runnable runnable = () -> {
-            try {
-                System.out.println("Que porra é essa");
-                if (System.currentTimeMillis() >= this.restartTime) {
-                    System.out.println("É pra cancelar essa porra aqui...");
-                    this.cancel();
-
-                    this.shutdown();
-                }
-                System.out.println("bora lá...");
-
-                Long warnTime = Restart.this.restartTime - System.currentTimeMillis() / currentWarning;
-
-                System.out.println(warnTime);
-                System.out.println(TimeFormatter.format(warnTime));
-
-                System.out.println(Restart.scheduledFuture.isDone());
-                System.out.println(Restart.scheduledFuture.isCancelled());
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-        };
 
         Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleAtFixedRate(
-                runnable,
+                () -> {
+                    try {
+                        System.out.println("Que porra é essa");
+                        if (System.currentTimeMillis() >= this.restartTime) {
+                            System.out.println("É pra cancelar essa porra aqui...");
+                            this.cancel();
+
+                            this.shutdown();
+                        }
+                        System.out.println("bora lá...");
+
+                        Long warnTime = Restart.this.restartTime - System.currentTimeMillis() / Restart.this.currentWarning;
+
+                        System.out.println(warnTime);
+                        System.out.println(TimeFormatter.format(warnTime));
+
+                        System.out.println(Restart.scheduledFuture.isDone());
+                        System.out.println(Restart.scheduledFuture.isCancelled());
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                    }
+                },
                 0,
                 1,
-                TimeUnit.MILLISECONDS
+                TimeUnit.SECONDS
         );
     }
 
