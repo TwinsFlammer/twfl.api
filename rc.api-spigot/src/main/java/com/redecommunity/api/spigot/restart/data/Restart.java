@@ -28,6 +28,7 @@ public class Restart {
     private final Integer maxWarnings;
 
     private Integer currentWarning;
+    private Long[] warnTimes;
 
     private static ScheduledFuture<?> scheduledFuture;
 
@@ -38,6 +39,11 @@ public class Restart {
         server.setStatus(4);
 
         this.currentWarning = this.maxWarnings;
+
+        this.warnTimes = new Long[maxWarnings];
+
+        for (Integer i = 0; i < this.maxWarnings; i++)
+            this.warnTimes[i] = this.restartTime / i;
 
         Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleAtFixedRate(
                 () -> {
