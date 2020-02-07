@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.redecommunity.api.spigot.SpigotAPI;
 import lombok.Getter;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import java.io.File;
@@ -31,7 +32,9 @@ public class PluginFile {
 
         FileReader fileReader = new FileReader(file);
 
-        JSONArray jsonArray = (JSONArray) JSONValue.parse(fileReader);
+        JSONObject jsonObject = (JSONObject) JSONValue.parse(fileReader);
+
+        JSONArray jsonArray = (JSONArray) jsonObject.get("plugins");
 
         jsonArray.forEach(o -> {
             File file1 = new File("/plugins/" + o);
