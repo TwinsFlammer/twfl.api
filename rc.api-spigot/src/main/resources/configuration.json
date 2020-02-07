@@ -1,3 +1,9 @@
 {
-  "current_status": 0
+  "current_status": 0,
+  "servers": [
+
+  ],
+  "plugins": [
+
+  ]
 }
