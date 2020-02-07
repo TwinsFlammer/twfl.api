@@ -7,7 +7,6 @@ import com.redecommunity.api.spigot.manager.StartManager;
 import com.redecommunity.api.spigot.reflection.Reflection;
 import com.redecommunity.api.spigot.restart.data.Restart;
 import com.redecommunity.api.spigot.updater.manager.UpdaterManager;
-import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import com.redecommunity.common.shared.server.data.Server;
@@ -76,7 +75,7 @@ public class SpigotAPI extends CommunityPlugin {
                 ByteSource byteSource = new ByteSource() {
                     @Override
                     public InputStream openStream() {
-                        return Common.getInstance().getResource("configuration.json");
+                        return SpigotAPI.getInstance().getResource("configuration.json");
                     }
                 };
 
