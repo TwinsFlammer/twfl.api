@@ -27,6 +27,8 @@ public class RestartCommand extends CustomCommand {
 
         Server server = SpigotAPI.getCurrentServer();
 
+        assert server != null;
+
         if (server.isRestarting()) {
             sender.sendMessage(
                     Helper.colorize(language.getMessage("restart.already_restarting"))
@@ -34,16 +36,16 @@ public class RestartCommand extends CustomCommand {
             return;
         }
 
-        Long time = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(3);
+        Long time = TimeUnit.MINUTES.toMillis(3);
 
-        Restart restart = new Restart(time, 3);
+        Restart restart = new Restart(System.currentTimeMillis(), time);
 
         restart.start();
 
         SpigotAPI.getInstance().setRestart(restart);
 
         sender.sendMessage(
-                Helper.colorize(language.getMessage("restart.restarting"))
+                Helper.colorize(language.getMessage("restart.started"))
         );
     }
 }
