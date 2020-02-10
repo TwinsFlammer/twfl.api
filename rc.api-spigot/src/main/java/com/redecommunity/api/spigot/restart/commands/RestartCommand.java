@@ -3,6 +3,7 @@ package com.redecommunity.api.spigot.restart.commands;
 import com.redecommunity.api.spigot.SpigotAPI;
 import com.redecommunity.api.spigot.commands.CustomCommand;
 import com.redecommunity.api.spigot.commands.enums.CommandRestriction;
+import com.redecommunity.api.spigot.restart.commands.argument.RestartCancelCommand;
 import com.redecommunity.api.spigot.restart.data.Restart;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.group.GroupNames;
@@ -19,6 +20,10 @@ import java.util.concurrent.TimeUnit;
 public class RestartCommand extends CustomCommand {
     public RestartCommand() {
         super("restart", CommandRestriction.ALL, GroupNames.MANAGER);
+
+        this.addArgument(
+                new RestartCancelCommand()
+        );
     }
 
     @Override
@@ -41,8 +46,6 @@ public class RestartCommand extends CustomCommand {
         Restart restart = new Restart(System.currentTimeMillis(), time);
 
         restart.start();
-
-        SpigotAPI.getInstance().setRestart(restart);
 
         sender.sendMessage(
                 Helper.colorize(language.getMessage("restart.started"))
