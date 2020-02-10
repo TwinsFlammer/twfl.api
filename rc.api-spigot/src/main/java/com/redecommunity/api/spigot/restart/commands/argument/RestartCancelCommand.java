@@ -31,7 +31,7 @@ public class RestartCancelCommand extends CustomArgumentCommand {
         }
 
         server.setStatus(SpigotAPI.getDefaultStatus());
-        restart.cancel();
+        restart.cancel(true);
 
         sender.sendMessage(
                 language.getMessage("restart.cancelled")
