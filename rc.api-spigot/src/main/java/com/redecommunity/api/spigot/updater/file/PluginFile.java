@@ -36,12 +36,10 @@ public class PluginFile {
 
         JSONArray jsonArray = (JSONArray) jsonObject.get("plugins");
 
-        File folder = SpigotAPI.getInstance().getDataFolder();
-
         jsonArray.forEach(o -> {
             System.out.println(o);
 
-            File file1 = new File(folder + "/plugins/" + o);
+            File file1 = new File("plugins/" + o);
 
             System.out.println(file1);
 
