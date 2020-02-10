@@ -22,44 +22,46 @@ import java.util.concurrent.TimeUnit;
  */
 @RequiredArgsConstructor
 public class Restart {
+    private final Long startTime;
     @Getter
     private final Long restartTime;
 
-    private final Integer maxWarnings;
+    private final Long[] warnTimes = new Long[]{
+            TimeUnit.SECONDS.toMillis(30),
+            TimeUnit.SECONDS.toMillis(60),
+            TimeUnit.SECONDS.toMillis(90)
+    };
 
-    private Integer currentWarning;
-    private Long[] warnTimes;
+    private Integer warnTime = warnTimes.length;
 
     private static ScheduledFuture<?> scheduledFuture;
 
     public void start() {
         Server server = SpigotAPI.getCurrentServer();
 
+        assert server != null;
+
         server.setStatus(4);
-
-        this.currentWarning = this.maxWarnings;
-
-        this.warnTimes = new Long[maxWarnings];
-
-        Long startTime = Restart.this.restartTime - System.currentTimeMillis();
-
-        for (int i = 0; i < warnTimes.length; i++) {
-            warnTimes[i] = startTime / currentWarning + 3;
-
-            currentWarning--;
-        }
 
         Restart.scheduledFuture = Common.getInstance().getScheduler().scheduleAtFixedRate(
                 () -> {
                     try {
-                        if (System.currentTimeMillis() >= this.restartTime) {
+                        Long currentTime = System.currentTimeMillis(),
+                                restartTime = this.startTime + this.restartTime;
+
+                        if (currentTime >= restartTime) {
                             System.out.println("É pra cancelar essa porra aqui...");
                             this.cancel();
 
                             this.shutdown();
                         }
-                        for (Long time : this.warnTimes) {
-                            System.out.println(time + " => " + TimeFormatter.format(time));
+
+                        Long currentWarningTime = this.startTime + this.warnTimes[this.warnTime];
+
+                        if (currentWarningTime <= restartTime) {
+                            this.warnTime--;
+
+                            this.warn();
                         }
                     } catch (Exception exception) {
                         exception.printStackTrace();
@@ -111,6 +113,15 @@ public class Restart {
     }
 
     private void warn() {
-
+        Bukkit.broadcastMessage(
+                String.format(
+                        "\n" +
+                                "§e * O servidor está reiniciando automaticamente" +
+                                "\n" +
+                                "§e * Restam apenas %s para o servidor ser desligado." +
+                                "\n\n",
+                        TimeFormatter.format(this.warnTimes[this.warnTime+1])
+                )
+        );
     }
 }
