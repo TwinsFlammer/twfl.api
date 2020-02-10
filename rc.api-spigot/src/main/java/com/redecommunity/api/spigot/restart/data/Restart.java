@@ -56,7 +56,7 @@ public class Restart {
                             this.shutdown();
                         }
 
-                        Long currentWarningTime = currentTime + this.warnTimes[this.warnTime];
+                        Long currentWarningTime = currentTime + this.warnTimes[this.warnTime + 1];
 
                         System.out.println(restartTime);
                         System.out.println(currentWarningTime);
