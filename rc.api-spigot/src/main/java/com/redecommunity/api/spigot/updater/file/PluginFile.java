@@ -39,7 +39,11 @@ public class PluginFile {
         File folder = SpigotAPI.getInstance().getDataFolder();
 
         jsonArray.forEach(o -> {
+            System.out.println(o);
+
             File file1 = new File(folder + "/plugins/" + o);
+
+            System.out.println(file1);
 
             this.files.add(file1);
         });
