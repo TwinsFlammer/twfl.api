@@ -2,6 +2,7 @@ package com.redecommunity.api.spigot.restart.data;
 
 import com.google.common.collect.Queues;
 import com.redecommunity.api.spigot.SpigotAPI;
+import com.redecommunity.api.spigot.restart.channel.RestartChannel;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.permissions.user.data.User;
@@ -12,6 +13,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.Queue;
 import java.util.concurrent.ScheduledFuture;
@@ -113,6 +116,14 @@ public class Restart {
         Common.getInstance().getScheduler().scheduleAtFixedRate(
                 () -> {
                     if (players.isEmpty()) {
+                        JSONObject jsonObject = SpigotAPI.getConfiguration();
+
+                        JSONArray jsonArray = (JSONArray) jsonObject.get("servers");
+
+                        RestartChannel restartChannel = new RestartChannel();
+
+                        restartChannel.sendMessage(jsonArray.toString());
+
                         Bukkit.getServer().shutdown();
                         return;
                     }
