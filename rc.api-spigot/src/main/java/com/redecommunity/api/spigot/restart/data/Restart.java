@@ -26,10 +26,13 @@ public class Restart {
     @Getter
     private final Long restartTime;
 
-    private final Long[] warnTimes = new Long[]{
+    private final Long[] warnTimes = new Long[] {
+            TimeUnit.SECONDS.toMillis(10),
             TimeUnit.SECONDS.toMillis(30),
             TimeUnit.SECONDS.toMillis(60),
-            TimeUnit.SECONDS.toMillis(90)
+            TimeUnit.SECONDS.toMillis(90),
+            TimeUnit.SECONDS.toMillis(120),
+            TimeUnit.SECONDS.toMillis(180)
     };
 
     private Integer warnTime = warnTimes.length - 1;
@@ -37,6 +40,8 @@ public class Restart {
     private static ScheduledFuture<?> scheduledFuture;
 
     public void start() {
+        SpigotAPI.getInstance().setRestart(this);
+
         Server server = SpigotAPI.getCurrentServer();
 
         assert server != null;
@@ -50,7 +55,6 @@ public class Restart {
                                 restartTime = this.startTime + this.restartTime;
 
                         if (currentTime >= restartTime) {
-                            System.out.println("É pra cancelar essa porra aqui...");
                             this.cancel();
 
                             this.shutdown();
@@ -59,9 +63,6 @@ public class Restart {
                         if (this.warnTime <= -1) return;
 
                         Long currentWarningTime = currentTime + this.warnTimes[this.warnTime];
-
-                        System.out.println(restartTime);
-                        System.out.println(currentWarningTime);
 
                         if (restartTime <= currentWarningTime) {
                             this.warnTime--;
@@ -79,7 +80,6 @@ public class Restart {
     }
 
     public void cancel() {
-        System.out.println("cancelar...");
         Server server = SpigotAPI.getCurrentServer();
 
         Integer defaultStatus = SpigotAPI.getDefaultStatus();
@@ -92,6 +92,14 @@ public class Restart {
     }
 
     private void shutdown() {
+        Bukkit.broadcastMessage(
+                "\n" +
+                "§e * O servidor será reiniciado automaticamente." +
+                "\n" +
+                "§e * Você será desconectado em breve para proseguirmos a reinicialização." +
+                "\n\n§r"
+        );
+
         Queue<Player> players = Queues.newLinkedBlockingDeque(Bukkit.getOnlinePlayers());
 
         Common.getInstance().getScheduler().scheduleAtFixedRate(
@@ -121,10 +129,10 @@ public class Restart {
         Bukkit.broadcastMessage(
                 String.format(
                         "\n" +
-                                "§e * O servidor está reiniciando automaticamente" +
-                                "\n" +
-                                "§e * Restam apenas %s para o servidor ser desligado." +
-                                "\n\n",
+                        "§e * O servidor está reiniciando automaticamente" +
+                        "\n" +
+                        "§e * Restam apenas %s para o servidor ser desligado." +
+                        "\n\n§r",
                         TimeFormatter.format(this.warnTimes[this.warnTime+1])
                 )
         );
