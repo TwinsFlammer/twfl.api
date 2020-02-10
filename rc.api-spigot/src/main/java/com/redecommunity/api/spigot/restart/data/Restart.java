@@ -98,7 +98,7 @@ public class Restart {
                             "§c * O reinício automatico foi cancelado." +
                             "\n" +
                             "§c * Um membro da equipe cancelou o reinício." +
-                            "\n\n§r"
+                            "\n\n§r "
             );
     }
 
@@ -108,7 +108,7 @@ public class Restart {
                 "§e * O servidor será reiniciado automaticamente." +
                 "\n" +
                 "§e * Você será desconectado em breve para proseguirmos a reinicialização." +
-                "\n\n§r"
+                "\n\n§r "
         );
 
         Queue<Player> players = Queues.newLinkedBlockingDeque(Bukkit.getOnlinePlayers());
@@ -151,7 +151,7 @@ public class Restart {
                         "§e * O servidor está reiniciando automaticamente" +
                         "\n" +
                         "§e * Restam apenas %s para o servidor ser desligado." +
-                        "\n\n§r",
+                        "\n\n§r ",
                         TimeFormatter.format(this.warnTimes[this.warnTime+1])
                 )
         );
