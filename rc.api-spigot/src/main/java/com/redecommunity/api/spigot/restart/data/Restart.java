@@ -58,7 +58,7 @@ public class Restart {
 
                         Long currentWarningTime = this.startTime + this.warnTimes[this.warnTime];
 
-                        if (currentWarningTime <= restartTime) {
+                        if (restartTime <= currentWarningTime) {
                             this.warnTime--;
 
                             this.warn();
