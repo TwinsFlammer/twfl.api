@@ -32,7 +32,7 @@ public class Restart {
             TimeUnit.SECONDS.toMillis(90)
     };
 
-    private Integer warnTime = warnTimes.length;
+    private Integer warnTime = warnTimes.length - 1;
 
     private static ScheduledFuture<?> scheduledFuture;
 
