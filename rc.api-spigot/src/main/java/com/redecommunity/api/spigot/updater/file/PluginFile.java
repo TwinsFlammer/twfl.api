@@ -37,11 +37,7 @@ public class PluginFile {
         JSONArray jsonArray = (JSONArray) jsonObject.get("plugins");
 
         jsonArray.forEach(o -> {
-            System.out.println(o);
-
             File file1 = new File("plugins/" + o);
-
-            System.out.println(file1);
 
             this.files.add(file1);
         });
