@@ -65,7 +65,7 @@ public class SpigotAPI extends CommunityPlugin {
     }
 
     public static Server getCurrentServer() {
-        final String[] defaultAddresses = new String[] {
+        final String[] defaultAddresses = new String[]{
                 "0.0.0.0",
                 "127.0.0.1",
                 ""
@@ -89,7 +89,14 @@ public class SpigotAPI extends CommunityPlugin {
     }
 
     public static Integer getDefaultStatus() {
+        JSONObject jsonObject = SpigotAPI.getConfiguration();
+
+        return ((Long) jsonObject.get("default_status")).intValue();
+    }
+
+    public static JSONObject getConfiguration() {
         try {
+
             File folder = SpigotAPI.getInstance().getDataFolder();
 
             if (!folder.exists()) folder.mkdirs();
@@ -113,9 +120,7 @@ public class SpigotAPI extends CommunityPlugin {
 
             FileReader fileReader = new FileReader(file);
 
-            JSONObject jsonObject = (JSONObject) JSONValue.parse(fileReader);
-
-            return ((Long) jsonObject.get("default_status")).intValue();
+            return (JSONObject) JSONValue.parse(fileReader);
         } catch (IOException exception) {
             exception.printStackTrace();
 
