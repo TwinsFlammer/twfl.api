@@ -1,5 +1,6 @@
 package com.redecommunity.api.spigot.manager;
 
+import com.redecommunity.api.shared.connection.manager.ProxyServerManager;
 import com.redecommunity.api.spigot.SpigotAPI;
 import com.redecommunity.api.spigot.commands.CustomCommand;
 import com.redecommunity.api.spigot.commands.registry.CommandRegistry;
@@ -54,6 +55,10 @@ class ListenerManager {
 
 class DataManager {
     DataManager() {
+        new ProxyServerManager(
+                null,
+                null
+        );
         new CustomInventoryManager();
     }
 }
