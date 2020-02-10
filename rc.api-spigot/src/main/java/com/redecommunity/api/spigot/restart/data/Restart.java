@@ -55,7 +55,7 @@ public class Restart {
                                 restartTime = this.startTime + this.restartTime;
 
                         if (currentTime >= restartTime) {
-                            this.cancel();
+                            this.cancel(false);
 
                             this.shutdown();
                         }
@@ -79,7 +79,7 @@ public class Restart {
         );
     }
 
-    public void cancel() {
+    public void cancel(Boolean force) {
         Server server = SpigotAPI.getCurrentServer();
 
         Integer defaultStatus = SpigotAPI.getDefaultStatus();
@@ -89,6 +89,14 @@ public class Restart {
         ScheduledFuture<?> scheduledFuture = Restart.scheduledFuture;
 
         scheduledFuture.cancel(true);
+
+        if (force) Bukkit.broadcastMessage(
+                    "\n" +
+                            "§c * O reinício automatico foi cancelado." +
+                            "\n" +
+                            "§c * Um membro da equipe cancelou o reinício." +
+                            "\n\n§r"
+            );
     }
 
     private void shutdown() {
