@@ -1,7 +1,7 @@
-package com.redecommunity.api.spigot.teleport.event;
+package com.redefocus.api.spigot.teleport.event;
 
-import com.redecommunity.api.spigot.event.CommunityEvent;
-import com.redecommunity.api.spigot.teleport.data.TeleportRequest;
+import com.redefocus.api.spigot.event.CommunityEvent;
+import com.redefocus.api.spigot.teleport.data.TeleportRequest;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.event.Cancellable;
