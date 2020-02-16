@@ -1,13 +1,13 @@
-package com.redecommunity.api.spigot.skin.command;
+package com.redefocus.api.spigot.skin.command;
 
-import com.redecommunity.api.spigot.commands.CustomCommand;
-import com.redecommunity.api.spigot.commands.enums.CommandRestriction;
-import com.redecommunity.api.spigot.skin.command.argument.SkinHelpCommand;
-import com.redecommunity.api.spigot.skin.command.argument.SkinRefreshCommand;
-import com.redecommunity.api.spigot.skin.inventory.SkinInventory;
-import com.redecommunity.api.spigot.skin.manager.SkinManager;
-import com.redecommunity.common.shared.language.enums.Language;
-import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redefocus.api.spigot.commands.CustomCommand;
+import com.redefocus.api.spigot.commands.enums.CommandRestriction;
+import com.redefocus.api.spigot.skin.command.argument.SkinHelpCommand;
+import com.redefocus.api.spigot.skin.command.argument.SkinRefreshCommand;
+import com.redefocus.api.spigot.skin.inventory.SkinInventory;
+import com.redefocus.api.spigot.skin.manager.SkinManager;
+import com.redefocus.common.shared.language.enums.Language;
+import com.redefocus.common.shared.permissions.user.data.User;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
