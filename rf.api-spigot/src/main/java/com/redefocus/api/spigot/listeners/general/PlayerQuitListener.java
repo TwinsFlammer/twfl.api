@@ -1,6 +1,6 @@
-package com.redecommunity.api.spigot.listeners.general;
+package com.redefocus.api.spigot.listeners.general;
 
-import com.redecommunity.api.spigot.SpigotAPI;
+import com.redefocus.api.spigot.SpigotAPI;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import org.bukkit.entity.Player;
