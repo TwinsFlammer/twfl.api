@@ -1,8 +1,8 @@
-package com.redecommunity.api.spigot.inventory;
+package com.redefocus.api.spigot.inventory;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.redecommunity.api.spigot.inventory.item.CustomItem;
+import com.redefocus.api.spigot.inventory.item.CustomItem;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Material;
