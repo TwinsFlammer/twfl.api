@@ -1,4 +1,4 @@
-package com.redecommunity.api.bungeecord.commands.enums;
+package com.redefocus.api.bungeecord.commands.enums;
 
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
