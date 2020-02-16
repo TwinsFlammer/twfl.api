@@ -1,13 +1,13 @@
-package com.redecommunity.api.bungeecord.manager;
+package com.redefocus.api.bungeecord.manager;
 
-import com.redecommunity.api.bungeecord.BungeeAPI;
-import com.redecommunity.api.bungeecord.commands.CustomCommand;
-import com.redecommunity.api.bungeecord.commands.registry.CommandRegistry;
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
-import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListener;
-import com.redecommunity.common.shared.util.ClassGetter;
+import com.redefocus.api.bungeecord.BungeeAPI;
+import com.redefocus.api.bungeecord.commands.CustomCommand;
+import com.redefocus.api.bungeecord.commands.registry.CommandRegistry;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.databases.mysql.dao.Table;
+import com.redefocus.common.shared.databases.redis.channel.data.Channel;
+import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
+import com.redefocus.common.shared.util.ClassGetter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Listener;
 
