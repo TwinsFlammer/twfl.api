@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.commands.enums;
+package com.redefocus.api.spigot.commands.enums;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
