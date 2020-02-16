@@ -1,13 +1,13 @@
-package com.redecommunity.api.spigot.skin.inventory;
+package com.redefocus.api.spigot.skin.inventory;
 
-import com.redecommunity.api.spigot.inventory.CustomPaginateInventory;
-import com.redecommunity.api.spigot.inventory.item.BlockColor;
-import com.redecommunity.api.spigot.inventory.item.CustomItem;
-import com.redecommunity.api.spigot.skin.command.argument.SkinHelpCommand;
-import com.redecommunity.api.spigot.skin.manager.SkinManager;
-import com.redecommunity.common.shared.language.enums.Language;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.api.spigot.inventory.CustomPaginateInventory;
+import com.redefocus.api.spigot.inventory.item.BlockColor;
+import com.redefocus.api.spigot.inventory.item.CustomItem;
+import com.redefocus.api.spigot.skin.command.argument.SkinHelpCommand;
+import com.redefocus.api.spigot.skin.manager.SkinManager;
+import com.redefocus.common.shared.language.enums.Language;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
