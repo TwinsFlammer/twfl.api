@@ -1,9 +1,9 @@
-package com.redecommunity.api.spigot.skin.listeners;
+package com.redefocus.api.spigot.skin.listeners;
 
-import com.redecommunity.api.spigot.skin.manager.SkinManager;
-import com.redecommunity.common.shared.language.enums.Language;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.api.spigot.skin.manager.SkinManager;
+import com.redefocus.common.shared.language.enums.Language;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
