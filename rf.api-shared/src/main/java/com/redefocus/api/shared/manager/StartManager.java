@@ -1,12 +1,12 @@
-package com.redecommunity.api.shared.manager;
+package com.redefocus.api.shared.manager;
 
-import com.redecommunity.api.shared.API;
-import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
-import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListener;
-import com.redecommunity.common.shared.util.ClassGetter;
+import com.redefocus.api.shared.API;
+import com.redefocus.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.databases.mysql.dao.Table;
+import com.redefocus.common.shared.databases.redis.channel.data.Channel;
+import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
+import com.redefocus.common.shared.util.ClassGetter;
 
 /**
  * Created by @SrGutyerrez
