@@ -1,5 +1,5 @@
 name: Api
-main: com.redecommunity.api.spigot.SpigotAPI
+main: com.redefocus.api.spigot.SpigotAPI
 version: 1.0-SNAPSHOT
 author: Gutyerrez
 depend:
