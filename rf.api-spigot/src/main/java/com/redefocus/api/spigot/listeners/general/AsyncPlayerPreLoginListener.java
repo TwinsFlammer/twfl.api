@@ -1,11 +1,11 @@
-package com.redecommunity.api.spigot.listeners.general;
+package com.redefocus.api.spigot.listeners.general;
 
-import com.redecommunity.api.spigot.SpigotAPI;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.group.dao.UserGroupDao;
-import com.redecommunity.common.shared.permissions.user.group.data.UserGroup;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
-import com.redecommunity.common.shared.server.data.Server;
+import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.group.dao.UserGroupDao;
+import com.redefocus.common.shared.permissions.user.group.data.UserGroup;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.server.data.Server;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
