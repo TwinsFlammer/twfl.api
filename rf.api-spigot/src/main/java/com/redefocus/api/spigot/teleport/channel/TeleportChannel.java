@@ -1,7 +1,7 @@
-package com.redecommunity.api.spigot.teleport.channel;
+package com.redefocus.api.spigot.teleport.channel;
 
-import com.redecommunity.api.spigot.teleport.manager.TeleportRequestManager;
-import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
+import com.redefocus.api.spigot.teleport.manager.TeleportRequestManager;
+import com.redefocus.common.shared.databases.redis.channel.data.Channel;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisDataException;
 
