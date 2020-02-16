@@ -1,9 +1,9 @@
-package com.redecommunity.api.spigot.preference.command;
+package com.redefocus.api.spigot.preference.command;
 
-import com.redecommunity.api.spigot.commands.CustomCommand;
-import com.redecommunity.api.spigot.commands.enums.CommandRestriction;
-import com.redecommunity.api.spigot.preference.inventory.ToggleInventory;
-import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redefocus.api.spigot.commands.CustomCommand;
+import com.redefocus.api.spigot.commands.enums.CommandRestriction;
+import com.redefocus.api.spigot.preference.inventory.ToggleInventory;
+import com.redefocus.common.shared.permissions.user.data.User;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
