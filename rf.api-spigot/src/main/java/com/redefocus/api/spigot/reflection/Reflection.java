@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.reflection;
+package com.redefocus.api.spigot.reflection;
 
 import com.google.common.collect.Maps;
 import lombok.Getter;
