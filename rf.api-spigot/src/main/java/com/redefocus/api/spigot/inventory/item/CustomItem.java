@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.inventory.item;
+package com.redefocus.api.spigot.inventory.item;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
