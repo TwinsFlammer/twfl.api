@@ -1,9 +1,9 @@
-package com.redecommunity.api.shared.commands.defaults.disable.manager;
+package com.redefocus.api.shared.commands.defaults.disable.manager;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.api.shared.commands.defaults.disable.dao.DisabledCommandDao;
-import com.redecommunity.api.shared.commands.defaults.disable.data.DisabledCommand;
-import com.redecommunity.common.shared.Common;
+import com.redefocus.api.shared.commands.defaults.disable.dao.DisabledCommandDao;
+import com.redefocus.api.shared.commands.defaults.disable.data.DisabledCommand;
+import com.redefocus.common.shared.Common;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
