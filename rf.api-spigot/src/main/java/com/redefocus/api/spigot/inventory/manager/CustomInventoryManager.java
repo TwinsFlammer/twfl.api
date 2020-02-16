@@ -1,7 +1,7 @@
-package com.redecommunity.api.spigot.inventory.manager;
+package com.redefocus.api.spigot.inventory.manager;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.api.spigot.inventory.CustomInventory;
+import com.redefocus.api.spigot.inventory.CustomInventory;
 import org.bukkit.entity.Player;
 
 import java.util.List;
