@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.book.exception;
+package com.redefocus.api.spigot.book.exception;
 
 /**
  * Created by @SrGutyerrez
