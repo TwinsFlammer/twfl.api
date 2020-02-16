@@ -1,11 +1,11 @@
-package com.redecommunity.api.bungeecord.message.listeners;
+package com.redefocus.api.bungeecord.message.listeners;
 
-import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListener;
-import com.redecommunity.common.shared.databases.redis.handler.annonation.ChannelName;
-import com.redecommunity.common.shared.databases.redis.handler.event.JedisMessageEvent;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
-import com.redecommunity.common.shared.util.Constants;
+import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
+import com.redefocus.common.shared.databases.redis.handler.annonation.ChannelName;
+import com.redefocus.common.shared.databases.redis.handler.event.JedisMessageEvent;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.util.Constants;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import org.json.simple.JSONObject;
