@@ -1,8 +1,8 @@
-package com.redecommunity.api.spigot.skin.command.argument;
+package com.redefocus.api.spigot.skin.command.argument;
 
-import com.redecommunity.api.spigot.commands.CustomArgumentCommand;
-import com.redecommunity.common.shared.language.enums.Language;
-import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redefocus.api.spigot.commands.CustomArgumentCommand;
+import com.redefocus.common.shared.language.enums.Language;
+import com.redefocus.common.shared.permissions.user.data.User;
 import org.bukkit.command.CommandSender;
 
 /**
