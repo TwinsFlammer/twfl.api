@@ -1,10 +1,10 @@
-package com.redecommunity.api.shared.connection.manager;
+package com.redefocus.api.shared.connection.manager;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.api.shared.connection.dao.ProxyServerDao;
-import com.redecommunity.api.shared.connection.data.ProxyServer;
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redefocus.api.shared.connection.dao.ProxyServerDao;
+import com.redefocus.api.shared.connection.data.ProxyServer;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.permissions.user.data.User;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
