@@ -1,8 +1,8 @@
-package com.redecommunity.api.spigot.updater.manager;
+package com.redefocus.api.spigot.updater.manager;
 
-import com.redecommunity.api.spigot.updater.file.PluginFile;
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.updater.data.Updater;
+import com.redefocus.api.spigot.updater.file.PluginFile;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.updater.data.Updater;
 
 import java.io.IOException;
 
