@@ -1,4 +1,4 @@
-package com.redecommunity.api.shared.commands.defaults.disable.data;
+package com.redefocus.api.shared.commands.defaults.disable.data;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
