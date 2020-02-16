@@ -1,7 +1,7 @@
-package com.redecommunity.api.bungeecord;
+package com.redefocus.api.bungeecord;
 
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.updater.data.Updater;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.updater.data.Updater;
 import lombok.RequiredArgsConstructor;
 import net.md_5.bungee.api.plugin.Plugin;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by @SrGutyerrez
  */
 @RequiredArgsConstructor
-public abstract class CommunityPlugin extends Plugin {
+public abstract class FocusPlugin extends Plugin {
     @Override
     public void onLoad() {
     }
