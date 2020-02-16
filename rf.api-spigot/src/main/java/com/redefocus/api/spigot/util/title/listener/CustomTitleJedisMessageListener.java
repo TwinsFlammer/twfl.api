@@ -1,12 +1,12 @@
-package com.redecommunity.api.spigot.util.title.listener;
+package com.redefocus.api.spigot.util.title.listener;
 
-import com.redecommunity.api.spigot.util.title.data.CustomTitle;
-import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListener;
-import com.redecommunity.common.shared.databases.redis.handler.annonation.ChannelName;
-import com.redecommunity.common.shared.databases.redis.handler.event.JedisMessageEvent;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
-import com.redecommunity.common.shared.util.Constants;
+import com.redefocus.api.spigot.util.title.data.CustomTitle;
+import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
+import com.redefocus.common.shared.databases.redis.handler.annonation.ChannelName;
+import com.redefocus.common.shared.databases.redis.handler.event.JedisMessageEvent;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.util.Constants;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONObject;
