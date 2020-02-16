@@ -1,13 +1,13 @@
-package com.redecommunity.api.bungeecord;
+package com.redefocus.api.bungeecord;
 
-import com.redecommunity.api.bungeecord.manager.StartManager;
-import com.redecommunity.api.bungeecord.reflection.Reflection;
-import com.redecommunity.api.shared.API;
+import com.redefocus.api.bungeecord.manager.StartManager;
+import com.redefocus.api.bungeecord.reflection.Reflection;
+import com.redefocus.api.shared.API;
 
 /**
  * Created by @SrGutyerrez
  */
-public class BungeeAPI extends CommunityPlugin {
+public class BungeeAPI extends FocusPlugin {
     private static BungeeAPI instance;
 
     public BungeeAPI() {
