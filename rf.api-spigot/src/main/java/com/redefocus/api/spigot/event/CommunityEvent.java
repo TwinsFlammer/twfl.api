@@ -1,6 +1,6 @@
-package com.redecommunity.api.spigot.event;
+package com.redefocus.api.spigot.event;
 
-import com.redecommunity.api.spigot.teleport.event.UserTeleportEvent;
+import com.redefocus.api.spigot.teleport.event.UserTeleportEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
