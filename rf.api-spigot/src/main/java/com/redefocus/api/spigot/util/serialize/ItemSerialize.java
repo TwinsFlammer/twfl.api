@@ -1,7 +1,7 @@
-package com.redecommunity.api.spigot.util.serialize;
+package com.redefocus.api.spigot.util.serialize;
 
-import com.redecommunity.api.spigot.SpigotAPI;
-import com.redecommunity.api.spigot.reflection.Reflection;
+import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.api.spigot.reflection.Reflection;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
