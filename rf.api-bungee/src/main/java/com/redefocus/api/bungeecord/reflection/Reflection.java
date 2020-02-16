@@ -1,4 +1,4 @@
-package com.redecommunity.api.bungeecord.reflection;
+package com.redefocus.api.bungeecord.reflection;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
