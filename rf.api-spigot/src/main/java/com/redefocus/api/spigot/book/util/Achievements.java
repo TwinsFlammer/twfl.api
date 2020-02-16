@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.book.util;
+package com.redefocus.api.spigot.book.util;
 
 import org.bukkit.Achievement;
 
