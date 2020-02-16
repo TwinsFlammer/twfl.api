@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.util.serialize;
+package com.redefocus.api.spigot.util.serialize;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
