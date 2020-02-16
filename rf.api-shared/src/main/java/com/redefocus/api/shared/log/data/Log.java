@@ -1,4 +1,4 @@
-package com.redecommunity.api.shared.log.data;
+package com.redefocus.api.shared.log.data;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
