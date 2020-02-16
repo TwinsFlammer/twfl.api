@@ -1,11 +1,11 @@
-package com.redecommunity.api.spigot.restart.commands.argument;
+package com.redefocus.api.spigot.restart.commands.argument;
 
-import com.redecommunity.api.spigot.SpigotAPI;
-import com.redecommunity.api.spigot.commands.CustomArgumentCommand;
-import com.redecommunity.api.spigot.restart.data.Restart;
-import com.redecommunity.common.shared.language.enums.Language;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.server.data.Server;
+import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.api.spigot.commands.CustomArgumentCommand;
+import com.redefocus.api.spigot.restart.data.Restart;
+import com.redefocus.common.shared.language.enums.Language;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.server.data.Server;
 import org.bukkit.command.CommandSender;
 
 /**
