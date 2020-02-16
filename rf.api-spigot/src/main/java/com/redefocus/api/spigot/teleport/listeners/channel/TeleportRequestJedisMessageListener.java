@@ -1,11 +1,11 @@
-package com.redecommunity.api.spigot.teleport.listeners.channel;
+package com.redefocus.api.spigot.teleport.listeners.channel;
 
-import com.redecommunity.api.spigot.SpigotAPI;
-import com.redecommunity.api.spigot.teleport.data.TeleportRequest;
-import com.redecommunity.api.spigot.teleport.manager.TeleportRequestManager;
-import com.redecommunity.common.shared.databases.redis.handler.annonation.ChannelName;
-import com.redecommunity.common.shared.databases.redis.handler.event.JedisMessageEvent;
-import com.redecommunity.common.shared.server.data.Server;
+import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.api.spigot.teleport.data.TeleportRequest;
+import com.redefocus.api.spigot.teleport.manager.TeleportRequestManager;
+import com.redefocus.common.shared.databases.redis.handler.annonation.ChannelName;
+import com.redefocus.common.shared.databases.redis.handler.event.JedisMessageEvent;
+import com.redefocus.common.shared.server.data.Server;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
