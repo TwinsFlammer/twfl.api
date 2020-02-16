@@ -1,11 +1,11 @@
-package com.redecommunity.api.spigot.preference.inventory;
+package com.redefocus.api.spigot.preference.inventory;
 
-import com.redecommunity.api.spigot.inventory.CustomInventory;
-import com.redecommunity.api.spigot.inventory.CustomPaginateInventory;
-import com.redecommunity.api.spigot.inventory.item.CustomItem;
-import com.redecommunity.common.shared.permissions.group.GroupNames;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.preference.Preference;
+import com.redefocus.api.spigot.inventory.CustomInventory;
+import com.redefocus.api.spigot.inventory.CustomPaginateInventory;
+import com.redefocus.api.spigot.inventory.item.CustomItem;
+import com.redefocus.common.shared.permissions.group.GroupNames;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.preference.Preference;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
