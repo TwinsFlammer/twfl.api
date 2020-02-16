@@ -1,8 +1,8 @@
-package com.redecommunity.api.spigot.restart.channel;
+package com.redefocus.api.spigot.restart.channel;
 
-import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
-import com.redecommunity.common.shared.databases.redis.data.Redis;
-import com.redecommunity.common.shared.databases.redis.manager.RedisManager;
+import com.redefocus.common.shared.databases.redis.channel.data.Channel;
+import com.redefocus.common.shared.databases.redis.data.Redis;
+import com.redefocus.common.shared.databases.redis.manager.RedisManager;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisDataException;
 
