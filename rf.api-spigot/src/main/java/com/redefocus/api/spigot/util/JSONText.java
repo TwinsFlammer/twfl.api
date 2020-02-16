@@ -1,7 +1,7 @@
-package com.redecommunity.api.spigot.util;
+package com.redefocus.api.spigot.util;
 
-import com.redecommunity.api.spigot.SpigotAPI;
-import com.redecommunity.api.spigot.reflection.Reflection;
+import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.api.spigot.reflection.Reflection;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
