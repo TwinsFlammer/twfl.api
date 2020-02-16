@@ -1,15 +1,15 @@
-package com.redecommunity.api.spigot.manager;
+package com.redefocus.api.spigot.manager;
 
-import com.redecommunity.api.shared.connection.manager.ProxyServerManager;
-import com.redecommunity.api.spigot.SpigotAPI;
-import com.redecommunity.api.spigot.commands.CustomCommand;
-import com.redecommunity.api.spigot.commands.registry.CommandRegistry;
-import com.redecommunity.api.spigot.inventory.manager.CustomInventoryManager;
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
-import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListener;
-import com.redecommunity.common.shared.util.ClassGetter;
+import com.redefocus.api.shared.connection.manager.ProxyServerManager;
+import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.api.spigot.commands.CustomCommand;
+import com.redefocus.api.spigot.commands.registry.CommandRegistry;
+import com.redefocus.api.spigot.inventory.manager.CustomInventoryManager;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.databases.mysql.dao.Table;
+import com.redefocus.common.shared.databases.redis.channel.data.Channel;
+import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
+import com.redefocus.common.shared.util.ClassGetter;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
