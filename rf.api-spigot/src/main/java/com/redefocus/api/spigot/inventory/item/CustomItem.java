@@ -3,7 +3,7 @@ package com.redefocus.api.spigot.inventory.item;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
-import com.redecommunity.common.shared.util.Helper;
+import com.redefocus.common.shared.util.Helper;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.ChatColor;
