@@ -1,12 +1,12 @@
-package com.redecommunity.api.shared.connection.dao;
+package com.redefocus.api.shared.connection.dao;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.redecommunity.api.shared.connection.data.ProxyServer;
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.databases.redis.data.Redis;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.api.shared.connection.data.ProxyServer;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.databases.redis.data.Redis;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
