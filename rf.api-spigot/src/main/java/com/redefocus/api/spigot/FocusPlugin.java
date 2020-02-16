@@ -1,7 +1,7 @@
-package com.redecommunity.api.spigot;
+package com.redefocus.api.spigot;
 
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.updater.data.Updater;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.updater.data.Updater;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by @SrGutyerrez
  */
 @RequiredArgsConstructor
-public abstract class CommunityPlugin extends JavaPlugin {
+public abstract class FocusPlugin extends JavaPlugin {
     @Override
     public void onLoad() {
     }
