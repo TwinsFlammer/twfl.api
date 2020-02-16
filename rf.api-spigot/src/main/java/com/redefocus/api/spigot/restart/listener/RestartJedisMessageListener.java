@@ -1,10 +1,10 @@
-package com.redecommunity.api.spigot.restart.listener;
+package com.redefocus.api.spigot.restart.listener;
 
-import com.redecommunity.api.spigot.SpigotAPI;
-import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListener;
-import com.redecommunity.common.shared.databases.redis.handler.annonation.ChannelName;
-import com.redecommunity.common.shared.databases.redis.handler.event.JedisMessageEvent;
-import com.redecommunity.common.shared.server.data.Server;
+import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
+import com.redefocus.common.shared.databases.redis.handler.annonation.ChannelName;
+import com.redefocus.common.shared.databases.redis.handler.event.JedisMessageEvent;
+import com.redefocus.common.shared.server.data.Server;
 import org.bukkit.Bukkit;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
