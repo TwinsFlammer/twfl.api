@@ -1,6 +1,6 @@
-package com.redecommunity.api.bungeecord.util;
+package com.redefocus.api.bungeecord.util;
 
-import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.data.User;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.BaseComponent;
