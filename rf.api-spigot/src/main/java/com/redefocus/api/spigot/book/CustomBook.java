@@ -1,8 +1,8 @@
-package com.redecommunity.api.spigot.book;
+package com.redefocus.api.spigot.book;
 
-import com.redecommunity.api.spigot.book.event.CustomBookOpenEvent;
-import com.redecommunity.api.spigot.book.util.Achievements;
-import com.redecommunity.api.spigot.book.util.NmsBookHelper;
+import com.redefocus.api.spigot.book.event.CustomBookOpenEvent;
+import com.redefocus.api.spigot.book.util.Achievements;
+import com.redefocus.api.spigot.book.util.NmsBookHelper;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
