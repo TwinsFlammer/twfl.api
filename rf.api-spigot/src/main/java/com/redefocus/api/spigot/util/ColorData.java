@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.util;
+package com.redefocus.api.spigot.util;
 
 import lombok.RequiredArgsConstructor;
 import org.bukkit.ChatColor;
