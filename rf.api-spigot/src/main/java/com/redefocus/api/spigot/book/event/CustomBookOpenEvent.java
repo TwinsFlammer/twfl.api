@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.book.event;
+package com.redefocus.api.spigot.book.event;
 
 import lombok.Getter;
 import lombok.Setter;
