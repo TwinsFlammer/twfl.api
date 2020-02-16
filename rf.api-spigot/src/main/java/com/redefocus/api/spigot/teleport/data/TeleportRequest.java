@@ -1,11 +1,10 @@
-package com.redecommunity.api.spigot.teleport.data;
+package com.redefocus.api.spigot.teleport.data;
 
-import com.redecommunity.api.spigot.teleport.channel.TeleportChannel;
-import com.redecommunity.api.spigot.teleport.exception.InvalidTeleportTargetServerException;
-import com.redecommunity.api.spigot.util.serialize.LocationSerialize;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.server.data.Server;
-import com.redecommunity.common.shared.server.manager.ServerManager;
+import com.redefocus.api.spigot.teleport.channel.TeleportChannel;
+import com.redefocus.api.spigot.teleport.exception.InvalidTeleportTargetServerException;
+import com.redefocus.api.spigot.util.serialize.LocationSerialize;
+import com.redefocus.common.shared.server.data.Server;
+import com.redefocus.common.shared.server.manager.ServerManager;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Location;
@@ -17,7 +16,7 @@ import org.json.simple.JSONObject;
 @RequiredArgsConstructor
 @Getter
 public class TeleportRequest {
-    private final Integer userId;
+    private final Integer userId, targetId;
     private final Location targetLocation;
     private final Integer targetServerId;
     private final Long teleportTime;
@@ -28,11 +27,12 @@ public class TeleportRequest {
         if (server == null)
             throw new InvalidTeleportTargetServerException("Can\'t find the target server id: " + this.targetServerId);
 
-        String serializedLocation = LocationSerialize.toString(this.targetLocation);
+        String serializedLocation = targetLocation == null ? null : LocationSerialize.toString(this.targetLocation);
 
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("user_id", this.userId);
+        jsonObject.put("target_id", targetId);
         jsonObject.put("server_id", this.targetServerId);
         jsonObject.put("serialized_location", serializedLocation);
 
