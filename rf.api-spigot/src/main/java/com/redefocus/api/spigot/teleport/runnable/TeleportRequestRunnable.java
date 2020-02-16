@@ -1,8 +1,8 @@
-package com.redecommunity.api.spigot.teleport.runnable;
+package com.redefocus.api.spigot.teleport.runnable;
 
-import com.redecommunity.api.spigot.teleport.data.TeleportRequest;
-import com.redecommunity.api.spigot.teleport.exception.InvalidTeleportTargetServerException;
-import com.redecommunity.api.spigot.teleport.manager.TeleportRequestManager;
+import com.redefocus.api.spigot.teleport.data.TeleportRequest;
+import com.redefocus.api.spigot.teleport.exception.InvalidTeleportTargetServerException;
+import com.redefocus.api.spigot.teleport.manager.TeleportRequestManager;
 
 /**
  * Created by @SrGutyerrez
