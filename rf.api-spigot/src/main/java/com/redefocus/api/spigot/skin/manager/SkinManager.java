@@ -1,13 +1,13 @@
-package com.redecommunity.api.spigot.skin.manager;
+package com.redefocus.api.spigot.skin.manager;
 
 import com.google.common.collect.Maps;
-import com.redecommunity.api.spigot.book.CustomBook;
-import com.redecommunity.common.shared.language.enums.Language;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.skin.dao.SkinDao;
-import com.redecommunity.common.shared.skin.data.Skin;
-import com.redecommunity.common.shared.skin.factory.SkinFactory;
-import com.redecommunity.common.shared.util.TimeFormatter;
+import com.redefocus.api.spigot.book.CustomBook;
+import com.redefocus.common.shared.language.enums.Language;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.skin.dao.SkinDao;
+import com.redefocus.common.shared.skin.data.Skin;
+import com.redefocus.common.shared.skin.factory.SkinFactory;
+import com.redefocus.common.shared.util.TimeFormatter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
