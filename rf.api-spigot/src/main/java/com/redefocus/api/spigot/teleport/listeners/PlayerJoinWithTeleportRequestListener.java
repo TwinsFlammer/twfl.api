@@ -1,9 +1,9 @@
-package com.redecommunity.api.spigot.teleport.listeners;
+package com.redefocus.api.spigot.teleport.listeners;
 
-import com.redecommunity.api.spigot.teleport.data.TeleportRequest;
-import com.redecommunity.api.spigot.teleport.manager.TeleportRequestManager;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.api.spigot.teleport.data.TeleportRequest;
+import com.redefocus.api.spigot.teleport.manager.TeleportRequestManager;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
