@@ -1,9 +1,9 @@
-package com.redecommunity.api.spigot.teleport.manager;
+package com.redefocus.api.spigot.teleport.manager;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.api.spigot.teleport.data.TeleportRequest;
-import com.redecommunity.api.spigot.util.serialize.LocationSerialize;
-import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redefocus.api.spigot.teleport.data.TeleportRequest;
+import com.redefocus.api.spigot.util.serialize.LocationSerialize;
+import com.redefocus.common.shared.permissions.user.data.User;
 import org.bukkit.Location;
 import org.json.simple.JSONObject;
 
@@ -43,6 +43,7 @@ public class TeleportRequestManager {
 
         return new TeleportRequest(
                 userId,
+                null,
                 targetLocation,
                 targetServerId,
                 System.currentTimeMillis()
