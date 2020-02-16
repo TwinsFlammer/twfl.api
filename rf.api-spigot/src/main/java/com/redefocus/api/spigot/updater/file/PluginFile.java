@@ -1,7 +1,7 @@
-package com.redecommunity.api.spigot.updater.file;
+package com.redefocus.api.spigot.updater.file;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.api.spigot.SpigotAPI;
+import com.redefocus.api.spigot.SpigotAPI;
 import lombok.Getter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
