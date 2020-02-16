@@ -1,6 +1,6 @@
-package com.redecommunity.api.shared;
+package com.redefocus.api.shared;
 
-import com.redecommunity.api.shared.manager.StartManager;
+import com.redefocus.api.shared.manager.StartManager;
 
 /**
  * Created by @SrGutyerrez
