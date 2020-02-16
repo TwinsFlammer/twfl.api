@@ -1,9 +1,9 @@
-package com.redecommunity.api.spigot.inventory;
+package com.redefocus.api.spigot.inventory;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.redecommunity.api.spigot.inventory.item.CustomItem;
-import com.redecommunity.api.spigot.inventory.manager.CustomInventoryManager;
+import com.redefocus.api.spigot.inventory.item.CustomItem;
+import com.redefocus.api.spigot.inventory.manager.CustomInventoryManager;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.server.v1_8_R3.*;
