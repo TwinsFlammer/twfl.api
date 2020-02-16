@@ -1,7 +1,7 @@
-package com.redecommunity.api.spigot.inventory.listeners;
+package com.redefocus.api.spigot.inventory.listeners;
 
-import com.redecommunity.api.spigot.inventory.CustomInventory;
-import com.redecommunity.api.spigot.inventory.manager.CustomInventoryManager;
+import com.redefocus.api.spigot.inventory.CustomInventory;
+import com.redefocus.api.spigot.inventory.manager.CustomInventoryManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
