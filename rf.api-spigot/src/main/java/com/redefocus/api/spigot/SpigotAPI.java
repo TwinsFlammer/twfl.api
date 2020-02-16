@@ -1,21 +1,24 @@
-package com.redecommunity.api.spigot;
+package com.redefocus.api.spigot;
 
+import com.google.common.collect.Lists;
 import com.google.common.io.ByteSource;
 import com.google.common.io.Files;
-import com.redecommunity.api.shared.API;
-import com.redecommunity.api.spigot.manager.StartManager;
-import com.redecommunity.api.spigot.reflection.Reflection;
-import com.redecommunity.api.spigot.restart.data.Restart;
-import com.redecommunity.api.spigot.updater.manager.UpdaterManager;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
-import com.redecommunity.common.shared.server.data.Server;
-import com.redecommunity.common.shared.server.manager.ServerManager;
-import com.redecommunity.common.shared.util.Printer;
+import com.redefocus.api.shared.API;
+import com.redefocus.api.shared.connection.manager.ProxyServerManager;
+import com.redefocus.api.spigot.manager.StartManager;
+import com.redefocus.api.spigot.reflection.Reflection;
+import com.redefocus.api.spigot.restart.data.Restart;
+import com.redefocus.api.spigot.updater.manager.UpdaterManager;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.server.data.Server;
+import com.redefocus.common.shared.server.manager.ServerManager;
+import com.redefocus.common.shared.util.Printer;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.io.Charsets;
 import org.bukkit.Bukkit;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -24,11 +27,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by @SrGutyerrez
  */
-public class SpigotAPI extends CommunityPlugin {
+public class SpigotAPI extends FocusPlugin {
     @Getter
     private static SpigotAPI instance;
 
@@ -62,6 +67,24 @@ public class SpigotAPI extends CommunityPlugin {
     @Override
     public void onDisablePlugin() {
         new UpdaterManager();
+    }
+
+    public static List<User> getUsers() {
+        JSONArray jsonArray = (JSONArray) SpigotAPI.getConfiguration().get("servers");
+
+        List<Integer> servers = Lists.newArrayList();
+
+        Server server = SpigotAPI.getCurrentServer();
+
+        servers.add(server.getId());
+
+        jsonArray.forEach(o -> servers.add((Integer) o));
+
+        return ProxyServerManager.getUsers()
+                .stream()
+                .filter(user -> user.getServer() != null)
+                .filter(user -> servers.contains(user.getServer().getId()))
+                .collect(Collectors.toList());
     }
 
     public static Server getCurrentServer() {
