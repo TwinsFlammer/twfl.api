@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.util;
+package com.redefocus.api.spigot.util;
 
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
