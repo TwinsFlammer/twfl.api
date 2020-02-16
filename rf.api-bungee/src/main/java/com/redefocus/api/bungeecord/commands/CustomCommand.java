@@ -1,18 +1,18 @@
-package com.redecommunity.api.bungeecord.commands;
+package com.redefocus.api.bungeecord.commands;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.api.bungeecord.commands.enums.CommandRestriction;
-import com.redecommunity.api.shared.commands.defaults.disable.data.DisabledCommand;
-import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
-import com.redecommunity.api.shared.log.dao.LogDao;
-import com.redecommunity.api.shared.log.data.Log;
-import com.redecommunity.common.shared.language.enums.Language;
-import com.redecommunity.common.shared.permissions.group.data.Group;
-import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
-import com.redecommunity.common.shared.server.data.Server;
-import com.redecommunity.common.shared.util.Helper;
+import com.redefocus.api.bungeecord.commands.enums.CommandRestriction;
+import com.redefocus.api.shared.commands.defaults.disable.data.DisabledCommand;
+import com.redefocus.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
+import com.redefocus.api.shared.log.dao.LogDao;
+import com.redefocus.api.shared.log.data.Log;
+import com.redefocus.common.shared.language.enums.Language;
+import com.redefocus.common.shared.permissions.group.data.Group;
+import com.redefocus.common.shared.permissions.group.manager.GroupManager;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.server.data.Server;
+import com.redefocus.common.shared.util.Helper;
 import lombok.Getter;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
@@ -67,7 +67,7 @@ public abstract class CustomCommand extends Command {
             user.sendMessage(
                     String.format(
                             language.getMessage("messages.default_commands.invalid_group"),
-                            this.group.getColor() + this.group.getName()
+                            this.group.getFancyPrefix()
                     )
             );
             return;
