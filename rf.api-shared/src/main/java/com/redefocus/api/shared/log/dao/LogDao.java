@@ -1,7 +1,7 @@
-package com.redecommunity.api.shared.log.dao;
+package com.redefocus.api.shared.log.dao;
 
-import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.api.shared.log.data.Log;
+import com.redefocus.common.shared.databases.mysql.dao.Table;
+import com.redefocus.api.shared.log.data.Log;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
