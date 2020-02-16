@@ -1,12 +1,12 @@
-package com.redecommunity.api.spigot.skin.command.argument;
+package com.redefocus.api.spigot.skin.command.argument;
 
 import com.google.common.collect.Maps;
-import com.redecommunity.api.spigot.commands.CustomArgumentCommand;
-import com.redecommunity.common.shared.language.enums.Language;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.skin.dao.SkinDao;
-import com.redecommunity.common.shared.skin.data.Skin;
-import com.redecommunity.common.shared.skin.factory.SkinFactory;
+import com.redefocus.api.spigot.commands.CustomArgumentCommand;
+import com.redefocus.common.shared.language.enums.Language;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.skin.dao.SkinDao;
+import com.redefocus.common.shared.skin.data.Skin;
+import com.redefocus.common.shared.skin.factory.SkinFactory;
 import org.bukkit.command.CommandSender;
 
 import java.util.HashMap;
