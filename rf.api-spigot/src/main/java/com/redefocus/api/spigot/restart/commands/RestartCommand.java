@@ -1,15 +1,15 @@
-package com.redecommunity.api.spigot.restart.commands;
+package com.redefocus.api.spigot.restart.commands;
 
-import com.redecommunity.api.spigot.SpigotAPI;
-import com.redecommunity.api.spigot.commands.CustomCommand;
-import com.redecommunity.api.spigot.commands.enums.CommandRestriction;
-import com.redecommunity.api.spigot.restart.commands.argument.RestartCancelCommand;
-import com.redecommunity.api.spigot.restart.data.Restart;
-import com.redecommunity.common.shared.language.enums.Language;
-import com.redecommunity.common.shared.permissions.group.GroupNames;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.server.data.Server;
-import com.redecommunity.common.shared.util.Helper;
+import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.api.spigot.commands.CustomCommand;
+import com.redefocus.api.spigot.commands.enums.CommandRestriction;
+import com.redefocus.api.spigot.restart.commands.argument.RestartCancelCommand;
+import com.redefocus.api.spigot.restart.data.Restart;
+import com.redefocus.common.shared.language.enums.Language;
+import com.redefocus.common.shared.permissions.group.GroupNames;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.server.data.Server;
+import com.redefocus.common.shared.util.Helper;
 import org.bukkit.command.CommandSender;
 
 import java.util.concurrent.TimeUnit;
