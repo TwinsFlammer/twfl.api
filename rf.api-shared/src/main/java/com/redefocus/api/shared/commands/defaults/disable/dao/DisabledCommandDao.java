@@ -1,9 +1,9 @@
-package com.redecommunity.api.shared.commands.defaults.disable.dao;
+package com.redefocus.api.shared.commands.defaults.disable.dao;
 
 import com.google.common.collect.Sets;
-import com.redecommunity.api.shared.commands.defaults.disable.data.DisabledCommand;
-import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
-import com.redecommunity.common.shared.databases.mysql.dao.Table;
+import com.redefocus.api.shared.commands.defaults.disable.data.DisabledCommand;
+import com.redefocus.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
+import com.redefocus.common.shared.databases.mysql.dao.Table;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
