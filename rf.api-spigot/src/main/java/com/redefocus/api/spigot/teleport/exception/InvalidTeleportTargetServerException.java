@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.teleport.exception;
+package com.redefocus.api.spigot.teleport.exception;
 
 /**
  * Created by @SrGutyerrez
