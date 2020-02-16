@@ -1,14 +1,14 @@
-package com.redecommunity.api.spigot.restart.data;
+package com.redefocus.api.spigot.restart.data;
 
 import com.google.common.collect.Queues;
-import com.redecommunity.api.spigot.SpigotAPI;
-import com.redecommunity.api.spigot.restart.channel.RestartChannel;
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.language.enums.Language;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
-import com.redecommunity.common.shared.server.data.Server;
-import com.redecommunity.common.shared.util.TimeFormatter;
+import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.api.spigot.restart.channel.RestartChannel;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.language.enums.Language;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.server.data.Server;
+import com.redefocus.common.shared.util.TimeFormatter;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
