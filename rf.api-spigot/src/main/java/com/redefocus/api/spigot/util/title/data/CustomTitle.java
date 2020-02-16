@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.util.title.data;
+package com.redefocus.api.spigot.util.title.data;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
