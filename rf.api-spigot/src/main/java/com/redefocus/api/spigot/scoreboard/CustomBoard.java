@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.scoreboard;
+package com.redefocus.api.spigot.scoreboard;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Maps;
@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
-import com.redecommunity.common.shared.util.Helper;
+import com.redefocus.common.shared.util.Helper;
 import lombok.Getter;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
