@@ -43,7 +43,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>com.redecommunity:api-shared</include>
+                                    <include>${project.groupId}:api-shared</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
