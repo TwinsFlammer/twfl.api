@@ -6,6 +6,7 @@ import com.google.common.io.Files;
 import com.redefocus.api.shared.API;
 import com.redefocus.api.shared.connection.manager.ProxyServerManager;
 import com.redefocus.api.spigot.manager.StartManager;
+import com.redefocus.api.spigot.nametag.manager.NametagManager;
 import com.redefocus.api.spigot.reflection.Reflection;
 import com.redefocus.api.spigot.restart.data.Restart;
 import com.redefocus.api.spigot.updater.manager.UpdaterManager;
@@ -51,6 +52,9 @@ public class SpigotAPI extends FocusPlugin {
     @Getter
     private Restart restart;
 
+    @Getter
+    private NametagManager nametagManager;
+
     @Override
     public void onEnablePlugin() {
         this.reflection = new Reflection(this);
@@ -58,6 +62,8 @@ public class SpigotAPI extends FocusPlugin {
         new StartManager();
 
         this.api = new API();
+
+        this.nametagManager = new NametagManager();
 
         Server server = SpigotAPI.getCurrentServer();
 
