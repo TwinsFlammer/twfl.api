@@ -42,7 +42,6 @@ public class NametagManager {
         FakeTeam previous = getFakeTeam(player);
 
         if (previous != null && previous.isSimilar(prefix, suffix)) {
-            System.out.println(player + " already belongs to a similar team (" + previous.getName() + ")");
             return;
         }
 
@@ -51,13 +50,11 @@ public class NametagManager {
         FakeTeam joining = getFakeTeam(prefix, suffix);
         if (joining != null) {
             joining.addMember(player);
-            System.out.println("Using existing team for " + player);
         } else {
             joining = new FakeTeam(prefix, suffix, sortPriority, playerTag);
             joining.addMember(player);
             TEAMS.put(joining.getName(), joining);
             addTeamPackets(joining);
-            System.out.println("Created FakeTeam " + joining.getName() + ". Size: " + TEAMS.size());
         }
 
         Player adding = Bukkit.getPlayerExact(player);
@@ -69,8 +66,6 @@ public class NametagManager {
             addPlayerToTeamPackets(joining, offlinePlayer.getName());
             cache(offlinePlayer.getName(), joining);
         }
-
-        System.out.println(player + " has been added to team " + joining.getName());
     }
 
     public FakeTeam reset(String player) {
@@ -88,11 +83,9 @@ public class NametagManager {
                 delete = removePlayerFromTeamPackets(fakeTeam, toRemoveOffline.getName());
             }
 
-            System.out.println(player + " was removed from " + fakeTeam.getName());
             if (delete) {
                 removeTeamPackets(fakeTeam);
                 TEAMS.remove(fakeTeam.getName());
-                System.out.println("FakeTeam " + fakeTeam.getName() + " has been deleted. Size: " + TEAMS.size());
             }
         }
 
