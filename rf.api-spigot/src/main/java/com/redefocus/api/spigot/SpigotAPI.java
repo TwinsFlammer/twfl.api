@@ -159,6 +159,14 @@ public class SpigotAPI extends FocusPlugin {
         return null;
     }
 
+    public String getDefaultDatabaseName(String database) {
+        return String.format(
+                "%s_%d",
+                database,
+                SpigotAPI.getCurrentServer().getId()
+        );
+    }
+
     public static void unloadUser(User user) {
         UserManager.removeUser(user.getId());
     }
