@@ -159,7 +159,7 @@ public class SpigotAPI extends FocusPlugin {
         return null;
     }
 
-    public String getDefaultDatabaseName(String database) {
+    public static String getDefaultDatabaseName(String database) {
         return String.format(
                 "%s_%d",
                 database,
