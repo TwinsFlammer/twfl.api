@@ -33,7 +33,11 @@ public class CustomTitleJedisMessageListener implements JedisMessageListener {
 
         Player player = Bukkit.getPlayer(user.getUniqueId());
 
+        System.out.println(message);
+
         if (player == null) return;
+
+        System.out.println("Player existe.");
 
         CustomTitle.sendTitle(
                 player,
