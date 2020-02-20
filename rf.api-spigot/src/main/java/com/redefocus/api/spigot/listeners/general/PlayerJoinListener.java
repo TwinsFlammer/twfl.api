@@ -29,7 +29,7 @@ public class PlayerJoinListener implements Listener {
 
         nametagManager.setNametag(
                 player.getName(),
-                group.getPrefix(),
+                group.getColor() + group.getPrefix(),
                 group.getSuffix(),
                 group.getTabListListOrder()
         );
