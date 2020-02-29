@@ -7,6 +7,7 @@ import com.redecommunity.api.spigot.skin.command.argument.SkinRefreshCommand;
 import com.redecommunity.api.spigot.skin.inventory.SkinInventory;
 import com.redecommunity.api.spigot.skin.manager.SkinManager;
 import com.redecommunity.common.shared.language.enums.Language;
+import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -17,7 +18,7 @@ import org.bukkit.inventory.Inventory;
  */
 public class SkinCommand extends CustomCommand {
     public SkinCommand() {
-        super("skin", CommandRestriction.IN_GAME, "default");
+        super("skin", CommandRestriction.IN_GAME, GroupNames.DEFAULT);
 
         this.addArgument(
                 new SkinRefreshCommand(),
