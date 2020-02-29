@@ -6,6 +6,7 @@ import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCo
 import com.redecommunity.api.spigot.commands.CustomCommand;
 import com.redecommunity.api.spigot.commands.enums.CommandRestriction;
 import com.redecommunity.common.shared.language.enums.Language;
+import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import org.bukkit.command.CommandSender;
 
@@ -14,7 +15,7 @@ import org.bukkit.command.CommandSender;
  */
 public class EnableCommand extends CustomCommand {
     public EnableCommand() {
-        super("enable", CommandRestriction.ALL, "manager");
+        super("enable", CommandRestriction.ALL, GroupNames.MANAGER);
     }
 
     @Override
