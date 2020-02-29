@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 /**
  * Created by @SrGutyerrez
  */
-public class SpigotAPI extends FocusPlugin {
+public class SpigotAPI extends CommunityPlugin {
     @Getter
     private static SpigotAPI instance;
 
