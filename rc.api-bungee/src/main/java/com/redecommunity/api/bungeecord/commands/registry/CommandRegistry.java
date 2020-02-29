@@ -1,6 +1,6 @@
 package com.redecommunity.api.bungeecord.commands.registry;
 
-import com.redecommunity.api.bungeecord.FocusPlugin;
+import com.redecommunity.api.bungeecord.CommunityPlugin;
 import com.redecommunity.api.bungeecord.commands.CustomCommand;
 import net.md_5.bungee.api.ProxyServer;
 
@@ -8,9 +8,9 @@ import net.md_5.bungee.api.ProxyServer;
  * Created by @SrGutyerrez
  */
 public class CommandRegistry {
-    public static void registerCommand(FocusPlugin focusPlugin, CustomCommand customCommand) {
-        System.out.println("[CommandRegistry] Registering " + customCommand.getName() + " command by " + focusPlugin.getFile().getName() + ".");
+    public static void registerCommand(CommunityPlugin communityPlugin, CustomCommand customCommand) {
+        System.out.println("[CommandRegistry] Registering " + customCommand.getName() + " command by " + communityPlugin.getFile().getName() + ".");
 
-        ProxyServer.getInstance().getPluginManager().registerCommand(focusPlugin, customCommand);
+        ProxyServer.getInstance().getPluginManager().registerCommand(communityPlugin, customCommand);
     }
 }
