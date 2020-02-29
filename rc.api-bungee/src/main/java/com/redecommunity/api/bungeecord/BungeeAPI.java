@@ -7,7 +7,7 @@ import com.redecommunity.api.shared.API;
 /**
  * Created by @SrGutyerrez
  */
-public class BungeeAPI extends FocusPlugin {
+public class BungeeAPI extends CommunityPlugin {
     private static BungeeAPI instance;
 
     public BungeeAPI() {
