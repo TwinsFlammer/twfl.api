@@ -3,6 +3,7 @@ package com.redecommunity.api.spigot.preference.command;
 import com.redecommunity.api.spigot.commands.CustomCommand;
 import com.redecommunity.api.spigot.commands.enums.CommandRestriction;
 import com.redecommunity.api.spigot.preference.inventory.ToggleInventory;
+import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -12,7 +13,7 @@ import org.bukkit.entity.Player;
  */
 public class ToggleCommand extends CustomCommand {
     public ToggleCommand() {
-        super("toggle", CommandRestriction.IN_GAME, "default");
+        super("toggle", CommandRestriction.IN_GAME, GroupNames.DEFAULT);
     }
 
     @Override
