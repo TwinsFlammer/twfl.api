@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by @SrGutyerrez
  */
 @RequiredArgsConstructor
-public abstract class FocusPlugin extends JavaPlugin {
+public abstract class CommunityPlugin extends JavaPlugin {
     @Override
     public void onLoad() {
     }
