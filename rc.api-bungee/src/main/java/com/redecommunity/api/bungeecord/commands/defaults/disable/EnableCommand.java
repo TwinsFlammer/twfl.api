@@ -6,6 +6,7 @@ import com.redecommunity.api.shared.commands.defaults.disable.dao.DisabledComman
 import com.redecommunity.api.shared.commands.defaults.disable.data.DisabledCommand;
 import com.redecommunity.api.shared.commands.defaults.disable.manager.DisabledCommandManager;
 import com.redecommunity.common.shared.language.enums.Language;
+import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.user.data.User;
 
 /**
@@ -13,7 +14,7 @@ import com.redecommunity.common.shared.permissions.user.data.User;
  */
 public class EnableCommand extends CustomCommand {
     public EnableCommand() {
-        super("enable", CommandRestriction.ALL, "manager");
+        super("enable", CommandRestriction.ALL, GroupNames.MANAGER);
     }
 
     @Override
