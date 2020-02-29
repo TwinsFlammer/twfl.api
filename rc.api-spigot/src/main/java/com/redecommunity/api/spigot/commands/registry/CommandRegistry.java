@@ -1,7 +1,7 @@
 package com.redecommunity.api.spigot.commands.registry;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.api.spigot.FocusPlugin;
+import com.redecommunity.api.spigot.CommunityPlugin;
 import com.redecommunity.api.spigot.commands.CustomCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -15,8 +15,8 @@ import java.util.Map;
  * Created by @SrGutyerrez
  */
 public class CommandRegistry {
-    public static void registerCommand(FocusPlugin focusPlugin, CustomCommand customCommand) {
-        System.out.println("[CommandRegistry] Registering " + customCommand.getName() + " command by " + focusPlugin.getName() + ".");
+    public static void registerCommand(CommunityPlugin communityPlugin, CustomCommand customCommand) {
+        System.out.println("[CommandRegistry] Registering " + customCommand.getName() + " command by " + communityPlugin.getName() + ".");
 
         CraftServer craftServer = (CraftServer) Bukkit.getServer();
 
