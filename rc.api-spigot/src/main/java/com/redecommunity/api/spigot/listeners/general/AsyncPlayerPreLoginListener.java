@@ -33,6 +33,6 @@ public class AsyncPlayerPreLoginListener implements Listener {
 
         Set<UserGroup> groups = userGroupDao.findAll(user.getId(), serverId);
 
-        user.setGroups(groups);
+        user.getGroups().addAll(groups);
     }
 }
