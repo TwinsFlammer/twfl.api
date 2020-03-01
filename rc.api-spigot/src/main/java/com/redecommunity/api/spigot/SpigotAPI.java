@@ -10,6 +10,10 @@ import com.redecommunity.api.spigot.restart.data.Restart;
 import com.redecommunity.api.spigot.updater.manager.UpdaterManager;
 import com.redecommunity.api.shared.API;
 import com.redecommunity.api.shared.connection.manager.ProxyServerManager;
+import com.redecommunity.common.shared.Common;
+import com.redecommunity.common.shared.databases.manager.DatabaseManager;
+import com.redecommunity.common.shared.databases.mysql.data.MySQL;
+import com.redecommunity.common.shared.databases.mysql.manager.MySQLManager;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import com.redecommunity.common.shared.server.data.Server;
@@ -55,6 +59,9 @@ public class SpigotAPI extends CommunityPlugin {
     @Getter
     private NametagManager nametagManager;
 
+    @Getter
+    private static MySQL mySQL;
+
     @Override
     public void onEnablePlugin() {
         this.reflection = new Reflection(this);
@@ -68,6 +75,18 @@ public class SpigotAPI extends CommunityPlugin {
         Server server = SpigotAPI.getCurrentServer();
 
         if (server != null) server.setStatus(SpigotAPI.getDefaultStatus());
+
+        DatabaseManager databaseManager = Common.getInstance().getDatabaseManager();
+
+        MySQLManager mySQLManager = databaseManager.getMySQLManager();
+
+        String mysqlName = "server",
+                databaseName = this.getDefaultDatabaseName("server");
+
+        SpigotAPI.mySQL = mySQLManager.createConnection(
+                mysqlName,
+                databaseName
+        );
     }
 
     @Override
@@ -159,7 +178,7 @@ public class SpigotAPI extends CommunityPlugin {
         return null;
     }
 
-    public static String getDefaultDatabaseName(String database) {
+    public String getDefaultDatabaseName(String database) {
         return String.format(
                 "%s_%d",
                 database,
