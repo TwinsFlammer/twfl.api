@@ -37,4 +37,8 @@ public abstract class CommunityPlugin extends JavaPlugin {
     public abstract void onEnablePlugin();
 
     public abstract void onDisablePlugin();
+
+    public void log(String message) {
+        Common.getInstance().log(message);
+    }
 }
