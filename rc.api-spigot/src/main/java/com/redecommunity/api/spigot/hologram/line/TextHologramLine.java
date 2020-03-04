@@ -1,7 +1,7 @@
 package com.redecommunity.api.spigot.hologram.line;
 
 import com.comphenix.protocol.wrappers.WrappedDataWatcher;
-import com.redecommunity.api.spigot.hologram.HologramUtils;
+import com.redecommunity.api.spigot.hologram.factory.HologramFactory;
 import com.redecommunity.common.spigot.packet.wrapper.AbstractPacket;
 import com.redecommunity.common.spigot.packet.wrapper.WrapperPlayServerEntityMetadata;
 import com.redecommunity.common.spigot.packet.wrapper.WrapperPlayServerSpawnEntity;
@@ -42,7 +42,7 @@ public class TextHologramLine extends AbstractHologramLine {
     public void spawn(Location location) {
         super.spawn(location);
 
-        this.entity = HologramUtils.spawnArmorStand(location, (ArmorStand armorStand) -> {
+        this.entity = HologramFactory.spawnArmorStand(location, (ArmorStand armorStand) -> {
             armorStand.setVisible(false);
             armorStand.setMarker(true);
             registerEntity(armorStand);
