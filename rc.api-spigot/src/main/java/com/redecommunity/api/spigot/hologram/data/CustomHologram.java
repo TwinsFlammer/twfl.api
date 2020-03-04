@@ -105,6 +105,16 @@ public class CustomHologram {
                 });
     }
 
+    public void updateLines(String... lines) {
+        this.lines.forEach(abstractHologramLine -> {
+            Integer index = this.lines.indexOf(abstractHologramLine);
+
+            this.removeLine(index);
+        });
+
+        this.appendLines(lines);
+    }
+
     public boolean removeLine(int index) {
         AbstractHologramLine line = this.lines.remove(index);
 
