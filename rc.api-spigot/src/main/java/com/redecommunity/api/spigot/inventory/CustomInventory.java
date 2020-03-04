@@ -17,6 +17,7 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
 import java.util.*;
@@ -206,20 +207,24 @@ public class CustomInventory extends CraftInventory {
 
         event.setCancelled(this.cancelled);
 
-        Integer slot = event.getSlot();
+        Inventory clickedInventory = event.getClickedInventory();
 
-        CustomItem customItem = this.customItems.get(slot);
+        if (clickedInventory.equals(this)) {
+            Integer slot = event.getSlot();
 
-        if (customItem == null) return;
+            CustomItem customItem = this.customItems.get(slot);
 
-        if (customItem.isCancelled()) {
-            if (event.getClick() == ClickType.NUMBER_KEY) event.setCancelled(true);
+            if (customItem == null) return;
 
-            event.setCancelled(true);
+            if (customItem.isCancelled()) {
+                if (event.getClick() == ClickType.NUMBER_KEY) event.setCancelled(true);
+
+                event.setCancelled(true);
+            }
+
+            if (customItem.getInventoryClickEventConsumer() != null)
+                customItem.getInventoryClickEventConsumer().accept(event);
         }
-
-        if (customItem.getInventoryClickEventConsumer() != null)
-            customItem.getInventoryClickEventConsumer().accept(event);
     }
 
     public void onClose(InventoryCloseEvent event) {
