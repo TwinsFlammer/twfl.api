@@ -1,13 +1,14 @@
 package com.redecommunity.api.spigot.nametag.manager;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import com.redecommunity.api.spigot.nametag.packets.PacketWrapper;
 import com.redecommunity.api.spigot.nametag.data.FakeTeam;
+import com.redecommunity.common.shared.Common;
+import com.redecommunity.common.shared.permissions.group.data.Group;
+import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -18,6 +19,32 @@ import org.bukkit.entity.Player;
 public class NametagManager {
     private final HashMap<String, FakeTeam> TEAMS = new HashMap<>();
     private final HashMap<String, FakeTeam> CACHED_FAKE_TEAMS = new HashMap<>();
+
+    public NametagManager() {
+        Common.getInstance().getScheduler().scheduleAtFixedRate(
+                () -> {
+                    UserManager.getUsers()
+                            .stream()
+                            .filter(Objects::nonNull)
+                            .filter(User::isWaitingTabListRefresh)
+                            .forEach(user -> {
+                                Group group = user.getHighestGroup();
+
+                                Player player = Bukkit.getPlayer(user.getUniqueId());
+
+                                this.setNametag(
+                                        player.getName(),
+                                        group.getColor() + group.getPrefix(),
+                                        group.getSuffix(),
+                                        group.getTabListListOrder()
+                                );
+                            });
+                },
+                0,
+                5,
+                TimeUnit.SECONDS
+        );
+    }
 
     /**
      * Gets the current team given a prefix and suffix
