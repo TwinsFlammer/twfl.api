@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.hologram;
+package com.redecommunity.api.spigot.hologram.protocol;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.ListenerPriority;
@@ -9,6 +9,7 @@ import com.comphenix.protocol.wrappers.WrappedWatchableObject;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
+import com.redecommunity.api.spigot.hologram.factory.HologramFactory;
 import com.redecommunity.api.spigot.hologram.line.AbstractHologramLine;
 import com.redecommunity.api.spigot.hologram.line.TextHologramLine;
 import com.redecommunity.common.shared.util.Helper;
@@ -119,7 +120,7 @@ public class HologramProtocol extends PacketAdapter {
 
             for (WrappedWatchableObject object : entityMetadataPacket.getMetadata()) {
                 if (object.getIndex() == 2) {
-                    WrappedWatchableObject newObject = HologramUtils.buildWatchableObject(2, text);
+                    WrappedWatchableObject newObject = HologramFactory.buildWatchableObject(2, text);
                     objectList.add(newObject);
                 } else {
                     objectList.add(object);
