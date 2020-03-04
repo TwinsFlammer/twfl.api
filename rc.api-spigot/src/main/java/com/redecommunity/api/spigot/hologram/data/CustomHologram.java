@@ -1,4 +1,4 @@
-package com.redecommunity.api.spigot.hologram;
+package com.redecommunity.api.spigot.hologram.data;
 
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Ints;
