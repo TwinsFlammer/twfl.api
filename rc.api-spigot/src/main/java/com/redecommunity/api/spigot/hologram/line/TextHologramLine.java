@@ -2,6 +2,7 @@ package com.redecommunity.api.spigot.hologram.line;
 
 import com.comphenix.protocol.wrappers.WrappedDataWatcher;
 import com.redecommunity.api.spigot.hologram.factory.HologramFactory;
+import com.redecommunity.common.shared.util.Helper;
 import com.redecommunity.common.spigot.packet.wrapper.AbstractPacket;
 import com.redecommunity.common.spigot.packet.wrapper.WrapperPlayServerEntityMetadata;
 import com.redecommunity.common.spigot.packet.wrapper.WrapperPlayServerSpawnEntity;
@@ -52,10 +53,8 @@ public class TextHologramLine extends AbstractHologramLine {
             armorStand.setBasePlate(false);
             armorStand.setSmall(true);
             armorStand.setCustomNameVisible(true);
-            armorStand.setCustomName(ChatColor.GRAY + "Carregando...");
-
+            armorStand.setCustomName(Helper.colorize(this.text));
         });
-
     }
 
     @Override
