@@ -51,7 +51,7 @@ public class TextHologramLine extends AbstractHologramLine {
             armorStand.setArms(false);
             armorStand.setGravity(false);
             armorStand.setBasePlate(false);
-            armorStand.setSmall(true);
+            armorStand.setSmall(false);
             armorStand.setCustomNameVisible(true);
             armorStand.setCustomName(Helper.colorize(this.text));
         });
