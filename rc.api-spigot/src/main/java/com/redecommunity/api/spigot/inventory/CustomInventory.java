@@ -209,8 +209,8 @@ public class CustomInventory extends CraftInventory {
 
         Inventory clickedInventory = event.getClickedInventory();
 
-        if (clickedInventory.equals(this)) {
-            Integer slot = event.getSlot();
+//        if (clickedInventory.equals(this)) {
+            Integer slot = event.getRawSlot();
 
             CustomItem customItem = this.customItems.get(slot);
 
@@ -224,7 +224,7 @@ public class CustomInventory extends CraftInventory {
 
             if (customItem.getInventoryClickEventConsumer() != null)
                 customItem.getInventoryClickEventConsumer().accept(event);
-        }
+//        }
     }
 
     public void onClose(InventoryCloseEvent event) {
