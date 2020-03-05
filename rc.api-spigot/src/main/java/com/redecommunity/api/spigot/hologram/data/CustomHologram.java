@@ -13,6 +13,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -106,13 +107,21 @@ public class CustomHologram {
     }
 
     public void updateLines(String... lines) {
-        this.lines.forEach(abstractHologramLine -> {
-            Integer index = this.lines.indexOf(abstractHologramLine);
+        System.out.println("UPDATE");
 
-            this.removeLine(index);
-        });
+        Iterator<AbstractHologramLine> iterator = this.lines.iterator();
+
+        while (iterator.hasNext()) {
+            AbstractHologramLine abstractHologramLine = iterator.next();
+
+            abstractHologramLine.despawn();
+
+            iterator.remove();
+        }
 
         this.appendLines(lines);
+
+        System.out.println("Setei as linhas");
     }
 
     public boolean removeLine(int index) {
