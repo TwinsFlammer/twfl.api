@@ -34,7 +34,7 @@ public class CustomHologram {
     private long createTime = System.currentTimeMillis();
 
     public CustomHologram(Location location) {
-        this.location = location.clone().add(0, 1, 0);
+        this.location = location;
     }
 
     public CustomHologram(Location location, EnumHologramDirection direction) {
@@ -138,8 +138,6 @@ public class CustomHologram {
     public void spawn() {
         this.spawned = true;
         refreshLines();
-
-        this.teleport(this.location);
     }
 
     public void despawn() {
