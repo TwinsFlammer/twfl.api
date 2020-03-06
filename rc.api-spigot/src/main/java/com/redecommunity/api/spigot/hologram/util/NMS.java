@@ -1,27 +1,7 @@
 package com.redecommunity.api.spigot.hologram.util;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.redecommunity.common.shared.util.Helper;
-import net.minecraft.server.v1_8_R3.BlockPosition;
-import net.minecraft.server.v1_8_R3.Entity;
-import net.minecraft.server.v1_8_R3.EntityInsentient;
-import net.minecraft.server.v1_8_R3.EntityPlayer;
-import net.minecraft.server.v1_8_R3.EntityTypes;
-import net.minecraft.server.v1_8_R3.IChatBaseComponent;
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
-import net.minecraft.server.v1_8_R3.Packet;
-import net.minecraft.server.v1_8_R3.PacketPlayOutBlockBreakAnimation;
-import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
-import net.minecraft.server.v1_8_R3.PathfinderGoalSelector;
-import net.minecraft.server.v1_8_R3.World;
-import net.minecraft.server.v1_8_R3.WorldServer;
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -35,9 +15,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * @author Enzo
- */
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 public class NMS {
 
     public static void sendBreakAnimationPacket(Player player, Location location, int data) {
@@ -49,6 +34,7 @@ public class NMS {
 
     }
 
+    @SuppressWarnings("deprecation")
     public static void setBlockFast(Block block, Material material, short data) {
         net.minecraft.server.v1_8_R3.Chunk chunk = ((CraftChunk) block.getChunk()).getHandle();
         chunk.a(new BlockPosition(block.getX(), block.getY(), block.getZ()), net.minecraft.server.v1_8_R3.Block.getById(material.getId()).fromLegacyData(data));
@@ -71,8 +57,9 @@ public class NMS {
     }
 
     public static void sendMusicText(String text, Player... players) {
-        if (text != null)
+        if (text != null) {
             text = Helper.colorize(text);
+        }
 
         IChatBaseComponent comp = IChatBaseComponent.ChatSerializer.a("{\"text\":\"" + text + "\"}");
         PacketPlayOutChat packet = new PacketPlayOutChat(comp, (byte) 2);
@@ -125,7 +112,6 @@ public class NMS {
         ((EntityPlayer) ((CraftPlayer) player).getHandle()).playerConnection.sendPacket(packet);
     }
 
-    //
     public static void clearEntitySelectors(EntityInsentient entity) {
         clearGoalSelector(entity);
         clearTargetSelector(entity);
@@ -175,7 +161,8 @@ public class NMS {
      * cached it will attempt to get it from the given class.
      *
      * @param inSource The class which has the field
-     * @param inField  The field name
+     * @param inField The field name
+     *
      * @return The field
      */
     public static Field getOrRegisterField(Class<?> inSource, String inField) {
@@ -224,8 +211,9 @@ public class NMS {
      *
      * @param <T>
      * @param customEntityClass Classe da entidade custom
-     * @param entityClass       Classe na qual a entidade custom é baseada
-     * @param location          Local onde a entidade deve ser spawnada
+     * @param entityClass Classe na qual a entidade custom é baseada
+     * @param location Local onde a entidade deve ser spawnada
+     *
      * @return Retorna uma instancia de customEntityClass já spawnada no mundo
      */
     public static <T extends Entity> T spawnCustomEntity(Class<T> customEntityClass, Class<? extends Entity> entityClass, Location location) {
@@ -260,7 +248,8 @@ public class NMS {
      * Registra e spawna uma entidade custom no mundo
      *
      * @param customEntityClass Classe da entidade custom
-     * @param entityClass       Classe na qual a entidade custom é baseada
+     * @param entityClass Classe na qual a entidade custom é baseada
+     *
      */
     public static void registerCustomEntity(Class<? extends Entity> customEntityClass, Class<? extends Entity> entityClass) {
         try {
@@ -282,9 +271,9 @@ public class NMS {
      * Automatically clears internal maps first @see
      * ReflectionUtil#clearEntityType(String, int)
      *
-     * @param inClass class of the entity
-     * @param inName  minecraft entity name
-     * @param inID    minecraft entity id
+     * @param inClass	class of the entity
+     * @param inName	minecraft entity name
+     * @param inID	minecraft entity id
      */
     public static void registerEntityType(Class<?> inClass, String inName, int inID) {
         try {
@@ -323,7 +312,7 @@ public class NMS {
      * other maps are not touched and stay as they are.
      *
      * @param inName The internal name of the entity
-     * @param inID   The internal id of the entity
+     * @param inID The internal id of the entity
      */
     public static void clearEntityType(String inName, int inID) {
         try {
