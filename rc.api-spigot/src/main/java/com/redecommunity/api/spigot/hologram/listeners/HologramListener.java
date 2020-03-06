@@ -1,6 +1,6 @@
 package com.redecommunity.api.spigot.hologram.listeners;
 
-import com.redecommunity.api.spigot.hologram.HologramProtocol;
+import com.redecommunity.api.spigot.hologram.protocol.HologramProtocol;
 import com.redecommunity.api.spigot.hologram.line.AbstractHologramLine;
 import com.redecommunity.api.spigot.util.EntityUtil;
 import org.bukkit.entity.Entity;
