@@ -4,7 +4,7 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.google.common.collect.Lists;
 import com.google.common.io.ByteSource;
 import com.google.common.io.Files;
-import com.redecommunity.api.spigot.hologram.HologramProtocol;
+import com.redecommunity.api.spigot.hologram.protocol.HologramProtocol;
 import com.redecommunity.api.spigot.manager.StartManager;
 import com.redecommunity.api.spigot.nametag.manager.NametagManager;
 import com.redecommunity.api.spigot.reflection.Reflection;
