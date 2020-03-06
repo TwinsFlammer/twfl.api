@@ -1,7 +1,7 @@
 package com.redecommunity.api.spigot.hologram.line;
 
 import com.google.common.collect.Maps;
-import com.redecommunity.api.spigot.hologram.data.CustomHologram;
+import com.redecommunity.api.spigot.hologram.CustomHologram;
 import com.redecommunity.common.spigot.packet.wrapper.AbstractPacket;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
