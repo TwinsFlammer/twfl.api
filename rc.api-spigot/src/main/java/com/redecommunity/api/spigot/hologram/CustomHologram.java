@@ -1,9 +1,8 @@
-package com.redecommunity.api.spigot.hologram.data;
+package com.redecommunity.api.spigot.hologram;
 
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Ints;
 import com.redecommunity.api.spigot.hologram.line.AbstractHologramLine;
-import com.redecommunity.api.spigot.hologram.line.TextHologramLine;
 import com.redecommunity.api.spigot.hologram.touch.TouchEvent;
 import com.redecommunity.common.spigot.packet.wrapper.WrapperPlayServerEntityDestroy;
 import lombok.Getter;
@@ -12,8 +11,6 @@ import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,6 +48,7 @@ public class CustomHologram {
         boolean first = true;
 
         for (AbstractHologramLine hologramLine : lines) {
+
             if (first) {
                 first = false;
             } else {
@@ -97,33 +95,6 @@ public class CustomHologram {
         }
     }
 
-    public void appendLines(String... lines) {
-        Arrays.asList(lines)
-                .forEach(line -> {
-                    TextHologramLine textHologramLine = new TextHologramLine(line);
-
-                    this.appendLine(textHologramLine);
-                });
-    }
-
-    public void updateLines(String... lines) {
-        System.out.println("UPDATE");
-
-        Iterator<AbstractHologramLine> iterator = this.lines.iterator();
-
-        while (iterator.hasNext()) {
-            AbstractHologramLine abstractHologramLine = iterator.next();
-
-            abstractHologramLine.despawn();
-
-            iterator.remove();
-        }
-
-        this.appendLines(lines);
-
-        System.out.println("Setei as linhas");
-    }
-
     public boolean removeLine(int index) {
         AbstractHologramLine line = this.lines.remove(index);
 
@@ -167,6 +138,8 @@ public class CustomHologram {
     public void spawn() {
         this.spawned = true;
         refreshLines();
+
+        this.teleport(this.location);
     }
 
     public void despawn() {
