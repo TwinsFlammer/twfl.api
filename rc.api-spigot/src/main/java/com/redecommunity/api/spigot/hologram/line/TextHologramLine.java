@@ -1,18 +1,17 @@
 package com.redecommunity.api.spigot.hologram.line;
 
 import com.comphenix.protocol.wrappers.WrappedDataWatcher;
-import com.redecommunity.api.spigot.hologram.factory.HologramFactory;
-import com.redecommunity.common.shared.util.Helper;
+import com.redecommunity.api.spigot.hologram.HologramUtils;
 import com.redecommunity.common.spigot.packet.wrapper.AbstractPacket;
 import com.redecommunity.common.spigot.packet.wrapper.WrapperPlayServerEntityMetadata;
 import com.redecommunity.common.spigot.packet.wrapper.WrapperPlayServerSpawnEntity;
 import lombok.Getter;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 
 import java.util.stream.Stream;
-import org.bukkit.ChatColor;
 
 public class TextHologramLine extends AbstractHologramLine {
 
@@ -43,9 +42,9 @@ public class TextHologramLine extends AbstractHologramLine {
     public void spawn(Location location) {
         super.spawn(location);
 
-        this.entity = HologramFactory.spawnArmorStand(location, (ArmorStand armorStand) -> {
+        this.entity = HologramUtils.spawnArmorStand(location, (ArmorStand armorStand) -> {
             armorStand.setVisible(false);
-            armorStand.setMarker(true);
+            armorStand.setMarker(false);
             registerEntity(armorStand);
 
             armorStand.setArms(false);
@@ -53,8 +52,10 @@ public class TextHologramLine extends AbstractHologramLine {
             armorStand.setBasePlate(false);
             armorStand.setSmall(false);
             armorStand.setCustomNameVisible(true);
-            armorStand.setCustomName(Helper.colorize(this.text));
+            armorStand.setCustomName(ChatColor.GRAY + "Carregando...");
+
         });
+
     }
 
     @Override
