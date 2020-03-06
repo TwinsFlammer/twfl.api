@@ -2,8 +2,6 @@ package com.redecommunity.api.spigot.hologram.factory;
 
 import com.comphenix.protocol.wrappers.WrappedDataWatcher;
 import com.comphenix.protocol.wrappers.WrappedWatchableObject;
-import java.util.function.Consumer;
-
 import com.redecommunity.api.spigot.hologram.entity.Hologram;
 import com.redecommunity.api.spigot.hologram.util.NMS;
 import net.minecraft.server.v1_8_R3.DataWatcher;
@@ -15,6 +13,8 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.Inventory;
+
+import java.util.function.Consumer;
 
 /**
  *
