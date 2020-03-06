@@ -1,8 +1,10 @@
 package com.redecommunity.api.spigot;
 
+import com.comphenix.protocol.ProtocolLibrary;
 import com.google.common.collect.Lists;
 import com.google.common.io.ByteSource;
 import com.google.common.io.Files;
+import com.redecommunity.api.spigot.hologram.HologramProtocol;
 import com.redecommunity.api.spigot.manager.StartManager;
 import com.redecommunity.api.spigot.nametag.manager.NametagManager;
 import com.redecommunity.api.spigot.reflection.Reflection;
@@ -72,6 +74,10 @@ public class SpigotAPI extends CommunityPlugin {
 
         this.nametagManager = new NametagManager();
 
+        HologramProtocol hologramProtocol = new HologramProtocol(this);
+
+        ProtocolLibrary.getProtocolManager().addPacketListener(hologramProtocol);
+
         Server server = SpigotAPI.getCurrentServer();
 
         if (server != null) server.setStatus(SpigotAPI.getDefaultStatus());
@@ -80,8 +86,7 @@ public class SpigotAPI extends CommunityPlugin {
 
         MySQLManager mySQLManager = databaseManager.getMySQLManager();
 
-        String mysqlName = "server",
-                databaseName = this.getDefaultDatabaseName("server");
+        String mysqlName = "server", databaseName = this.getDefaultDatabaseName("server");
 
         SpigotAPI.mySQL = mySQLManager.createConnection(
                 mysqlName,
