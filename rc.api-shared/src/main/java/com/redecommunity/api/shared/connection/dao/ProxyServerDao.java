@@ -5,8 +5,6 @@ import com.google.common.collect.Sets;
 import com.redecommunity.api.shared.connection.data.ProxyServer;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.redis.data.Redis;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -38,14 +36,12 @@ public class ProxyServerDao {
 
             JSONArray usersId = (JSONArray) jsonObject.get("users_id");
 
-            List<User> users = Lists.newArrayList();
+            List<Integer> users = Lists.newArrayList();
 
             usersId.forEach(o -> {
                 Integer userId = ((Long) o).intValue();
 
-                User user = UserManager.getUser(userId);
-
-                if (user != null) users.add(user);
+                users.add(userId);
             });
 
             Boolean online = (Boolean) jsonObject.get("status");
