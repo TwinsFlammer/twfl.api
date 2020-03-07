@@ -1,6 +1,5 @@
 package com.redecommunity.api.shared.connection.data;
 
-import com.redecommunity.common.shared.permissions.user.data.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,14 +22,14 @@ public class ProxyServer {
     private Boolean status;
     @Getter
     @Setter
-    private List<User> users;
+    private List<Integer> usersId;
 
     public Boolean isOnline() {
         return this.status;
     }
 
     public Integer getPlayerCount() {
-        return this.users.size();
+        return this.usersId.size();
     }
 
     public String toJSONString() {
@@ -40,7 +39,7 @@ public class ProxyServer {
 
         JSONArray usersId = new JSONArray();
 
-        this.users.forEach(user -> usersId.add(user.getId()));
+        usersId.addAll(this.usersId);
 
         jsonObject.put("users_id", usersId);
         jsonObject.put("name", this.name);
