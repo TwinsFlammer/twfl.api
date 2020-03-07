@@ -6,11 +6,14 @@ import com.redecommunity.common.spigot.packet.wrapper.AbstractPacket;
 import com.redecommunity.common.spigot.packet.wrapper.WrapperPlayServerEntityMetadata;
 import com.redecommunity.common.spigot.packet.wrapper.WrapperPlayServerSpawnEntity;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class TextHologramLine extends AbstractHologramLine {
@@ -36,6 +39,13 @@ public class TextHologramLine extends AbstractHologramLine {
 
     public void setText(String text) {
         this.text = text;
+
+        List<Player> players = Bukkit.getOnlinePlayers()
+                .stream()
+                .filter(player -> !player.isDead())
+                .collect(Collectors.toList());
+
+        this.sendUpdatePacket(players);
     }
 
     @Override
@@ -45,17 +55,16 @@ public class TextHologramLine extends AbstractHologramLine {
         this.entity = HologramFactory.spawnArmorStand(location, (ArmorStand armorStand) -> {
             armorStand.setVisible(false);
             armorStand.setMarker(false);
-            registerEntity(armorStand);
+
+            this.registerEntity(armorStand);
 
             armorStand.setArms(false);
             armorStand.setGravity(false);
             armorStand.setBasePlate(false);
-            armorStand.setSmall(false);
+            armorStand.setSmall(true);
             armorStand.setCustomNameVisible(true);
             armorStand.setCustomName(ChatColor.GRAY + "Carregando...");
-
         });
-
     }
 
     @Override
@@ -88,7 +97,6 @@ public class TextHologramLine extends AbstractHologramLine {
 
     @Override
     public void sendUpdatePacket(Stream<Player> stream) {
-
         super.sendUpdatePacket(stream);
     }
 
