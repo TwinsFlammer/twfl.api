@@ -5,6 +5,7 @@ import com.redecommunity.api.shared.connection.data.ProxyServer;
 import com.redecommunity.api.shared.connection.dao.ProxyServerDao;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -40,7 +41,7 @@ public class ProxyServerManager {
                     proxyServerDao.findAll().forEach(proxyServer -> {
                         ProxyServer proxyServer1 = ProxyServerManager.getProxyServer(proxyServer.getId());
 
-                        if (proxyServer1 != null) proxyServer1.setUsers(proxyServer.getUsers());
+                        if (proxyServer1 != null) proxyServer1.setUsersId(proxyServer.getUsersId());
                         else ProxyServerManager.addProxyServer(proxyServer);
                     });
                 },
@@ -84,7 +85,11 @@ public class ProxyServerManager {
     public static List<User> getUsers() {
         List<User> users = Lists.newArrayList();
 
-        ProxyServerManager.proxies.forEach(proxyServer -> users.addAll(proxyServer.getUsers()));
+        ProxyServerManager.proxies.forEach(proxyServer -> proxyServer.getUsersId().forEach(userId -> {
+            User user = UserManager.getUser(userId);
+
+            if (user != null) users.add(user);
+        }));
 
         return users;
     }
