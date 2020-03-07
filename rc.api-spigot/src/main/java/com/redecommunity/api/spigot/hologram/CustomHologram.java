@@ -3,6 +3,7 @@ package com.redecommunity.api.spigot.hologram;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Ints;
 import com.redecommunity.api.spigot.hologram.line.AbstractHologramLine;
+import com.redecommunity.api.spigot.hologram.line.TextHologramLine;
 import com.redecommunity.api.spigot.hologram.touch.TouchEvent;
 import com.redecommunity.common.spigot.packet.wrapper.WrapperPlayServerEntityDestroy;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,7 +50,6 @@ public class CustomHologram {
         boolean first = true;
 
         for (AbstractHologramLine hologramLine : lines) {
-
             if (first) {
                 first = false;
             } else {
@@ -92,6 +93,30 @@ public class CustomHologram {
 
         if (hasSpawned()) {
             refreshLines();
+        }
+    }
+
+    public void appendLines(String... lines) {
+        Arrays.asList(lines).forEach(line -> {
+            TextHologramLine textHologramLine = new TextHologramLine(line);
+
+            this.appendLine(textHologramLine);
+        });
+    }
+
+    public void updateLines(String... lines) {
+        for (int i = 0; i < lines.length; i++) {
+            String line = lines[i];
+
+            AbstractHologramLine abstractHologramLine = this.getLine(i);
+
+            if (abstractHologramLine == null) continue;
+
+            if (abstractHologramLine instanceof TextHologramLine) {
+                TextHologramLine textHologramLine = (TextHologramLine) abstractHologramLine;
+
+                textHologramLine.setText(line);
+            }
         }
     }
 
