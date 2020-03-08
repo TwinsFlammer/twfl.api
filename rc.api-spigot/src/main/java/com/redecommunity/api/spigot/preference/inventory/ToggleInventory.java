@@ -136,6 +136,12 @@ public class ToggleInventory extends CustomPaginateInventory {
                                     preference,
                                     value
                             );
+
+                            this.setItem(
+                                    user,
+                                    preference,
+                                    true
+                            );
                         })
         );
         this.setItem(
@@ -148,6 +154,12 @@ public class ToggleInventory extends CustomPaginateInventory {
                             user.togglePreference(
                                     preference,
                                     value
+                            );
+
+                            this.setItem(
+                                    user,
+                                    preference,
+                                    true
                             );
                         })
         );
