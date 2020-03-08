@@ -79,6 +79,13 @@ public class CustomPaginateInventory {
                 customItem
         );
 
+        this.pages.forEach(customInventory -> {
+            customInventory.setItem(
+                    index,
+                    customItem
+            );
+        });
+
         return this;
     }
 
