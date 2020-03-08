@@ -13,7 +13,7 @@ import org.bukkit.event.Cancellable;
 public class PreferenceStateChangeEvent extends CommunityEvent implements Cancellable {
     private final User user;
     private final Preference preference;
-    private Boolean cancelled;
+    private Boolean cancelled = false;
 
     @Override
     public boolean isCancelled() {
