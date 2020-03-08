@@ -3,13 +3,16 @@ package com.redecommunity.api.spigot.preference.inventory;
 import com.redecommunity.api.spigot.inventory.CustomInventory;
 import com.redecommunity.api.spigot.inventory.CustomPaginateInventory;
 import com.redecommunity.api.spigot.inventory.item.CustomItem;
+import com.redecommunity.api.spigot.preference.event.PreferenceStateChangeEvent;
 import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.preference.Preference;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.util.Arrays;
+import java.util.function.Consumer;
 
 /**
  * Created by @SrGutyerrez
@@ -125,24 +128,35 @@ public class ToggleInventory extends CustomPaginateInventory {
             return;
         }
 
+        Consumer<InventoryClickEvent> inventoryClickEventConsumer = (event) -> {
+            PreferenceStateChangeEvent preferenceStateChangeEvent = new PreferenceStateChangeEvent(
+                    user,
+                    preference
+            );
+
+            preferenceStateChangeEvent.run();
+
+            if (preferenceStateChangeEvent.isCancelled()) return;
+
+            user.togglePreference(
+                    preference,
+                    value
+            );
+
+            this.setItem(
+                    user,
+                    preference,
+                    true
+            );
+        };
+
         this.setItem(
                 preference.getSlot(),
                 new CustomItem(Material.getMaterial(preference.getId()))
                         .data(preference.getData())
                         .name("§" + preference.getColor(user) + preference.getDisplayName())
                         .lore(preference.getDescription())
-                        .onClick(event -> {
-                            user.togglePreference(
-                                    preference,
-                                    value
-                            );
-
-                            this.setItem(
-                                    user,
-                                    preference,
-                                    true
-                            );
-                        })
+                        .onClick(inventoryClickEventConsumer)
         );
         this.setItem(
                 preference.getStatusSlot(),
@@ -150,18 +164,7 @@ public class ToggleInventory extends CustomPaginateInventory {
                         .data(value ? 10 : 8)
                         .name("§" + preference.getColor(user) + preference.getDisplayName())
                         .lore(preference.getDescription())
-                        .onClick(event -> {
-                            user.togglePreference(
-                                    preference,
-                                    value
-                            );
-
-                            this.setItem(
-                                    user,
-                                    preference,
-                                    true
-                            );
-                        })
+                        .onClick(inventoryClickEventConsumer)
         );
     }
 }
