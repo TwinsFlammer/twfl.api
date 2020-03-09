@@ -129,6 +129,11 @@ public class ToggleInventory extends CustomPaginateInventory {
         }
 
         Consumer<InventoryClickEvent> inventoryClickEventConsumer = (event) -> {
+            user.togglePreference(
+                    preference,
+                    value
+            );
+
             PreferenceStateChangeEvent preferenceStateChangeEvent = new PreferenceStateChangeEvent(
                     user,
                     preference
@@ -136,12 +141,13 @@ public class ToggleInventory extends CustomPaginateInventory {
 
             preferenceStateChangeEvent.run();
 
-            if (preferenceStateChangeEvent.isCancelled()) return;
-
-            user.togglePreference(
-                    preference,
-                    value
-            );
+            if (preferenceStateChangeEvent.isCancelled()) {
+                user.togglePreference(
+                        preference,
+                        user.isEnabled(preference)
+                );
+                return;
+            }
 
             this.setItem(
                     user,
