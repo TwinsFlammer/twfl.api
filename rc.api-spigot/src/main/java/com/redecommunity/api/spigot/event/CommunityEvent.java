@@ -1,6 +1,5 @@
 package com.redecommunity.api.spigot.event;
 
-import com.redecommunity.api.spigot.teleport.event.UserTeleportEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -11,9 +10,13 @@ import org.bukkit.event.HandlerList;
 public class CommunityEvent extends Event {
     public static HandlerList handler = new HandlerList();
 
+    public static HandlerList getHandlerList() {
+        return CommunityEvent.handler;
+    }
+
     @Override
     public HandlerList getHandlers() {
-        return UserTeleportEvent.handler;
+        return CommunityEvent.handler;
     }
 
     public void run() {
