@@ -68,6 +68,8 @@ public class SpigotAPI extends CommunityPlugin {
     public void onEnablePlugin() {
         this.reflection = new Reflection(this);
 
+        this.setupServerSQL();
+
         new StartManager();
 
         this.api = new API();
@@ -81,7 +83,14 @@ public class SpigotAPI extends CommunityPlugin {
         Server server = SpigotAPI.getCurrentServer();
 
         if (server != null) server.setStatus(SpigotAPI.getDefaultStatus());
+    }
 
+    @Override
+    public void onDisablePlugin() {
+        new UpdaterManager();
+    }
+
+    private void setupServerSQL() {
         DatabaseManager databaseManager = Common.getInstance().getDatabaseManager();
 
         MySQLManager mySQLManager = databaseManager.getMySQLManager();
@@ -92,11 +101,6 @@ public class SpigotAPI extends CommunityPlugin {
                 mysqlName,
                 databaseName
         );
-    }
-
-    @Override
-    public void onDisablePlugin() {
-        new UpdaterManager();
     }
 
     public static List<User> getUsers() {
