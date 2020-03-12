@@ -65,6 +65,9 @@ public abstract class AbstractHologramLine {
 
     public void sendUpdatePacket(Stream<Player> stream) {
         AbstractPacket packet = buildUpdatePacket();
+
+        if (packet == null) return;
+
         stream.forEach(packet::sendPacket);
     }
 
