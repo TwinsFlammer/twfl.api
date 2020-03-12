@@ -77,20 +77,22 @@ public class TextHologramLine extends AbstractHologramLine {
 
     @Override
     public void teleport(Location location) {
-        entity.teleport(location);
+        this.entity.teleport(location);
     }
 
     @Override
     public AbstractPacket buildCreatePacket() {
-        return new WrapperPlayServerSpawnEntity(entity, WrapperPlayServerSpawnEntity.ObjectTypes.ARMORSTAND, 0);
+        return new WrapperPlayServerSpawnEntity(this.entity, WrapperPlayServerSpawnEntity.ObjectTypes.ARMORSTAND, 0);
     }
 
     @Override
     public AbstractPacket buildUpdatePacket() {
-        WrapperPlayServerEntityMetadata wrapper = new WrapperPlayServerEntityMetadata();
-        wrapper.setEntityID(entity.getEntityId());
+        if (this.entity == null) return null;
 
-        WrappedDataWatcher watcher = WrappedDataWatcher.getEntityWatcher(entity);
+        WrapperPlayServerEntityMetadata wrapper = new WrapperPlayServerEntityMetadata();
+        wrapper.setEntityID(this.entity.getEntityId());
+
+        WrappedDataWatcher watcher = WrappedDataWatcher.getEntityWatcher(this.entity);
         wrapper.setMetadata(watcher.getWatchableObjects());
         return wrapper;
     }
@@ -103,7 +105,7 @@ public class TextHologramLine extends AbstractHologramLine {
     @Override
     public int[] getEntityIds() {
         return new int[]{
-            entity.getEntityId()
+                this.entity.getEntityId()
         };
     }
 }
