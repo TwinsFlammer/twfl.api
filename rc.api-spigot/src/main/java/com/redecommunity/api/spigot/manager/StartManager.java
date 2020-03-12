@@ -7,6 +7,7 @@ import com.redecommunity.api.shared.connection.manager.ProxyServerManager;
 import com.redecommunity.api.spigot.SpigotAPI;
 import com.redecommunity.api.spigot.commands.CustomCommand;
 import com.redecommunity.api.spigot.spawn.manager.SpawnManager;
+import com.redecommunity.api.spigot.teleport.manager.TeleportRequestManager;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
@@ -66,6 +67,8 @@ class DataManager {
 
         new CustomInventoryManager();
         new SpawnManager();
+
+        new TeleportRequestManager();
     }
 }
 
