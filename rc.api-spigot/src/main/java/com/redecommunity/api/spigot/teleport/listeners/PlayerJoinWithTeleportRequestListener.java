@@ -4,6 +4,7 @@ import com.redecommunity.api.spigot.teleport.data.TeleportRequest;
 import com.redecommunity.api.spigot.teleport.manager.TeleportRequestManager;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,7 +27,12 @@ public class PlayerJoinWithTeleportRequestListener implements Listener {
 
         Location location = teleportRequest.getTargetLocation();
 
-        player.teleport(location);
+        if (location != null) player.teleport(location);
+
+        User user1 = UserManager.getUser(teleportRequest.getTargetId());
+        Player player1 = Bukkit.getPlayer(user1.getUniqueId());
+
+        if (player1 != null) player.teleport(player1);
 
         TeleportRequestManager.getWaitingJoin().remove(teleportRequest);
     }
