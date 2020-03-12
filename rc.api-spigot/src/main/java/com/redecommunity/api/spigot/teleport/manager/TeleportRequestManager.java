@@ -36,6 +36,7 @@ public class TeleportRequestManager {
 
     public static TeleportRequest toTeleportRequest(JSONObject jsonObject) {
         Integer userId = ((Long) jsonObject.get("user_id")).intValue();
+        Integer targetId = jsonObject.containsKey("target_id") ? ((Long) jsonObject.get("target_id")).intValue() : null;
         Integer targetServerId = ((Long) jsonObject.get("server_id")).intValue();
         String serializedLocation = (String) jsonObject.get("serialized_location");
 
@@ -43,7 +44,7 @@ public class TeleportRequestManager {
 
         return new TeleportRequest(
                 userId,
-                null,
+                targetId,
                 targetLocation,
                 targetServerId,
                 System.currentTimeMillis()
