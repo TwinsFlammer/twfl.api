@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.redecommunity.api.spigot.SpigotAPI;
 import com.redecommunity.api.spigot.commands.defaults.tps.runnable.TicksPerSecond;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.List;
@@ -24,6 +25,10 @@ public class TPSManager {
     public static String getTPSString(double tps) {
         String colored = ((tps >= 18.0) ? "&a" : ((tps >= 16.0) ? "&e" : ((tps >= 5.0) ? "&c" : "&4"))) + tps;
         return (colored.length() > 7) ? colored.substring(0, 7) : colored;
+    }
+
+    public static ChatColor getTPSColor(double tps) {
+        return tps > 18.0 ? ChatColor.GREEN : tps >= 16.0 ? ChatColor.YELLOW : tps >= 5.0 ? ChatColor.RED : ChatColor.DARK_RED;
     }
 
     public static String getTPSString() {
