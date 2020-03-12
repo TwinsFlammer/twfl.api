@@ -1,9 +1,9 @@
 package com.redecommunity.api.spigot.report.inventory;
 
 import com.google.common.collect.Lists;
+import com.redecommunity.api.spigot.inventory.CustomPaginateInventory;
 import com.redecommunity.api.spigot.teleport.data.TeleportRequest;
 import com.redecommunity.api.spigot.SpigotAPI;
-import com.redecommunity.api.spigot.inventory.CustomInventory;
 import com.redecommunity.api.spigot.inventory.item.CustomItem;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
@@ -16,9 +16,17 @@ import java.util.List;
 /**
  * Created by @SrGutyerrez
  */
-public class ReportsInventory extends CustomInventory {
+public class ReportsInventory extends CustomPaginateInventory {
     public ReportsInventory() {
-        super("Denúncias", 0);
+        super(
+                "Denúncias",
+                5,
+                "XXXXXXXXX",
+                "XXOOOOOXX",
+                "XXOOOOOXX",
+                "XXOOOOOXX",
+                "XXXXXXXXX"
+        );
 
         SpigotAPI.getUsers()
                 .stream()
@@ -53,12 +61,16 @@ public class ReportsInventory extends CustomInventory {
 
                                 TeleportRequest teleportRequest = new TeleportRequest(
                                         user1.getId(),
-                                        null,
+                                        user.getId(),
                                         null,
                                         user.getServer().getId(),
                                         0L
                                 );
                             });
+
+                    this.addItem(
+                            customItem
+                    );
                 });
     }
 }
