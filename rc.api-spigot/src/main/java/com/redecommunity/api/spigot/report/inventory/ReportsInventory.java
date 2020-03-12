@@ -28,6 +28,8 @@ public class ReportsInventory extends CustomPaginateInventory {
                 "XXXXXXXXX"
         );
 
+        this.setCancelled(true);
+
         SpigotAPI.getUsers()
                 .stream()
                 .filter(User::isOnline)
@@ -52,6 +54,7 @@ public class ReportsInventory extends CustomPaginateInventory {
                     });
 
                     CustomItem customItem = new CustomItem(Material.SKULL_ITEM)
+                            .data(3)
                             .owner(skin == null ? user.getDisplayName() : skin.getValue())
                             .name(user.getPrefix() + user.getDisplayName())
                             .lore(lore)
@@ -68,6 +71,8 @@ public class ReportsInventory extends CustomPaginateInventory {
                                 );
 
                                 teleportRequest.start();
+
+                                player.closeInventory();
                             });
 
                     this.addItem(
