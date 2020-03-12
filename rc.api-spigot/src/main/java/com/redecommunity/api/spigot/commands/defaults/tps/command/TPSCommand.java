@@ -38,7 +38,7 @@ public class TPSCommand extends CustomCommand {
 
         List<String> barChart = getBarChart(tpsHistory);
 
-        sender.sendMessage("          §eHistórico de TPS do servidor");
+        sender.sendMessage("                  §eHistórico de TPS do servidor");
         sender.sendMessage(barChart.toArray(new String[0]));
     }
 
