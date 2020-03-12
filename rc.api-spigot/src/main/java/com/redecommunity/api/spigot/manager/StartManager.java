@@ -1,5 +1,6 @@
 package com.redecommunity.api.spigot.manager;
 
+import com.redecommunity.api.spigot.commands.defaults.tps.manager.TPSManager;
 import com.redecommunity.api.spigot.commands.registry.CommandRegistry;
 import com.redecommunity.api.spigot.inventory.manager.CustomInventoryManager;
 import com.redecommunity.api.shared.connection.manager.ProxyServerManager;
@@ -32,6 +33,8 @@ public class StartManager {
         new ChannelManager();
 
         new JedisMessageListenerManager();
+
+        TPSManager.start();
     }
 }
 
