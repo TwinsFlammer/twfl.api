@@ -11,6 +11,7 @@ import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.util.TimeFormatter;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONArray;
@@ -38,6 +39,7 @@ public class Restart {
             TimeUnit.SECONDS.toMillis(180)
     };
 
+    @Setter
     private Integer warnTime = warnTimes.length - 1;
 
     private static ScheduledFuture<?> scheduledFuture;
@@ -113,34 +115,38 @@ public class Restart {
 
         Queue<Player> players = Queues.newLinkedBlockingDeque(Bukkit.getOnlinePlayers());
 
-        Common.getInstance().getScheduler().scheduleAtFixedRate(
+        Bukkit.getScheduler().runTaskTimer(
+                SpigotAPI.getInstance(),
                 () -> {
-                    if (players.isEmpty()) {
-                        JSONObject jsonObject = SpigotAPI.getConfiguration();
+                    try {
+                        if (players.isEmpty()) {
+                            JSONObject jsonObject = SpigotAPI.getConfiguration();
 
-                        JSONArray jsonArray = (JSONArray) jsonObject.get("servers");
+                            JSONArray jsonArray = (JSONArray) jsonObject.get("servers");
 
-                        RestartChannel restartChannel = new RestartChannel();
+                            RestartChannel restartChannel = new RestartChannel();
 
-                        restartChannel.sendMessage(jsonArray.toString());
+                            restartChannel.sendMessage(jsonArray.toString());
 
-                        Bukkit.getServer().shutdown();
-                        return;
+                            Bukkit.getServer().shutdown();
+                            return;
+                        }
+
+                        Player player = players.poll();
+
+                        User user = UserManager.getUser(player.getUniqueId());
+
+                        Language language = user.getLanguage();
+
+                        player.kickPlayer(
+                                language.getMessage("restart.kick_message")
+                        );
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
-
-                    Player player = players.poll();
-
-                    User user = UserManager.getUser(player.getUniqueId());
-
-                    Language language = user.getLanguage();
-
-                    player.kickPlayer(
-                            language.getMessage("restart.kick_message")
-                    );
                 },
                 0,
-                1,
-                TimeUnit.SECONDS
+                20L
         );
     }
 
