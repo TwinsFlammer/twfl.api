@@ -33,7 +33,7 @@ public class SkinInventory extends CustomPaginateInventory {
 
         Language language = user.getLanguage();
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DD/MM/YYYY");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         user.getSkins()
                 .stream()
