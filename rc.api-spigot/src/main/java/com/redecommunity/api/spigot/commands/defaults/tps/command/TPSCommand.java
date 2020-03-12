@@ -38,6 +38,7 @@ public class TPSCommand extends CustomCommand {
 
         List<String> barChart = getBarChart(tpsHistory);
 
+        sender.sendMessage("          §eHistórico de TPS do servidor");
         sender.sendMessage(barChart.toArray(new String[0]));
     }
 
@@ -86,7 +87,7 @@ public class TPSCommand extends CustomCommand {
             if (tps > 20) tps = 20;
 
             even = !even;
-            ChatColor color = even ? ChatColor.LIGHT_PURPLE : ChatColor.AQUA;
+            ChatColor color = even ? ChatColor.AQUA : ChatColor.DARK_AQUA;
             String tpsDesc = formatTps(tps);
             String one = color.toString() + tpsDesc.substring(0, 1);
 
