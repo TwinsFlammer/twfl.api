@@ -15,19 +15,19 @@ import java.util.List;
 public class TeleportRequestManager {
     public static final String CHANNEL_NAME = "teleport_channel";
 
-    private static final List<TeleportRequest> teleportRequests = Lists.newArrayList(),
-            waitingJoin = Lists.newArrayList();
+    private static final List<TeleportRequest> TELEPORT_REQUESTS = Lists.newArrayList(),
+            WAITING_JOIN = Lists.newArrayList();
 
     public static List<TeleportRequest> getTeleportRequests() {
-        return TeleportRequestManager.teleportRequests;
+        return TeleportRequestManager.TELEPORT_REQUESTS;
     }
 
     public static List<TeleportRequest> getWaitingJoin() {
-        return TeleportRequestManager.waitingJoin;
+        return TeleportRequestManager.WAITING_JOIN;
     }
 
     public static TeleportRequest getTeleportRequest(User user) {
-        return TeleportRequestManager.waitingJoin
+        return TeleportRequestManager.WAITING_JOIN
                 .stream()
                 .filter(teleportRequest -> teleportRequest.getUserId().equals(user.getId()))
                 .findFirst()
