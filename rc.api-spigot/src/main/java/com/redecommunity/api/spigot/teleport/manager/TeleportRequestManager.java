@@ -2,18 +2,30 @@ package com.redecommunity.api.spigot.teleport.manager;
 
 import com.google.common.collect.Lists;
 import com.redecommunity.api.spigot.teleport.data.TeleportRequest;
+import com.redecommunity.api.spigot.teleport.runnable.TeleportRequestRunnable;
 import com.redecommunity.api.spigot.util.serialize.LocationSerialize;
+import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import org.bukkit.Location;
 import org.json.simple.JSONObject;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by @SrGutyerrez
  */
 public class TeleportRequestManager {
     public static final String CHANNEL_NAME = "teleport_channel";
+
+    public TeleportRequestManager() {
+        Common.getInstance().getScheduler().scheduleWithFixedDelay(
+                new TeleportRequestRunnable(),
+                0,
+                1,
+                TimeUnit.SECONDS
+        );
+    }
 
     private static final List<TeleportRequest> TELEPORT_REQUESTS = Lists.newArrayList(),
             WAITING_JOIN = Lists.newArrayList();
