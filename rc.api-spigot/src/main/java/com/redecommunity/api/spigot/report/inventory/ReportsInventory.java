@@ -66,6 +66,8 @@ public class ReportsInventory extends CustomPaginateInventory {
                                         user.getServer().getId(),
                                         0L
                                 );
+
+                                teleportRequest.start();
                             });
 
                     this.addItem(
