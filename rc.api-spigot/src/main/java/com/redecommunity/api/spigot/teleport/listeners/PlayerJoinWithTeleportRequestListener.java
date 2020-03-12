@@ -27,7 +27,10 @@ public class PlayerJoinWithTeleportRequestListener implements Listener {
 
         Location location = teleportRequest.getTargetLocation();
 
-        if (location != null) player.teleport(location);
+        if (location != null) {
+            player.teleport(location);
+            return;
+        }
 
         User user1 = UserManager.getUser(teleportRequest.getTargetId());
         Player player1 = Bukkit.getPlayer(user1.getUniqueId());
