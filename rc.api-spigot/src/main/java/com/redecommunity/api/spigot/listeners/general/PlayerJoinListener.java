@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.permissions.PermissionAttachment;
 
 /**
  * Created by @SrGutyerrez
@@ -33,5 +34,18 @@ public class PlayerJoinListener implements Listener {
                 group.getSuffix(),
                 group.getTabListListOrder()
         );
+
+        player.getEffectivePermissions().clear();
+
+        PermissionAttachment permissionAttachment = player.addAttachment(SpigotAPI.getInstance());
+
+        group.getPermissions().forEach(permission -> {
+            String name = permission.getName();
+
+            permissionAttachment.setPermission(
+                    name.replaceAll("-", ""),
+                    !name.startsWith("-")
+            );
+        });
     }
 }
