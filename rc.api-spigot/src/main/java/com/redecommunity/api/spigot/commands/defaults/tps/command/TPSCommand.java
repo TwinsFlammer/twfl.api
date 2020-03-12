@@ -34,15 +34,11 @@ public class TPSCommand extends CustomCommand {
 
     @Override
     public void onCommand(CommandSender sender, User user, String[] args) {
-        sender.sendMessage("TPS do servidor:");
-
         List<Integer> tpsHistory = Lists.newArrayList(TPSManager.TICKS);
 
         List<String> barChart = getBarChart(tpsHistory);
 
-        System.out.println(barChart.size());
-
-        sender.sendMessage(barChart.toArray(new String[barChart.size()]));
+        sender.sendMessage(barChart.toArray(new String[0]));
     }
 
     public static double getQuota(int tps) {
@@ -67,10 +63,13 @@ public class TPSCommand extends CustomCommand {
         List<String> ret = Lists.newArrayList();
         List<Double> quotas = getQuotas(tpsHistory);
         List<List<String>> barPartsLines = Lists.newArrayList();
+
         for (Double quota : quotas) {
             barPartsLines.add(TPSCommand.PROGRESS_BAR.withQuota(quota).renderList());
         }
+
         barPartsLines = CUtil.rotateLeft(barPartsLines);
+
         for (List<String> barParts : barPartsLines) {
             StringBuilder line = new StringBuilder();
             for (String barPart : barParts) {
@@ -78,18 +77,27 @@ public class TPSCommand extends CustomCommand {
             }
             ret.add(line.toString());
         }
+
         List<List<String>> tpsPartLines = Lists.newArrayList();
+
         boolean even = true;
+
         for (Integer tps : tpsHistory) {
+            if (tps > 20) tps = 20;
+
             even = !even;
             ChatColor color = even ? ChatColor.LIGHT_PURPLE : ChatColor.AQUA;
             String tpsDesc = formatTps(tps);
             String one = color.toString() + tpsDesc.substring(0, 1);
+
             String two = color.toString() + tpsDesc.substring(1, 2);
             tpsPartLines.add(CUtil.list(one, two));
         }
+
         tpsPartLines = CUtil.rotateLeft(tpsPartLines);
+
         CUtil.flipVertically(tpsPartLines);
+
         for (List<String> parts : tpsPartLines) {
             StringBuilder line2 = new StringBuilder();
             for (String part : parts) {
@@ -97,6 +105,7 @@ public class TPSCommand extends CustomCommand {
             }
             ret.add(line2.toString());
         }
+
         return ret;
     }
 }
