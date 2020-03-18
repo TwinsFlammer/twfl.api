@@ -12,6 +12,8 @@ import com.redecommunity.api.spigot.restart.data.Restart;
 import com.redecommunity.api.spigot.updater.manager.UpdaterManager;
 import com.redecommunity.api.shared.API;
 import com.redecommunity.api.shared.connection.manager.ProxyServerManager;
+import com.redecommunity.api.spigot.user.data.SpigotUser;
+import com.redecommunity.api.spigot.user.factory.SpigotUserFactory;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.manager.DatabaseManager;
 import com.redecommunity.common.shared.databases.mysql.data.MySQL;
@@ -64,6 +66,9 @@ public class SpigotAPI extends CommunityPlugin {
     @Getter
     private static MySQL mySQL;
 
+    @Getter
+    private static SpigotUserFactory<? extends SpigotUser> spigotUserFactory;
+
     @Override
     public void onEnablePlugin() {
         this.reflection = new Reflection(this);
@@ -83,6 +88,8 @@ public class SpigotAPI extends CommunityPlugin {
         Server server = SpigotAPI.getCurrentServer();
 
         if (server != null) server.setStatus(SpigotAPI.getDefaultStatus());
+
+        this.spigotUserFactory = new SpigotUserFactory<>();
     }
 
     @Override
