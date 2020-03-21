@@ -64,19 +64,31 @@ public class CustomItem {
     }
 
     public CustomItem lore(String... lore) {
-        List<String> lore1 = Arrays.asList(lore);
-
-        lore1.replaceAll(Helper::colorize);
-
-        return this.lore(lore1);
+        return this.lore(false, lore);
     }
 
     public CustomItem lore(List<String> lore) {
+        return this.lore(false, lore);
+    }
+
+    public CustomItem lore(Boolean keepLore, String... lore) {
+        List<String> finalLore = Arrays.asList(lore);
+
+        finalLore.replaceAll(Helper::colorize);
+
+        return this.lore(keepLore, finalLore);
+    }
+
+    public CustomItem lore(Boolean keepLore, List<String> lore) {
         ItemMeta itemMeta = this.meta();
 
         lore.replaceAll(Helper::colorize);
 
-        itemMeta.setLore(lore);
+        List<String> finalLore = keepLore ? itemMeta.getLore() : lore;
+
+        if (keepLore) finalLore.addAll(lore);
+
+        itemMeta.setLore(finalLore);
 
         this.setItemMeta(itemMeta);
 
