@@ -31,6 +31,7 @@ public abstract class CustomCommand extends Command {
     private final Group group;
     private final String[] aliases;
     private final List<CustomArgumentCommand> arguments = Lists.newArrayList();
+    private final String description;
 
     private final String[] blacklisted = new String[]{
             "login",
@@ -46,6 +47,17 @@ public abstract class CustomCommand extends Command {
 
         this.commandRestriction = commandRestriction;
         this.group = GroupManager.getGroup(groupName);
+        this.aliases = aliases;
+        this.description = "";
+    }
+
+    public CustomCommand(String name, CommandRestriction commandRestriction, String groupName, String description, String... aliases) {
+        super(name);
+
+        this.commandRestriction = commandRestriction;
+        this.group = GroupManager.getGroup(groupName);
+        this.description = description;
+
         this.aliases = aliases;
     }
 
