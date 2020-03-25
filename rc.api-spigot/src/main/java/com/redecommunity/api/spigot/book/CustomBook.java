@@ -21,11 +21,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 
+import java.util.*;
+
 /**
  * @author SnowyCoder
  */
-import java.util.*;
-
 public final class CustomBook {
     private static boolean canTranslateDirectly = false;
 
@@ -403,7 +403,7 @@ public final class CustomBook {
          * @return a new ClickAction
          */
         static ClickAction changePage(int page) {
-            return new SimpleClickAction(ClickEvent.Action.CHANGE_PAGE, Integer.toString(page));
+            return new SimpleClickAction(/*ClickEvent.Action.CHANGE_PAGE*/null, Integer.toString(page));
         }
 
         @Getter
@@ -473,7 +473,7 @@ public final class CustomBook {
          * @return a new HoverAction instance
          */
         static HoverAction showEntity(BaseComponent... entity) {
-            return new SimpleHoverAction(HoverEvent.Action.SHOW_ENTITY, entity);
+            return new SimpleHoverAction(/*HoverEvent.Action.SHOW_ENTITY*/null, entity);
         }
 
         /**
@@ -484,7 +484,7 @@ public final class CustomBook {
          * @return a new HoverAction instance
          */
         static HoverAction showEntity(UUID uuid, String type, String name) {
-            return new SimpleHoverAction(HoverEvent.Action.SHOW_ENTITY,
+            return new SimpleHoverAction(/*HoverEvent.Action.SHOW_ENTITY*/null,
                     NmsBookHelper.jsonToComponents(
                             "{id:\"" + uuid + "\",type:\"" + type + "\"name:\"" + name + "\"}"
                     )
