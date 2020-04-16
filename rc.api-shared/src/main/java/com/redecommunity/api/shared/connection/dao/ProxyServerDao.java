@@ -1,6 +1,5 @@
 package com.redecommunity.api.shared.connection.dao;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.redecommunity.api.shared.connection.data.ProxyServer;
 import com.redecommunity.common.shared.Common;
@@ -11,7 +10,7 @@ import org.json.simple.JSONValue;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisDataException;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -36,7 +35,7 @@ public class ProxyServerDao {
 
             JSONArray usersId = (JSONArray) jsonObject.get("users_id");
 
-            List<Integer> users = Lists.newArrayList();
+            HashSet<Integer> users = Sets.newHashSet();
 
             usersId.forEach(o -> {
                 Integer userId = ((Long) o).intValue();
