@@ -124,7 +124,7 @@ public class SkinManager {
     }
 
     public static void openBook(Player player, String skinName) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DD/MM/YYYY");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         ItemStack itemStack = CustomBook.writtenBook()
                 .title("Skin")
