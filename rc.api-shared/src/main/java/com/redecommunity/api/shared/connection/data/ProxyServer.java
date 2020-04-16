@@ -7,7 +7,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.HashSet;
-import java.util.List;
 
 /**
  * Created by @SrGutyerrez
