@@ -1,6 +1,7 @@
 package com.redecommunity.api.shared.connection.manager;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.redecommunity.api.shared.connection.data.ProxyServer;
 import com.redecommunity.api.shared.connection.dao.ProxyServerDao;
 import com.redecommunity.common.shared.Common;
@@ -28,7 +29,7 @@ public class ProxyServerManager {
                     proxyId,
                     proxyName,
                     true,
-                    Lists.newArrayList()
+                    Sets.newHashSet()
             );
 
             proxyServerDao.insert(proxyServer);
