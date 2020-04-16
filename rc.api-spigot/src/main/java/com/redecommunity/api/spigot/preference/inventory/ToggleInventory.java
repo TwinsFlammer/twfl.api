@@ -4,6 +4,7 @@ import com.redecommunity.api.spigot.inventory.CustomInventory;
 import com.redecommunity.api.spigot.inventory.CustomPaginateInventory;
 import com.redecommunity.api.spigot.inventory.item.CustomItem;
 import com.redecommunity.api.spigot.preference.event.PreferenceStateChangeEvent;
+import com.redecommunity.common.shared.cooldown.manager.CooldownManager;
 import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.preference.Preference;
@@ -129,6 +130,8 @@ public class ToggleInventory extends CustomPaginateInventory {
         }
 
         Consumer<InventoryClickEvent> inventoryClickEventConsumer = (event) -> {
+            if (CooldownManager.inCooldown(user, preference)) return;
+
             user.togglePreference(
                     preference,
                     value
