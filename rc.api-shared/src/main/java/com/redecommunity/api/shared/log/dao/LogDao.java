@@ -85,7 +85,7 @@ public class LogDao extends Table {
                                 "'"
                         },
                         new String[] {
-                                "\'"
+                                "\\'"
                         }
                 )
         );
