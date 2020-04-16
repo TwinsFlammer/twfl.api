@@ -2,6 +2,7 @@ package com.redecommunity.api.shared.log.dao;
 
 import com.redecommunity.api.shared.log.data.Log;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
+import org.apache.commons.lang3.StringUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -78,7 +79,15 @@ public class LogDao extends Table {
                 object.getServerId(),
                 object.getType().toString(),
                 object.getSubType().toString(),
-                object.getValue()
+                StringUtils.replaceEach(
+                        object.getValue(),
+                        new String[] {
+                                "'"
+                        },
+                        new String[] {
+                                "\'"
+                        }
+                )
         );
 
         try (
