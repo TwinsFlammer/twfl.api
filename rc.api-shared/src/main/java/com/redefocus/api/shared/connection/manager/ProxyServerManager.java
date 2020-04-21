@@ -5,10 +5,14 @@ import com.google.common.collect.Sets;
 import com.redefocus.api.shared.connection.data.ProxyServer;
 import com.redefocus.api.shared.connection.dao.ProxyServerDao;
 import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.permissions.user.dao.UserDao;
 import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.group.dao.UserGroupDao;
+import com.redefocus.common.shared.permissions.user.group.data.UserGroup;
 import com.redefocus.common.shared.permissions.user.manager.UserManager;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -86,10 +90,18 @@ public class ProxyServerManager {
     public static List<User> getUsers() {
         List<User> users = Lists.newArrayList();
 
+        UserGroupDao userGroupDao = new UserGroupDao();
+
         ProxyServerManager.proxies.forEach(proxyServer -> proxyServer.getUsersId().forEach(userId -> {
             User user = UserManager.getUser(userId);
 
-            if (user != null) users.add(user);
+            if (user != null) {
+                Set<UserGroup> groups = userGroupDao.findAll(user.getId(), "");
+
+                user.getGroups().addAll(groups);
+
+                users.add(user);
+            }
         }));
 
         return users;
