@@ -158,6 +158,12 @@ public class SpigotAPI extends FocusPlugin {
         return ((Long) jsonObject.get("default_status")).intValue();
     }
 
+    public static Integer getRootServerId() {
+        JSONObject jsonObject = SpigotAPI.getConfiguration();
+
+        return ((Long) jsonObject.get("root_server_id")).intValue();
+    }
+
     public static JSONObject getConfiguration() {
         try {
 
