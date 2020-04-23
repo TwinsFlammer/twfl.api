@@ -1,5 +1,7 @@
 package com.redefocus.api.spigot.user.data;
 
+import com.redefocus.api.spigot.util.jsontext.channel.JSONTextChannel;
+import com.redefocus.api.spigot.util.jsontext.data.JSONText;
 import com.redefocus.common.shared.permissions.user.data.User;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -40,5 +42,13 @@ public class SpigotUser extends User {
 
     public Player getPlayer() {
         return Bukkit.getPlayer(this.getUniqueId());
+    }
+
+    public void sendMessage(JSONText jsonText) {
+        String fromJSONText = jsonText.toString();
+
+        JSONTextChannel jsonTextChannel = new JSONTextChannel();
+
+        jsonTextChannel.sendMessage(fromJSONText);
     }
 }
