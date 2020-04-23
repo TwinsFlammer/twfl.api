@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -140,6 +141,8 @@ public class JSONText {
     public String toString() {
         JSONObject jsonObject = new JSONObject();
 
+        JSONArray jsonArray = new JSONArray();
+
         IntStream.range(0, this.baseComponent.size())
                 .forEach(index -> {
                     JSONObject jsonObject1 = new JSONObject();
@@ -170,17 +173,83 @@ public class JSONText {
 
                         BaseComponent[] baseComponents = hoverEvent.getValue();
 
-                        JSONArray jsonArray = new JSONArray();
+                        JSONArray jsonArray1 = new JSONArray();
 
                         for (BaseComponent baseComponent1 : baseComponents)
-                            jsonArray.add(baseComponent1.toLegacyText());
+                            jsonArray1.add(baseComponent1.toLegacyText());
 
-                        jsonObject2.put("value", jsonArray);
+                        jsonObject2.put("value", jsonArray1);
                     } else jsonObject.put("hover_event", null);
 
-                    jsonObject.put(index, jsonObject1);
+                    jsonArray.add(jsonObject1);
                 });
 
+        jsonObject.put("texts", jsonArray);
+
         return jsonObject.toString();
+    }
+
+    public static JSONText fromString(String string) {
+        JSONText jsonText = new JSONText();
+
+        JSONObject jsonObject = (JSONObject) JSONValue.parse(string);
+
+        JSONArray jsonArray = (JSONArray) jsonObject.get("texts");
+
+        jsonArray.forEach(object -> {
+            JSONObject jsonObject1 = (JSONObject) object;
+
+            String text = (String) jsonObject1.get("text");
+
+            jsonText.text(text);
+
+            JSONObject jsonObject2 = (JSONObject) jsonObject1.get("hover_event");
+
+            if (jsonObject2 != null) {
+                String preAction = (String) jsonObject2.get("action");
+
+                HoverEvent.Action action = HoverEvent.Action.valueOf(preAction);
+
+                String value = (String) jsonObject2.get("value");
+
+                switch (action) {
+                    case SHOW_ITEM: {
+                        jsonText.hoverItem(value);
+                        break;
+                    }
+                    case SHOW_TEXT: {
+                        jsonText.hoverText(value);
+                        break;
+                    }
+                }
+            }
+
+            JSONObject jsonObject3 = (JSONObject) jsonObject1.get("click_event");
+
+            if (jsonObject3 != null) {
+                String preAction = (String) jsonObject3.get("action");
+
+                ClickEvent.Action action = ClickEvent.Action.valueOf(preAction);
+
+                String value = (String) jsonObject3.get("value");
+
+                switch (action) {
+                    case OPEN_URL: {
+                        jsonText.open(value);
+                        break;
+                    }
+                    case RUN_COMMAND: {
+                        jsonText.execute(value);
+                        break;
+                    }
+                    case SUGGEST_COMMAND: {
+                        jsonText.suggest(value);
+                        break;
+                    }
+                }
+            }
+        });
+
+        return jsonText;
     }
 }
