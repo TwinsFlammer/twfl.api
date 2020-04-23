@@ -1,4 +1,4 @@
-package com.redefocus.api.spigot.util;
+package com.redefocus.api.spigot.util.jsontext.data;
 
 import com.redefocus.api.spigot.reflection.Reflection;
 import com.redefocus.api.spigot.SpigotAPI;
