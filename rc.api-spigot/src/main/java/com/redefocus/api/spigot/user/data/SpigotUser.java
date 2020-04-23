@@ -5,6 +5,7 @@ import com.redefocus.api.spigot.util.jsontext.data.JSONText;
 import com.redefocus.common.shared.permissions.user.data.User;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.json.simple.JSONObject;
 
 /**
  * Created by @SrGutyerrez
@@ -49,6 +50,11 @@ public class SpigotUser extends User {
 
         JSONTextChannel jsonTextChannel = new JSONTextChannel();
 
-        jsonTextChannel.sendMessage(fromJSONText);
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", this.getId());
+        jsonObject.put("message", fromJSONText);
+
+        jsonTextChannel.sendMessage(jsonObject.toString());
     }
 }
