@@ -2,6 +2,7 @@ package com.redefocus.api.spigot.util.jsontext.listener;
 
 import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.user.data.SpigotUser;
+import com.redefocus.api.spigot.util.jsontext.channel.JSONTextChannel;
 import com.redefocus.api.spigot.util.jsontext.data.JSONText;
 import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
 import com.redefocus.common.shared.databases.redis.handler.annonation.ChannelName;
@@ -14,7 +15,7 @@ import org.json.simple.JSONValue;
  * @author SrGutyerrez
  */
 public class JSONTextJedisMessageListener implements JedisMessageListener {
-    @ChannelName(name = "")
+    @ChannelName(name = JSONTextChannel.CHANNEL_NAME)
     public void onMessage(JedisMessageEvent event) {
         String message = event.getMessage();
 
