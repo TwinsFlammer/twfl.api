@@ -184,7 +184,7 @@ public class JSONText {
                         for (BaseComponent baseComponent1 : baseComponents)
                             jsonArray1.add(baseComponent1.toLegacyText());
 
-                        jsonObject2.put("value", jsonArray1);
+                        jsonObject2.put("value", jsonArray1.toJSONString());
 
                         jsonObject1.put("hover_event", jsonObject2);
                     } else jsonObject1.put("hover_event", null);
