@@ -33,6 +33,10 @@ public class JSONText {
         this.component = new TextComponent(s);
     }
 
+    public JSONText() {
+        this.component = new TextComponent("");
+    }
+
     public JSONText text(String text) {
         this.textComponent = new TextComponent(TextComponent.fromLegacyText(text));
         return this;
