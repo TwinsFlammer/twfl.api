@@ -158,7 +158,7 @@ public class JSONText {
 
                     ClickEvent clickEvent = baseComponent.getClickEvent();
 
-                    System.out.println("Click: " + clickEvent == null);
+                    System.out.println("Click: " + (clickEvent == null));
                     
                     if (clickEvent != null) {
                         JSONObject jsonObject2 = new JSONObject();
