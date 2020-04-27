@@ -163,7 +163,7 @@ public class JSONText {
                     if (clickEvent != null) {
                         JSONObject jsonObject2 = new JSONObject();
 
-                        jsonObject2.put("action", clickEvent.getAction());
+                        jsonObject2.put("action", clickEvent.getAction().toString());
                         jsonObject2.put("value", clickEvent.getValue());
 
                         jsonObject1.put("click_event", jsonObject2);
@@ -176,7 +176,7 @@ public class JSONText {
                     if (hoverEvent != null) {
                         JSONObject jsonObject2 = new JSONObject();
 
-                        jsonObject2.put("action", hoverEvent.getAction());
+                        jsonObject2.put("action", hoverEvent.getAction().toString());
 
                         BaseComponent[] baseComponents = hoverEvent.getValue();
 
