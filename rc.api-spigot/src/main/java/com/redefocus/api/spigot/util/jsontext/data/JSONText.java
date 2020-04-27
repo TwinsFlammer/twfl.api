@@ -215,6 +215,8 @@ public class JSONText {
 
             JSONObject jsonObject2 = (JSONObject) jsonObject1.get("hover_event");
 
+            System.out.println(jsonObject2 == null);
+
             if (jsonObject2 != null) {
                 String preAction = (String) jsonObject2.get("action");
 
