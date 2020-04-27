@@ -155,6 +155,8 @@ public class JSONText {
 
                     ClickEvent clickEvent = baseComponent.getClickEvent();
 
+                    System.out.println("Click: " + clickEvent == null);
+                    
                     if (clickEvent != null) {
                         JSONObject jsonObject2 = new JSONObject();
 
@@ -165,6 +167,8 @@ public class JSONText {
                     } else jsonObject1.put("click_event", null);
 
                     HoverEvent hoverEvent = baseComponent.getHoverEvent();
+
+                    System.out.println("Hover: " + clickEvent == null);
 
                     if (hoverEvent != null) {
                         JSONObject jsonObject2 = new JSONObject();
@@ -179,7 +183,9 @@ public class JSONText {
                             jsonArray1.add(baseComponent1.toLegacyText());
 
                         jsonObject2.put("value", jsonArray1);
-                    } else jsonObject.put("hover_event", null);
+
+                        jsonObject1.put("hover_event", jsonObject2);
+                    } else jsonObject1.put("hover_event", null);
 
                     jsonArray.add(jsonObject1);
                 });
