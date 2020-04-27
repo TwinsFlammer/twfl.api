@@ -184,7 +184,7 @@ public class JSONText {
 
                         System.out.println(jsonArray.toString());
 
-                        jsonObject2.put("value", jsonArray1.toJSONString());
+                        jsonObject2.put("value", (baseComponents.length >= 1 ? baseComponents[0] : ""));
 
                         jsonObject1.put("hover_event", jsonObject2);
                     } else jsonObject1.put("hover_event", null);
