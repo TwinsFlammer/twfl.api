@@ -207,11 +207,15 @@ public class JSONText {
         jsonArray.forEach(object -> {
             JSONObject jsonObject1 = (JSONObject) object;
 
+            System.out.println(jsonObject1);
+
             String text = (String) jsonObject1.get("text");
 
             jsonText.text(text);
 
             JSONObject jsonObject2 = (JSONObject) jsonObject1.get("hover_event");
+
+            System.out.println(jsonText == null);
 
             if (jsonObject2 != null) {
                 String preAction = (String) jsonObject2.get("action");
