@@ -260,6 +260,8 @@ public class JSONText {
                     }
                 }
             }
+
+            jsonText.next();
         });
 
         return jsonText;
