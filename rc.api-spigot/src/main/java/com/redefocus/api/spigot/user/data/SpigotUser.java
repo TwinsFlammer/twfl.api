@@ -48,8 +48,6 @@ public class SpigotUser extends User {
     public void sendMessage(JSONText jsonText) {
         String fromJSONText = jsonText.toString();
 
-        System.out.println("Enviar: " + fromJSONText);
-
         JSONTextChannel jsonTextChannel = new JSONTextChannel();
 
         JSONObject jsonObject = new JSONObject();
