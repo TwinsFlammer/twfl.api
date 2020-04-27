@@ -29,8 +29,8 @@ public class JSONText {
     private TextComponent textComponent;
     private List<BaseComponent> baseComponent = new ArrayList<>();
 
-    public JSONText() {
-        this.component = new TextComponent();
+    public JSONText(String s) {
+        this.component = new TextComponent(s);
     }
 
     public JSONText text(String text) {
@@ -198,7 +198,7 @@ public class JSONText {
     }
 
     public static JSONText fromString(String string) {
-        JSONText jsonText = new JSONText();
+        JSONText jsonText = new JSONText("");
 
         JSONObject jsonObject = (JSONObject) JSONValue.parse(string);
 
