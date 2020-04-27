@@ -145,12 +145,11 @@ public class JSONText {
 
         this.component.setExtra(this.baseComponent);
 
-//        IntStream.range(0, this.baseComponent.size())
-//                .forEach(index -> {
+        IntStream.range(0, this.component.getExtra().size())
+                .forEach(index -> {
                     JSONObject jsonObject1 = new JSONObject();
 
-//                    BaseComponent baseComponent = this.baseComponent.get(index);
-                    BaseComponent baseComponent = this.component;
+                    BaseComponent baseComponent = this.component.getExtra().get(index);
 
                     String text = baseComponent.toLegacyText();
 
@@ -191,7 +190,7 @@ public class JSONText {
                     } else jsonObject1.put("hover_event", null);
 
                     jsonArray.add(jsonObject1);
-//                });
+                });
 
         jsonObject.put("texts", jsonArray);
 
