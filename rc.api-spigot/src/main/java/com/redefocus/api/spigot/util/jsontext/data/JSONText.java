@@ -171,7 +171,7 @@ public class JSONText {
 
                     HoverEvent hoverEvent = baseComponent.getHoverEvent();
 
-                    System.out.println("Hover: " + clickEvent == null);
+                    System.out.println("Hover: " + (clickEvent == null));
 
                     if (hoverEvent != null) {
                         JSONObject jsonObject2 = new JSONObject();
