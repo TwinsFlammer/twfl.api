@@ -28,6 +28,8 @@ public class JSONTextJedisMessageListener implements JedisMessageListener {
 
         Player player = spigotUser.getPlayer();
 
+        System.out.println(text);
+
         if (player != null) {
             JSONText jsonText = JSONText.fromString(text);
 
