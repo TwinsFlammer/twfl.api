@@ -19,7 +19,6 @@ public class CustomAction {
 
     private String text;
 
-    @Getter
     private final Spigot spigot;
 
     public CustomAction() {
@@ -29,6 +28,15 @@ public class CustomAction {
     public CustomAction text(String text) {
         this.text = ChatColor.translateAlternateColorCodes('&', text);
         return this;
+    }
+
+    @Deprecated
+    public Spigot getSpigot() {
+        return this.spigot;
+    }
+
+    public Spigot spigot() {
+        return this.spigot;
     }
 
     public class Spigot {
