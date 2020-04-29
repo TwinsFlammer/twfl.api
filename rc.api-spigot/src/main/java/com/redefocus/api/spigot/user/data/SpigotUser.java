@@ -1,10 +1,13 @@
 package com.redefocus.api.spigot.user.data;
 
+import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.util.jsontext.channel.JSONTextChannel;
 import com.redefocus.api.spigot.util.jsontext.data.JSONText;
+import com.redefocus.common.shared.permissions.group.data.Group;
 import com.redefocus.common.shared.permissions.user.data.User;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.PermissionAttachment;
 import org.json.simple.JSONObject;
 
 /**
@@ -56,5 +59,34 @@ public class SpigotUser extends User {
         jsonObject.put("json_text", fromJSONText);
 
         jsonTextChannel.sendMessage(jsonObject.toString());
+    }
+
+    public void applyPermissions() {
+        Player player = this.getPlayer();
+
+        if (player == null) return;
+
+        player.getEffectivePermissions().clear();
+
+        PermissionAttachment permissionAttachment = player.addAttachment(SpigotAPI.getInstance());
+
+        this.getGroups().forEach(userGroup -> {
+            Group group = userGroup.getGroup();
+
+            group.getPermissions()
+                    .forEach(permission -> {
+                        String permissionName = permission.getName();
+                        Integer rootServerId = SpigotAPI.getRootServerId();
+
+                        if (permission.getServerId().equals(rootServerId) || permission.getServerId().equals(0))
+                            permissionAttachment.setPermission(
+                                    permissionName.replaceAll(
+                                            "-",
+                                            ""
+                                    ),
+                                    permissionName.contains("-")
+                            );
+                    });
+        });
     }
 }
