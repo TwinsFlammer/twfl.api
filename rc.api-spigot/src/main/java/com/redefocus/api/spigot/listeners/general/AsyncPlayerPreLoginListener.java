@@ -1,6 +1,7 @@
 package com.redefocus.api.spigot.listeners.general;
 
 import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.api.spigot.user.data.SpigotUser;
 import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.permissions.user.group.dao.UserGroupDao;
 import com.redefocus.common.shared.permissions.user.group.data.UserGroup;
@@ -25,14 +26,14 @@ public class AsyncPlayerPreLoginListener implements Listener {
 
         UserGroupDao userGroupDao = new UserGroupDao();
 
-        Server server = SpigotAPI.getCurrentServer();
+        String serverIdSQLWhere = "AND `server_id`=0 OR `server_id`=" + SpigotAPI.getRootServerId();
 
-        if (server == null) return;
-
-        String serverId = "AND `server_id`=0 OR `server_id`=" + server.getId();
-
-        Set<UserGroup> groups = userGroupDao.findAll(user.getId(), serverId);
+        Set<UserGroup> groups = userGroupDao.findAll(user.getId(), serverIdSQLWhere);
 
         user.getGroups().addAll(groups);
+
+        SpigotUser spigotUser = SpigotAPI.getSpigotUserFactory().getUser(user.getId());
+
+        spigotUser.applyPermissions();
     }
 }
