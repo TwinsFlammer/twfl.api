@@ -2,6 +2,7 @@ package com.redefocus.api.spigot.teleport.data;
 
 import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.teleport.channel.TeleportChannel;
+import com.redefocus.api.spigot.teleport.event.UserTeleportEvent;
 import com.redefocus.api.spigot.teleport.exception.InvalidTeleportTargetServerException;
 import com.redefocus.api.spigot.teleport.manager.TeleportRequestManager;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
@@ -32,6 +33,15 @@ public class TeleportRequest {
     }
 
     public void teleport() throws InvalidTeleportTargetServerException {
+        UserTeleportEvent userTeleportEvent = new UserTeleportEvent(
+                this
+        );
+
+        userTeleportEvent.run();
+
+        if (userTeleportEvent.isCancelled())
+            return;
+
         Server server = ServerManager.getServer(this.targetServerId);
 
         if (server == null)
