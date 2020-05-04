@@ -22,6 +22,7 @@ public class SpigotUser extends User {
                 user.getUniqueId(),
                 user.getEmail(),
                 user.getPassword(),
+                user.getCash(),
                 user.getDiscordId(),
                 user.isTwoFactorAuthenticationEnabled(),
                 user.getTwoFactorAuthenticationCode(),
