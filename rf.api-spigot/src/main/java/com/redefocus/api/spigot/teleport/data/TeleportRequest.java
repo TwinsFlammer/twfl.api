@@ -47,11 +47,10 @@ public class TeleportRequest {
         if (server == null)
             throw new InvalidTeleportTargetServerException("Can\'t find the target server id: " + this.targetServerId);
 
+        User user = UserManager.getUser(this.userId);
+        Player player = Bukkit.getPlayer(user.getUniqueId());
+
         if (server.getId().equals(SpigotAPI.getCurrentServer().getId())) {
-            User user = UserManager.getUser(this.userId);
-
-            Player player = Bukkit.getPlayer(user.getUniqueId());
-
             if (this.targetId == null) {
                 player.teleport(this.targetLocation);
             } else {
@@ -72,6 +71,21 @@ public class TeleportRequest {
         jsonObject.put("target_id", targetId);
         jsonObject.put("server_id", this.targetServerId);
         jsonObject.put("serialized_location", serializedLocation);
+
+        JSONObject jsonObject1 = new JSONObject();
+
+        Server fromServer = user.getServer();
+
+        Integer fromServerId = fromServer.getId();
+
+        Location fromLocation = player.getLocation();
+
+        String fromLocationSerialized = LocationSerialize.toString(fromLocation);
+
+        jsonObject1.put("server_id", fromServerId);
+        jsonObject1.put("serialized_location", fromLocationSerialized);
+
+        jsonObject.put("from", jsonObject1);
 
         TeleportChannel teleportChannel = new TeleportChannel();
 
