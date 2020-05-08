@@ -5,6 +5,7 @@ import com.redefocus.api.spigot.teleport.channel.TeleportChannel;
 import com.redefocus.api.spigot.teleport.event.UserTeleportEvent;
 import com.redefocus.api.spigot.teleport.exception.InvalidTeleportTargetServerException;
 import com.redefocus.api.spigot.teleport.manager.TeleportRequestManager;
+import com.redefocus.api.spigot.util.serialize.InventorySerialize;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
 import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.permissions.user.manager.UserManager;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.PlayerInventory;
 import org.json.simple.JSONObject;
 
 /**
@@ -87,6 +89,14 @@ public class TeleportRequest {
 
         jsonObject.put("from", jsonObject1);
 
+        PlayerInventory playerInventory = player.getInventory();
+
+        JSONObject jsonObject2 = InventorySerialize.toJsonObject(playerInventory);
+
+        jsonObject.put("inventory", jsonObject2);
+
+        System.out.println(jsonObject.toString());
+
         TeleportChannel teleportChannel = new TeleportChannel();
 
         teleportChannel.sendMessage(jsonObject.toString());
@@ -94,5 +104,9 @@ public class TeleportRequest {
 
     public Boolean canTeleport() {
         return System.currentTimeMillis() >= this.teleportTime;
+    }
+
+    public Long getRemainingTime() {
+        return this.teleportTime - System.currentTimeMillis();
     }
 }
