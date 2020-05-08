@@ -1,6 +1,6 @@
 package com.redefocus.api.spigot.teleport.event;
 
-import com.redefocus.api.spigot.event.CommunityEvent;
+import com.redefocus.api.spigot.event.FocusEvent;
 import com.redefocus.api.spigot.teleport.data.TeleportRequest;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -10,11 +10,11 @@ import org.bukkit.event.Cancellable;
  * Created by @SrGutyerrez
  */
 @RequiredArgsConstructor
-public class UserTeleportEvent extends CommunityEvent implements Cancellable {
+public class UserTeleportEvent extends FocusEvent implements Cancellable {
     @Getter
     private final TeleportRequest teleportRequest;
 
-    private Boolean cancelled;
+    private Boolean cancelled = false;
 
     @Override
     public boolean isCancelled() {
