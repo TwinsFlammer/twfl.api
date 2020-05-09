@@ -111,6 +111,17 @@ public class SpigotAPI extends FocusPlugin {
     }
 
     public static List<User> getUsers() {
+        List<Integer> serversId = SpigotAPI.getSubServersId();
+
+        return ProxyServerManager.getUsers()
+                .stream()
+                .filter(User::isOnline)
+                .filter(user -> user.getServer() != null)
+                .filter(user -> serversId.contains(user.getServer().getId()))
+                .collect(Collectors.toList());
+    }
+
+    public static List<Integer> getSubServersId() {
         JSONArray jsonArray = (JSONArray) SpigotAPI.getConfiguration().get("servers");
 
         List<Integer> servers = Lists.newArrayList();
@@ -121,12 +132,7 @@ public class SpigotAPI extends FocusPlugin {
 
         jsonArray.forEach(o -> servers.add((Integer) o));
 
-        return ProxyServerManager.getUsers()
-                .stream()
-                .filter(User::isOnline)
-                .filter(user -> user.getServer() != null)
-                .filter(user -> servers.contains(user.getServer().getId()))
-                .collect(Collectors.toList());
+        return servers;
     }
 
     public static Server getCurrentServer() {
