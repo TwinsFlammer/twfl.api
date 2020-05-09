@@ -123,6 +123,7 @@ public class SpigotAPI extends FocusPlugin {
 
         return ProxyServerManager.getUsers()
                 .stream()
+                .filter(User::isOnline)
                 .filter(user -> user.getServer() != null)
                 .filter(user -> servers.contains(user.getServer().getId()))
                 .collect(Collectors.toList());
