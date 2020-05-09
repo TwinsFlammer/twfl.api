@@ -32,6 +32,7 @@ public class CashChannelJedisMessageListener implements JedisMessageListener {
 
         if (ICashChangeEvent != null)
             ICashChangeEvent.dispatchCashChange(
+                    user,
                     newAmount,
                     oldAmount
             );
