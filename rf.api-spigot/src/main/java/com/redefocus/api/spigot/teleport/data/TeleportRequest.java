@@ -31,6 +31,10 @@ public class TeleportRequest {
     private final Long teleportTime;
 
     public void start() {
+        TeleportRequest teleportRequest = TeleportRequestManager.getTeleportRequest(this.userId);
+
+        if (teleportRequest != null) return;
+
         TeleportRequestManager.getTeleportRequests().add(this);
     }
 
