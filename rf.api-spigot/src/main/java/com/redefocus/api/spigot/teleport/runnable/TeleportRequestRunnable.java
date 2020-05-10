@@ -21,23 +21,28 @@ public class TeleportRequestRunnable implements Runnable {
 
                     Player player = spigotUser.getPlayer();
 
+                    String teleportRequestSecond = TimeFormatter.formatMinimized(
+                            teleportRequest.getRemainingTime()
+                    );
+
                     CustomTitle.sendTitle(
                             player,
                             0,
                             15,
                             0,
                             "§eTeletransportando",
-                            "§eEm " + TimeFormatter.formatMinimized(
-                                    teleportRequest.getRemainingTime()
-                            ) + "..."
+                            "§eEm " + teleportRequestSecond + "..."
                     );
 
-                    player.playSound(
-                            player.getLocation(),
-                            Sound.NOTE_PLING,
-                            1.0F,
-                            1.0F
-                    );
+                    if (!spigotUser.getLastTeleportRequestSecond().equals(teleportRequestSecond))
+                        player.playSound(
+                                player.getLocation(),
+                                Sound.NOTE_PLING,
+                                1.0F,
+                                1.0F
+                        );
+
+                    spigotUser.setLastTeleportRequestSecond(teleportRequestSecond);
 
                     try {
                         if (teleportRequest.canTeleport()) {
