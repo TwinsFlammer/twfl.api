@@ -6,6 +6,8 @@ import com.redefocus.api.spigot.teleport.manager.TeleportRequestManager;
 import com.redefocus.api.spigot.user.data.SpigotUser;
 import com.redefocus.api.spigot.util.title.data.CustomTitle;
 import com.redefocus.common.shared.util.TimeFormatter;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 
 /**
  * Created by @SrGutyerrez
@@ -17,8 +19,10 @@ public class TeleportRequestRunnable implements Runnable {
                 .removeIf(teleportRequest -> {
                     SpigotUser spigotUser = SpigotAPI.getSpigotUserFactory().getUser(teleportRequest.getUserId());
 
+                    Player player = spigotUser.getPlayer();
+
                     CustomTitle.sendTitle(
-                            spigotUser.getPlayer(),
+                            player,
                             0,
                             15,
                             0,
@@ -26,6 +30,13 @@ public class TeleportRequestRunnable implements Runnable {
                             "§eEm " + TimeFormatter.formatMinimized(
                                     teleportRequest.getRemainingTime()
                             ) + "..."
+                    );
+
+                    player.playSound(
+                            player.getLocation(),
+                            Sound.NOTE_PLING,
+                            1.0F,
+                            1.0F
                     );
 
                     try {
