@@ -5,6 +5,8 @@ import com.redefocus.api.spigot.util.jsontext.channel.JSONTextChannel;
 import com.redefocus.api.spigot.util.jsontext.data.JSONText;
 import com.redefocus.common.shared.permissions.group.data.Group;
 import com.redefocus.common.shared.permissions.user.data.User;
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
@@ -14,6 +16,10 @@ import org.json.simple.JSONObject;
  * Created by @SrGutyerrez
  */
 public class SpigotUser extends User {
+    @Getter
+    @Setter
+    private String lastTeleportRequestSecond = "";
+
     public SpigotUser(User user) {
         super(
                 user.getId(),
