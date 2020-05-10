@@ -79,7 +79,7 @@ public abstract class CustomCommand extends Command {
             user.sendMessage(
                     String.format(
                             language.getMessage("messages.default_commands.invalid_group"),
-                            this.group.getColor() + this.group.getName()
+                            this.group.getFancyPrefix()
                     )
             );
             return true;
