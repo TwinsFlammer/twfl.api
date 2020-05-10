@@ -38,12 +38,16 @@ public class TeleportRequestManager {
         return TeleportRequestManager.WAITING_JOIN;
     }
 
-    public static TeleportRequest getTeleportRequest(User user) {
+    public static TeleportRequest getTeleportRequest(Integer userId) {
         return TeleportRequestManager.WAITING_JOIN
                 .stream()
-                .filter(teleportRequest -> teleportRequest.getUserId().equals(user.getId()))
+                .filter(teleportRequest -> teleportRequest.getUserId().equals(userId))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public static TeleportRequest getTeleportRequest(User user) {
+        return TeleportRequestManager.getTeleportRequest(user.getId());
     }
 
     public static TeleportRequest toTeleportRequest(JSONObject jsonObject) {
