@@ -20,7 +20,7 @@ public class TeleportRequestRunnable implements Runnable {
                     CustomTitle.sendTitle(
                             spigotUser.getPlayer(),
                             0,
-                            30,
+                            15,
                             0,
                             "§eTeletransportando",
                             "§eEm " + TimeFormatter.formatMinimized(
