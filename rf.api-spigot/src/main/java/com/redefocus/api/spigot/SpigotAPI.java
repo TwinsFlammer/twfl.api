@@ -71,8 +71,9 @@ public class SpigotAPI extends FocusPlugin {
 
     @Override
     public void onEnablePlugin() {
+        ProxyServerManager.setServerId(SpigotAPI.getRootServerId());
+
         this.reflection = new Reflection(this);
-//        this.reflection.initialize();
 
         this.setupServerSQL();
 
@@ -90,7 +91,7 @@ public class SpigotAPI extends FocusPlugin {
 
         if (server != null) server.setStatus(SpigotAPI.getDefaultStatus());
 
-        this.spigotUserFactory = new SpigotUserFactory<>();
+        SpigotAPI.spigotUserFactory = new SpigotUserFactory<>();
     }
 
     @Override
