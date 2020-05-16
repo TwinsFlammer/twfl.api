@@ -67,25 +67,26 @@ public class JSONText {
     }
 
     private String convertItemStackToJson(ItemStack itemStack) {
-        Reflection reflection = SpigotAPI.getInstance().getReflection();
-
-        Class<?> craftItemStackClazz = reflection.getOBCClass("inventory.CraftItemStack");
-        Method asNMSCopyMethod = reflection.getMethod(craftItemStackClazz, "asNMSCopy", ItemStack.class);
-        Class<?> nmsItemStackClazz = reflection.getNMSClass("ItemStack");
-        Class<?> nbtTagCompoundClazz = reflection.getNMSClass("NBTTagCompound");
-        Method saveNmsItemStackMethod = reflection.getMethod(nmsItemStackClazz, "save", nbtTagCompoundClazz);
-        Object itemAsJsonObject;
-
-        try {
-            Object nmsNbtTagCompoundObj = nbtTagCompoundClazz.newInstance();
-            Object nmsItemStackObj = asNMSCopyMethod.invoke(null, itemStack);
-            itemAsJsonObject = saveNmsItemStackMethod.invoke(nmsItemStackObj, nmsNbtTagCompoundObj);
-        } catch (Throwable t) {
-            Bukkit.getLogger().log(Level.SEVERE, "failed to serialize itemstack to nms item", t);
-            return null;
-        }
-
-        return itemAsJsonObject.toString();
+//        Reflection reflection = SpigotAPI.getInstance().getReflection();
+//
+//        Class<?> craftItemStackClazz = reflection.getOBCClass("inventory.CraftItemStack");
+//        Method asNMSCopyMethod = reflection.getMethod(craftItemStackClazz, "asNMSCopy", ItemStack.class);
+//        Class<?> nmsItemStackClazz = reflection.getNMSClass("ItemStack");
+//        Class<?> nbtTagCompoundClazz = reflection.getNMSClass("NBTTagCompound");
+//        Method saveNmsItemStackMethod = reflection.getMethod(nmsItemStackClazz, "save", nbtTagCompoundClazz);
+//        Object itemAsJsonObject;
+//
+//        try {
+//            Object nmsNbtTagCompoundObj = nbtTagCompoundClazz.newInstance();
+//            Object nmsItemStackObj = asNMSCopyMethod.invoke(null, itemStack);
+//            itemAsJsonObject = saveNmsItemStackMethod.invoke(nmsItemStackObj, nmsNbtTagCompoundObj);
+//        } catch (Throwable t) {
+//            Bukkit.getLogger().log(Level.SEVERE, "failed to serialize itemstack to nms item", t);
+//            return null;
+//        }
+//
+//        return itemAsJsonObject.toString();
+        return null;
     }
 
     @Deprecated
