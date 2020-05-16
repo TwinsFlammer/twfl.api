@@ -406,31 +406,31 @@ public class Reflection {
     }
 
     //Serialize methods
-    static Method getMethod_AsBukkitCopy() {
+    public static Method getMethod_AsBukkitCopy() {
         return method_AsBukkitCopy;
     }
 
-    static Method getMethod_CreateStack() {
+    public static Method getMethod_CreateStack() {
         return method_CreateStack;
     }
 
-    static Method getMethod_A() {
+    public static Method getMethod_A() {
         return method_A;
     }
 
-    static Method getMethod_asNMSCopy() {
+    public static Method getMethod_asNMSCopy() {
         return method_asNMSCopy;
     }
 
-    static Method getMethod_SaveItem() {
+    public static Method getMethod_SaveItem() {
         return method_SaveItem;
     }
 
-    static Method getMethod_Add() {
+    public static Method getMethod_Add() {
         return method_Add;
     }
 
-    static Method getMethod_Save() {
+    public static Method getMethod_Save() {
         return method_Save;
     }
 
@@ -446,11 +446,11 @@ public class Reflection {
         return class_NBTBase;
     }
 
-    static Class<?> getClass_NBTTagCompound() {
+    public static Class<?> getClass_NBTTagCompound() {
         return class_NBTTagCompound;
     }
 
-    static Class<?> getClass_NBTTagList() {
+    public static Class<?> getClass_NBTTagList() {
         return class_NBTTagList;
     }
 
