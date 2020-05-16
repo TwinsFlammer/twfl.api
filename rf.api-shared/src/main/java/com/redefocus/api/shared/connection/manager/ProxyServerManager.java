@@ -10,6 +10,9 @@ import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.permissions.user.group.dao.UserGroupDao;
 import com.redefocus.common.shared.permissions.user.group.data.UserGroup;
 import com.redefocus.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.server.data.Server;
+import com.redefocus.common.shared.server.manager.ServerManager;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Set;
@@ -20,6 +23,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class ProxyServerManager {
     private static List<ProxyServer> proxies = Lists.newArrayList();
+
+    @Setter
+    private static Integer serverId = 0;
 
     public static List<ProxyServer> getProxies() {
         return ProxyServerManager.proxies;
@@ -92,12 +98,17 @@ public class ProxyServerManager {
 
         UserGroupDao userGroupDao = new UserGroupDao();
 
+        Server server = ServerManager.getServer(ProxyServerManager.serverId);
+
         ProxyServerManager.proxies.forEach(proxyServer -> proxyServer.getUsersId().forEach(userId -> {
             User user = UserManager.getUser(userId);
 
             if (user != null) {
                 List<UserGroup> groups = Lists.newArrayList(
-                        userGroupDao.findAll(user.getId(), "")
+                        userGroupDao.findAll(
+                                user.getId(),
+                                server == null || server.isLobby() || server.isLoginServer() ? "" : "AND `server_id`=0 OR `server_id`=" + ProxyServerManager.serverId
+                        )
                 );
 
                 user.setGroups(groups);
