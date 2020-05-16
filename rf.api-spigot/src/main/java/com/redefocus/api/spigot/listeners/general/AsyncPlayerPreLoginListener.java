@@ -3,6 +3,7 @@ package com.redefocus.api.spigot.listeners.general;
 import com.google.common.collect.Lists;
 import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.user.data.SpigotUser;
+import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.permissions.user.group.dao.UserGroupDao;
 import com.redefocus.common.shared.permissions.user.group.data.UserGroup;
 import com.redefocus.common.shared.server.data.Server;
@@ -37,7 +38,9 @@ public class AsyncPlayerPreLoginListener implements Listener {
                 userGroupDao.findAll(spigotUser.getId(), serverIdSQLWhere)
         );
 
-        spigotUser.setGroups(groups);
+        User user = spigotUser;
+
+        user.setGroups(groups);
 
         spigotUser.applyPermissions();
     }
