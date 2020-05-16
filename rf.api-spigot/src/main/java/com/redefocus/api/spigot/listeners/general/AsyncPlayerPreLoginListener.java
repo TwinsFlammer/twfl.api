@@ -33,8 +33,6 @@ public class AsyncPlayerPreLoginListener implements Listener {
 
         String serverIdSQLWhere = server.isLobby() ? "" : "AND `server_id`=0 OR `server_id`=" + SpigotAPI.getRootServerId();
 
-        System.out.println(serverIdSQLWhere);
-
         List<UserGroup> groups = Lists.newArrayList(
                 userGroupDao.findAll(spigotUser.getId(), serverIdSQLWhere)
         );
