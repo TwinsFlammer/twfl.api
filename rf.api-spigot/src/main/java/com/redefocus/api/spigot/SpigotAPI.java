@@ -72,7 +72,7 @@ public class SpigotAPI extends FocusPlugin {
     @Override
     public void onEnablePlugin() {
         this.reflection = new Reflection(this);
-        this.reflection.initialize();
+//        this.reflection.initialize();
 
         this.setupServerSQL();
 
