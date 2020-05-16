@@ -6,6 +6,7 @@ import com.redefocus.api.spigot.user.data.SpigotUser;
 import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.permissions.user.group.dao.UserGroupDao;
 import com.redefocus.common.shared.permissions.user.group.data.UserGroup;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
 import com.redefocus.common.shared.server.data.Server;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -38,7 +39,7 @@ public class AsyncPlayerPreLoginListener implements Listener {
                 userGroupDao.findAll(spigotUser.getId(), serverIdSQLWhere)
         );
 
-        User user = spigotUser;
+        User user = UserManager.getUser(spigotUser.getUniqueId());
 
         user.setGroups(groups);
 
