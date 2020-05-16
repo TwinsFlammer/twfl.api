@@ -1,17 +1,16 @@
 package com.redefocus.api.spigot.listeners.general;
 
+import com.google.common.collect.Lists;
 import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.user.data.SpigotUser;
-import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.permissions.user.group.dao.UserGroupDao;
 import com.redefocus.common.shared.permissions.user.group.data.UserGroup;
-import com.redefocus.common.shared.permissions.user.manager.UserManager;
 import com.redefocus.common.shared.server.data.Server;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -22,7 +21,7 @@ public class AsyncPlayerPreLoginListener implements Listener {
     public void onLogin(AsyncPlayerPreLoginEvent event) {
         UUID uniqueId = event.getUniqueId();
 
-        User user = UserManager.getUser(uniqueId);
+        SpigotUser spigotUser = SpigotAPI.getSpigotUserFactory().getUser(uniqueId);
 
         UserGroupDao userGroupDao = new UserGroupDao();
 
@@ -32,11 +31,11 @@ public class AsyncPlayerPreLoginListener implements Listener {
 
         String serverIdSQLWhere = server.isLobby() ? "" : "AND `server_id`=0 OR `server_id`=" + SpigotAPI.getRootServerId();
 
-        Set<UserGroup> groups = userGroupDao.findAll(user.getId(), serverIdSQLWhere);
+        List<UserGroup> groups = Lists.newArrayList(
+                userGroupDao.findAll(spigotUser.getId(), serverIdSQLWhere)
+        );
 
-        user.getGroups().addAll(groups);
-
-        SpigotUser spigotUser = SpigotAPI.getSpigotUserFactory().getUser(user.getId());
+        spigotUser.setGroups(groups);
 
         spigotUser.applyPermissions();
     }
