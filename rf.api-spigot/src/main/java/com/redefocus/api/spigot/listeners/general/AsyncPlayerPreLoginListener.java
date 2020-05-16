@@ -26,7 +26,11 @@ public class AsyncPlayerPreLoginListener implements Listener {
 
         UserGroupDao userGroupDao = new UserGroupDao();
 
-        String serverIdSQLWhere = "AND `server_id`=0 OR `server_id`=" + SpigotAPI.getRootServerId();
+        Server server = SpigotAPI.getCurrentServer();
+
+        if (server == null || server.isLoginServer()) return;
+
+        String serverIdSQLWhere = server.isLobby() ? "" : "AND `server_id`=0 OR `server_id`=" + SpigotAPI.getRootServerId();
 
         Set<UserGroup> groups = userGroupDao.findAll(user.getId(), serverIdSQLWhere);
 
