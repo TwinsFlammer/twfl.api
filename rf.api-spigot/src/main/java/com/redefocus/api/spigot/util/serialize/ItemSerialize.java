@@ -8,10 +8,7 @@ import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.*;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,10 +86,11 @@ public class ItemSerialize {
             }
             dataOutput.close();
             return Base64Coder.encodeLines(outputStream.toByteArray());
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
-        catch (Exception e) {
-            throw new IllegalStateException("Unable to save item stacks.", e);
-        }
+
+        return null;
     }
 
     public static List<ItemStack> fromBase64List(String items) {
@@ -108,9 +106,10 @@ public class ItemSerialize {
             }
             dataInput.close();
             return list;
+        } catch (IOException | ClassNotFoundException exception) {
+            exception.printStackTrace();
         }
-        catch (Exception e) {
-            throw new IllegalStateException("Unable to load item stacks.", e);
-        }
+
+        return null;
     }
 }
