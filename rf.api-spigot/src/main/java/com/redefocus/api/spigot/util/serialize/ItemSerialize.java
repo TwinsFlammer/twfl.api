@@ -30,16 +30,16 @@ public class ItemSerialize {
         DataOutputStream dataOutput = new DataOutputStream(outputStream);
 
         try {
-            Object nbtTagListItems = reflection.getClass_NBTTagList().newInstance();
-            Object nbtTagCompoundItem = reflection.getClass_NBTTagCompound().newInstance();
+            Object nbtTagListItems = ItemSerialize.reflection.getClass_NBTTagList().newInstance();
+            Object nbtTagCompoundItem = ItemSerialize.reflection.getClass_NBTTagCompound().newInstance();
 
-            Object nms = reflection.getMethod_asNMSCopy().invoke(null, itemStack);
+            Object nms = ItemSerialize.reflection.getMethod_asNMSCopy().invoke(null, itemStack);
 
-            reflection.getMethod_SaveItem().invoke(nms, nbtTagCompoundItem);
+            ItemSerialize.reflection.getMethod_SaveItem().invoke(nms, nbtTagCompoundItem);
 
-            reflection.getMethod_Add().invoke(nbtTagListItems, nbtTagCompoundItem);
+            ItemSerialize.reflection.getMethod_Add().invoke(nbtTagListItems, nbtTagCompoundItem);
 
-            reflection.getMethod_Save().invoke(null, nbtTagCompoundItem, dataOutput);
+            ItemSerialize.reflection.getMethod_Save().invoke(null, nbtTagCompoundItem, dataOutput);
         } catch (Throwable ex) {
             ex.printStackTrace();
         }
@@ -54,12 +54,12 @@ public class ItemSerialize {
         Object toReturn = null;
 
         try {
-            nbtTagCompoundRoot = reflection.getMethod_A().invoke(null, new DataInputStream(inputStream));
+            nbtTagCompoundRoot = ItemSerialize.reflection.getMethod_A().invoke(null, new DataInputStream(inputStream));
             if (nbtTagCompoundRoot != null) {
-                nmsItem = reflection.getMethod_CreateStack().invoke(null, nbtTagCompoundRoot);
+                nmsItem = ItemSerialize.reflection.getMethod_CreateStack().invoke(null, nbtTagCompoundRoot);
             }
 
-            toReturn = reflection.getMethod_AsBukkitCopy().invoke(null, nmsItem);
+            toReturn = ItemSerialize.reflection.getMethod_AsBukkitCopy().invoke(null, nmsItem);
         } catch (Throwable ex) {
             ex.printStackTrace();
         }
