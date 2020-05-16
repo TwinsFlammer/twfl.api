@@ -96,9 +96,11 @@ public class ProxyServerManager {
             User user = UserManager.getUser(userId);
 
             if (user != null) {
-                Set<UserGroup> groups = userGroupDao.findAll(user.getId(), "");
+                List<UserGroup> groups = Lists.newArrayList(
+                        userGroupDao.findAll(user.getId(), "")
+                );
 
-                user.getGroups().addAll(groups);
+                user.setGroups(groups);
 
                 users.add(user);
             }
