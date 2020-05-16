@@ -79,24 +79,24 @@ public class Reflection {
             String className = SpigotAPI.getInstance().getServer().getClass().getName();
             String[] packages = className.split("\\.");
             if (packages.length == 5) {
-                versionPrefix = packages[3] + ".";
+                this.versionPrefix = packages[3] + ".";
             }
-            class_ItemStack = fixBukkitClass("net.minecraft.server.ItemStack");
-            class_NBTBase = fixBukkitClass("net.minecraft.server.NBTBase");
-            class_NBTTagCompound = fixBukkitClass("net.minecraft.server.NBTTagCompound");
-            class_NBTTagList = fixBukkitClass("net.minecraft.server.NBTTagList");
-            class_CraftItemStack = fixBukkitClass("org.bukkit.craftbukkit.inventory.CraftItemStack");
-            class_NBTCompressedStreamTools = fixBukkitClass("net.minecraft.server.NBTCompressedStreamTools");
+            this.class_ItemStack = this.fixBukkitClass("net.minecraft.server.ItemStack");
+            this.class_NBTBase = this.fixBukkitClass("net.minecraft.server.NBTBase");
+            this.class_NBTTagCompound = this.fixBukkitClass("net.minecraft.server.NBTTagCompound");
+            this.class_NBTTagList = this.fixBukkitClass("net.minecraft.server.NBTTagList");
+            this.class_CraftItemStack = this.fixBukkitClass("org.bukkit.craftbukkit.inventory.CraftItemStack");
+            this.class_NBTCompressedStreamTools = this.fixBukkitClass("net.minecraft.server.NBTCompressedStreamTools");
             //Hologram classes
-            class_EntityArmorStand = fixBukkitClass("net.minecraft.server.EntityArmorStand");
-            class_PacketPlayOutSpawnEntityLiving = fixBukkitClass("net.minecraft.server.PacketPlayOutSpawnEntityLiving");
-            class_EntityLiving = fixBukkitClass("net.minecraft.server.EntityLiving");
-            class_PlayerConnection = fixBukkitClass("net.minecraft.server.PlayerConnection");
-            class_Packet = fixBukkitClass("net.minecraft.server.Packet");
-            class_PacketPlayOutEntityDestroy = fixBukkitClass("net.minecraft.server.PacketPlayOutEntityDestroy");
-            class_World = fixBukkitClass("net.minecraft.server.World");
-            class_CraftWorld = fixBukkitClass("org.bukkit.craftbukkit.CraftWorld");
-            class_Entity = fixBukkitClass("net.minecraft.server.Entity");
+            this.class_EntityArmorStand = this.fixBukkitClass("net.minecraft.server.EntityArmorStand");
+            this.class_PacketPlayOutSpawnEntityLiving = this.fixBukkitClass("net.minecraft.server.PacketPlayOutSpawnEntityLiving");
+            this.class_EntityLiving = this.fixBukkitClass("net.minecraft.server.EntityLiving");
+            this.class_PlayerConnection = this.fixBukkitClass("net.minecraft.server.PlayerConnection");
+            this.class_Packet = this.fixBukkitClass("net.minecraft.server.Packet");
+            this.class_PacketPlayOutEntityDestroy = this.fixBukkitClass("net.minecraft.server.PacketPlayOutEntityDestroy");
+            this.class_World = this.fixBukkitClass("net.minecraft.server.World");
+            this.class_CraftWorld = this.fixBukkitClass("org.bukkit.craftbukkit.CraftWorld");
+            this.class_Entity = this.fixBukkitClass("net.minecraft.server.Entity");
         } catch (Throwable ex) {
             ex.printStackTrace();
         }
