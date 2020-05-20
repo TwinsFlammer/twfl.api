@@ -1,0 +1,7 @@
+name: Api
+main: br.com.twinsflammer.api.spigot.SpigotAPI
+version: 1.0-SNAPSHOT
+author: Gutyerrez
+depend:
+  - Common
+  - ProtocolLib

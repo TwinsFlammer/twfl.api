@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
 
     <parent>
-        <groupId>com.redefocus</groupId>
+        <groupId>br.com.twinsflammer</groupId>
         <artifactId>super</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -15,9 +15,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>rf.api-shared</module>
-        <module>rf.api-bungee</module>
-        <module>rf.api-spigot</module>
+        <module>twfl.api-shared</module>
+        <module>twfl.api-bungee</module>
+        <module>twfl.api-spigot</module>
     </modules>
 
     <dependencies>

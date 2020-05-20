@@ -1,0 +1,6 @@
+name: Api
+main: br.com.twinsflammer.api.bungeecord.BungeeAPI
+version: 1.0-SNAPSHOT
+author: Gutyerrez
+depends:
+  - Common

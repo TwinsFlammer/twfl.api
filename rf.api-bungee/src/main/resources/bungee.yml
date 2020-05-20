@@ -1,6 +1,0 @@
-name: Api
-main: com.redefocus.api.bungeecord.BungeeAPI
-version: 1.0-SNAPSHOT
-author: Gutyerrez
-depends:
-  - Common
