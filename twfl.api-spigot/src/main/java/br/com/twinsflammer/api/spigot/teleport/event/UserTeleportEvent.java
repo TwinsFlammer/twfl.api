@@ -1,7 +1,7 @@
 package br.com.twinsflammer.api.spigot.teleport.event;
 
 import br.com.twinsflammer.api.spigot.teleport.data.TeleportRequest;
-import br.com.twinsflammer.api.spigot.event.FocusEvent;
+import br.com.twinsflammer.api.spigot.event.TwinsEvent;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.event.Cancellable;
@@ -10,7 +10,7 @@ import org.bukkit.event.Cancellable;
  * Created by @SrGutyerrez
  */
 @RequiredArgsConstructor
-public class UserTeleportEvent extends FocusEvent implements Cancellable {
+public class UserTeleportEvent extends TwinsEvent implements Cancellable {
     @Getter
     private final TeleportRequest teleportRequest;
 
