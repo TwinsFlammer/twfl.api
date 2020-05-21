@@ -12,7 +12,7 @@ import java.io.IOException;
  * Created by @SrGutyerrez
  */
 @RequiredArgsConstructor
-public abstract class FocusPlugin extends JavaPlugin {
+public abstract class TwinsPlugin extends JavaPlugin {
     @Override
     public void onLoad() {
     }
