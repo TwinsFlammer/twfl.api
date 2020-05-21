@@ -7,16 +7,16 @@ import org.bukkit.event.HandlerList;
 /**
  * Created by @SrGutyerrez
  */
-public class FocusEvent extends Event {
+public class TwinsEvent extends Event {
     public static HandlerList handler = new HandlerList();
 
     public static HandlerList getHandlerList() {
-        return FocusEvent.handler;
+        return TwinsEvent.handler;
     }
 
     @Override
     public HandlerList getHandlers() {
-        return FocusEvent.handler;
+        return TwinsEvent.handler;
     }
 
     public void run() {
