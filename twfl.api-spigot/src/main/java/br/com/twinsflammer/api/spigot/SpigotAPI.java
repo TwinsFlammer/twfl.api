@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
 /**
  * Created by @SrGutyerrez
  */
-public class SpigotAPI extends FocusPlugin {
+public class SpigotAPI extends TwinsPlugin {
     @Getter
     private static SpigotAPI instance;
 
