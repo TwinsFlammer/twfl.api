@@ -7,7 +7,7 @@ import br.com.twinsflammer.api.shared.API;
 /**
  * Created by @SrGutyerrez
  */
-public class BungeeAPI extends FocusPlugin {
+public class BungeeAPI extends TwinsPlugin {
     private static BungeeAPI instance;
 
     public BungeeAPI() {
