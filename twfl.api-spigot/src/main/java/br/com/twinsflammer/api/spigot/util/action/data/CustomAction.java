@@ -1,6 +1,6 @@
 package br.com.twinsflammer.api.spigot.util.action.data;
 
-import br.com.twinsflammer.api.spigot.FocusPlugin;
+import br.com.twinsflammer.api.spigot.TwinsPlugin;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import br.com.twinsflammer.common.spigot.packet.wrapper.WrapperPlayServerChat;
 import org.bukkit.Bukkit;
@@ -60,7 +60,7 @@ public class CustomAction {
             return this;
         }
 
-        public Spigot sendAndStay(FocusPlugin plugin, int ticks, Collection<? extends Player> players) {
+        public Spigot sendAndStay(TwinsPlugin plugin, int ticks, Collection<? extends Player> players) {
             Spigot.this.task = Bukkit.getScheduler().runTaskTimer(plugin, () -> {
 
                 Spigot.this.stayCounter++;
