@@ -1,6 +1,6 @@
 package br.com.twinsflammer.api.spigot.commands.registry;
 
-import br.com.twinsflammer.api.spigot.FocusPlugin;
+import br.com.twinsflammer.api.spigot.TwinsPlugin;
 import com.google.common.collect.Lists;
 import br.com.twinsflammer.api.spigot.commands.CustomCommand;
 import org.bukkit.Bukkit;
@@ -15,8 +15,8 @@ import java.util.Map;
  * Created by @SrGutyerrez
  */
 public class CommandRegistry {
-    public static void registerCommand(FocusPlugin focusPlugin, CustomCommand customCommand) {
-        System.out.println("[CommandRegistry] Registering " + customCommand.getName() + " command by " + focusPlugin.getName() + ".");
+    public static void registerCommand(TwinsPlugin twinsPlugin, CustomCommand customCommand) {
+        System.out.println("[CommandRegistry] Registering " + customCommand.getName() + " command by " + twinsPlugin.getName() + ".");
 
         CraftServer craftServer = (CraftServer) Bukkit.getServer();
 
