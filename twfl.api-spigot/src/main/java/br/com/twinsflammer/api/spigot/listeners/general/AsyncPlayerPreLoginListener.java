@@ -23,6 +23,8 @@ public class AsyncPlayerPreLoginListener implements Listener {
     public void onLogin(AsyncPlayerPreLoginEvent event) {
         UUID uniqueId = event.getUniqueId();
 
+        System.out.println(uniqueId);
+
         SpigotUser spigotUser = SpigotAPI.getSpigotUserFactory().getUser(uniqueId);
 
         UserGroupDao userGroupDao = new UserGroupDao();
@@ -36,6 +38,8 @@ public class AsyncPlayerPreLoginListener implements Listener {
         List<UserGroup> groups = Lists.newArrayList(
                 userGroupDao.findAll(spigotUser.getId(), serverIdSQLWhere)
         );
+
+        groups.forEach(System.out::println);
 
         User user = UserManager.getUser(spigotUser.getUniqueId());
 
