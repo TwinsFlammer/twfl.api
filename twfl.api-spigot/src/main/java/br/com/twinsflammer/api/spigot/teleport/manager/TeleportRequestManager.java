@@ -22,7 +22,7 @@ public class TeleportRequestManager {
         Common.getInstance().getScheduler().scheduleWithFixedDelay(
                 new TeleportRequestRunnable(),
                 0,
-                500,
+                250,
                 TimeUnit.MILLISECONDS
         );
     }
