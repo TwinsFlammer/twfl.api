@@ -1,7 +1,7 @@
 package br.com.twinsflammer.api.spigot.util.jsontext.listener;
 
 import br.com.twinsflammer.api.spigot.SpigotAPI;
-import br.com.twinsflammer.api.spigot.util.jsontext.channel.JSONTextChannel;
+import br.com.twinsflammer.api.shared.text.jsontext.channel.JSONTextChannel;
 import br.com.twinsflammer.api.spigot.user.data.SpigotUser;
 import br.com.twinsflammer.api.spigot.util.jsontext.data.JSONText;
 import br.com.twinsflammer.common.shared.databases.redis.handler.JedisMessageListener;
