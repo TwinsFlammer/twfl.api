@@ -14,21 +14,27 @@ import java.util.UUID;
 public class SpigotUserFactory<U extends SpigotUser> extends AbstractUserFactory<U> {
     @Override
     public U getUser(Integer id) {
-        SpigotUser spigotUser = new SpigotUser(UserManager.getUser(id));
+        SpigotUser spigotUser = new SpigotUser(
+                UserManager.getUser(id)
+        );
 
         return (U) spigotUser;
     }
 
     @Override
     public U getUser(String username) {
-        SpigotUser spigotUser = new SpigotUser(UserManager.generateUser("Gutyerrez", UUID.randomUUID()));
+        SpigotUser spigotUser = new SpigotUser(
+                UserManager.getUser(username)
+        );
 
         return (U) spigotUser;
     }
 
     @Override
     public U getUser(UUID uniqueId) {
-        SpigotUser spigotUser = new SpigotUser(UserManager.getUser(uniqueId));
+        SpigotUser spigotUser = new SpigotUser(
+                UserManager.getUser(uniqueId)
+        );
 
         return (U) spigotUser;
     }
