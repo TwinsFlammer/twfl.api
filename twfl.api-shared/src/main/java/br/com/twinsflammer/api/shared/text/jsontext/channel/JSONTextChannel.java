@@ -1,4 +1,4 @@
-package br.com.twinsflammer.api.spigot.util.jsontext.channel;
+package br.com.twinsflammer.api.shared.text.jsontext.channel;
 
 import br.com.twinsflammer.common.shared.databases.redis.channel.data.Channel;
 import redis.clients.jedis.Jedis;
