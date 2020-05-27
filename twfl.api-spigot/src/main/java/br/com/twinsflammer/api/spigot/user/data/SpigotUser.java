@@ -1,7 +1,7 @@
 package br.com.twinsflammer.api.spigot.user.data;
 
 import br.com.twinsflammer.api.spigot.SpigotAPI;
-import br.com.twinsflammer.api.spigot.util.jsontext.channel.JSONTextChannel;
+import br.com.twinsflammer.api.shared.text.jsontext.channel.JSONTextChannel;
 import br.com.twinsflammer.api.spigot.util.jsontext.data.JSONText;
 import br.com.twinsflammer.common.shared.permissions.group.data.Group;
 import br.com.twinsflammer.common.shared.permissions.user.data.User;
