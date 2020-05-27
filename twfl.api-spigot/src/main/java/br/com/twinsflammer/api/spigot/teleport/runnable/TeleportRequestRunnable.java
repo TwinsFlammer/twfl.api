@@ -31,7 +31,7 @@ public class TeleportRequestRunnable implements Runnable {
                             15,
                             0,
                             "§eTeletransportando",
-                            "§eEm " + teleportRequestSecond + "..."
+                            teleportRequestSecond.equals("0") ? "Agora!" : "§eEm " + teleportRequestSecond + "..."
                     );
 
                     if (!spigotUser.getLastTeleportRequestSecond().equals(teleportRequestSecond))
